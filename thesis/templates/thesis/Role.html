@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Your Role
+{% endblock %}
+
+{% block content %}
+
+
+
+    {% if player.id_in_group != 4 %}
+	<p>You are one of the 3 deciders in the group.</p>
+    {% endif %}
+
+
+
+    {% if player.id_in_group == 4 %}
+	<p>You are the selector of the group.</p>
+    {% endif %}
+   
+
+
+    <button name="continue" value="True" class="btn btn-primary btn-large">Go to stage 1</button>
+
+
+
+{% endblock %}

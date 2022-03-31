@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+	Stage 3
+{% endblock %}
+
+{% block content %}
+
+
+    <table align="center">
+      <tr><td width=50px></td><td>     </td><td width=50px></td></tr>
+      <tr><td width=50px></td><td><p><strong>You spent 150 points on each selected decider</strong> and you interacted with {{ selected_num }} out of the 3 deciders.</p></td><td width=50px></td></tr>
+      <tr><td width=50px></td><td>     </td><td width=50px></td></tr>
+
+      <tr><td width=50px></td><td><p>{{ highest_counter }}</p></td><td width=50px></td></tr>
+      <tr><td width=50px></td><td><p>{{ middle_counter }}</p></td><td width=50px></td></tr>
+      <tr><td width=50px></td><td><p>{{ lowest_counter }}</p></td><td width=50px></td></tr>
+
+      <tr><td width=50px></td><td><p></p>     </td><td width=50px></td></tr>
+      <tr><td width=50px></td><td><p>In this round, <strong>you earned a total of {{ earning_total }}</strong>.</p></td><td width=50px></td></tr>
+      <tr><td width=50px></td><td><button name="continue" value="True" class="btn btn-primary btn-large">Continue</button></td><td width=50px></td></tr>
+
+
+
+     </td><td width=50px></td></tr>
+    </table>
+{% endblock %}
+

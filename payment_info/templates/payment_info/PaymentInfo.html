@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Thank you
+{% endblock %}
+
+{% block content %}
+
+
+
+    <table>
+    <tr><td width=50px></td><td>
+
+	<p> You collected {{ participant.payoff }} and earned a <strong>total of {{ money_earned }} during this experiment.</strong> Your earnings are based on two randomly selected rounds and are derived from your points in those rounds. If your point total is below 650 points, you will still get paid 6.50 Euros. Any points above 650 points are considered to be your bonus earnings.</p>
+
+<p><strong>Please remain seated until an experimenter opens the door. You will then receive your earnings.</strong></p>
+
+    </td><td width=50px></td></tr>
+    </table>
+
+
+{% endblock %}
+

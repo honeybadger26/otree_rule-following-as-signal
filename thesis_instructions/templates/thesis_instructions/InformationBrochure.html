@@ -1,0 +1,50 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Information Brochure
+{% endblock %}
+
+{% block content %}
+
+
+<div align="center">
+<table>
+<tr><td width=50px></td><td align="center">
+
+<p align="center">Dear participant,</p>
+<p align="center">This brochure provides you with information about the type and methods of the study in which you are about to participate. It is therefore important that you read this document closely.</p>
+
+<p align="center"><strong>Purpose of the Study</strong></p>
+<p align="center">People constantly make decisions, sometimes to improve their situation and sometimes to prevent it from worsening. We expect to get a good insight into the kind of decisions you make.</p>
+
+<p align="center"><strong>What is going to happen?</strong></p>
+<p align="center">In this experiment, you participate in 1 session of about 60 minutes. After you have read this introduction and signed the informed consent form, you will be briefed and trained. You will make a number of decisions that will be measured. You will interact with three other participants who are doing the study with you and are sitting in other cubicles. </p>
+
+<p align="center"><strong>Financial reward</strong></p>
+<p align="center">You will be compensated with at least 6.50 Euros (or 2 credits if you prefer). You may get paid additional earnings depending on the decisions you make in the experiment. Your earnings will be calculated after the conclusion of the experiment and paid out to you by the research assistants.</p>
+
+<p align="center"><strong>Voluntary participation</strong></p>
+<p align="center">If you now decide not to participate in this experiment, this shall have no consequences for you. If you decide during the experiment to withdraw from the study, this shall have no consequences for you. If you want to withdraw your participation now or  within the next 24 hours, your personal information will be removed from our database. You can thus withdraw your participation at any point without providing any justification.</p>
+
+<p align="center"><strong>Confidentiality of study results</strong></p>
+<p align="center">You will not meet any of the other participants, nor will you learn about their identity. Likewise, the other participants will not learn about your identity. Everything you do in this experiment will be completely anonymous. All information from this study will remain coded and the principal investigator has no insight into your identity. We will not provide your personal information to anybody else, only use your information for scientific purposes, and only report results averaged over all participants, not individual cases.</p>
+
+<p align="center"><strong>Deception</strong></p>
+<p align="center">Importantly, this study falls under the no-deception policy of Leiden University. Everything will be executed as stated in the instructions. There is no hidden information and no deception in this study.</p>
+
+<p align="center"><strong>Debriefing</strong></p>
+<p align="center">At the end of this session, you will receive a short summary about the purpose of this study. You can always direct questions about the experiment to the experimenters or email Dr. J&ouml;rg Gross (j.a.j.gross@fsw.leidenuniv.nl).</p>
+
+
+    {% formfields %}
+    <p></p>
+    <button name="continue_instructions" value="True" class="btn btn-primary btn-large">Continue to read the instructions</button>
+
+
+</td><td width=50px></td></tr>
+</table>
+
+</div>
+
+{% endblock %}

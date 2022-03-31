@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Please answer the following questions.
+{% endblock %}
+
+{% block content %}
+
+<div align="center">
+
+
+
+
+
+    <div align="left">
+    <table>
+	<tr><td width=50px></td><td width=300px>How many stages are there in this experiment?</td><td width=100px></td><td>{% formfield player.comprehension1 %}</td><td width=50px></td></tr>
+
+	<tr><td></td><td align="top">What is the correct sequence of the stages? Enter the number of the stage for each of the four items. (Tip: Two of the choices belong to one stage.) </td><td></td><td>Splitting MUs among yourself and your partner</td><td>{% formfield player.comprehension21 %}</td></tr>
+	<tr><td></td><td align="top"></td><td></td><td>Rolling and reporting dice rolls</td><td>{% formfield player.comprehension22 %}</td></tr>
+	<tr><td></td><td align="top"></td><td></td><td>Selecting at least one partner</td><td>{% formfield player.comprehension23 %}</td></tr>
+	<tr><td></td><td align="top"></td><td></td><td>Putting 15 balls in two buckets</td><td>{% formfield player.comprehension24 %}</td></tr>
+
+	<tr><td></td><td>What is the maximum a player can earn in the first environment?</td><td></td><td>{% formfield player.comprehension3 %}</td></tr>
+	<tr><td></td><td>What is the maximum a player can earn in the second environment?</td><td></td><td>{% formfield player.comprehension4 %}</td></tr>
+	<tr><td></td><td>What is the maximum a selector can earn during the selection process?</td><td></td><td>{% formfield player.comprehension5 %}</td></tr>
+	<tr><td></td><td>How will your total earnings be calculated?</td><td></td><td>{% formfield player.comprehension6 %}</td></tr>
+
+
+    </table>
+    </div>
+
+    <p></p>
+    <button name="back" value="True" class="btn btn-primary btn-large">Back to Instructions</button>           
+    <button name="continue_experiment" value="True" class="btn btn-primary btn-large">Continue to Start The Experiment</button>
+
+</div>
+
+
+{% endblock %}

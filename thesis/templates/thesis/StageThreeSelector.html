@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage 3
+{% endblock %}
+
+{% block content %}
+
+    <div align="center">
+
+
+	{% if subsession.round_number < 16 %}
+	{% include Constants.dictator_instructions2 %}
+	{% endif %}
+
+	{% if subsession.round_number > 15 %}
+	{% include Constants.dieroll_instructions2 %}
+	{% endif %}
+
+	<button name="wait" value="1" class="btn btn-primary btn-large">Wait for the deciders</button>
+
+    </div>
+
+    <p></p>
+
+{% endblock %}
+

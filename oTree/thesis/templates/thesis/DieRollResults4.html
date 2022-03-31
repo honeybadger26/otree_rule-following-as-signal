@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Which Die Rolls Were Reported?
+{% endblock %}
+
+{% block content %}
+
+
+    <p>{{ die_roll1 }} {{ points1 }}</p>
+    <p>{{ die_roll2 }} {{ points2 }}</p>
+    <p>{{ die_roll3 }} {{ points3 }}</p>
+
+    <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button>
+
+{% endblock %}

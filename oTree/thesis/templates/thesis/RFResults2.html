@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage Two
+{% endblock %}
+
+{% block content %}
+
+
+    {% if player.id_in_group == 4 %}
+
+    	{% include Constants.selection_instructions %}
+
+	<p><b>These are the results from stage 1 while you were waiting. Who do you select for stage 3?</b></p>
+	<p>One participant chose the yellow bucket {{ group.yellow_counter1 }} times, the blue bucket {{ group.blue_counter1 }} times, and earned {{ group.payoff_rf1 }}.</p> 
+	<p>One participant chose the yellow bucket {{ group.yellow_counter2 }} times, the blue bucket {{ group.blue_counter2 }} times, and earned {{ group.payoff_rf2 }}.</p>
+	<p>One participant chose the yellow bucket {{ group.yellow_counter3 }} times, the blue bucket {{ group.blue_counter3 }} times, and earned {{ group.payoff_rf3 }}.</p>
+
+	<table align="center">
+	<tr><td align="left">
+	 {% formfield group.select1 %} 
+	 {% formfield group.select2 %} 
+	 {% formfield group.select3 %} 
+	</td></tr>
+	</table>
+
+    {% endif %}
+
+    <p></p>
+    {% next_button%}
+
+{% endblock %}
+

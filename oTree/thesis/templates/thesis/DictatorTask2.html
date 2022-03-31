@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage Three
+{% endblock %}
+
+{% block content %}
+
+
+    <div align="center">
+	{% include Constants.dictator_instructions %}
+
+    <p><b>How do you want to allocate the points?</b></p>
+    <table align="center">
+    	<tr><td>Keep for yourself: </td><td width=50px></td><td>{% formfield group.dictator_choice21 %}</td><td></td></tr>
+    	<tr><td>Give to partner: </td><td></td><td>{% formfield group.dictator_choice22 %}</td><td></td></tr>
+    </table>
+    </div>
+
+
+    <p></p>	
+    {% next_button %}
+
+
+{% endblock %}

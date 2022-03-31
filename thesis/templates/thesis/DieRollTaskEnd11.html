@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 3
+{% endblock %}
+
+{% block content %}
+
+    <div align="center">
+	{% include Constants.dieroll_instructions_end %}
+	<p>Roll your die using the cup now.</p>
+    	<button name="report_roll" value="True" class="btn btn-primary btn-large">Report the die roll</button>
+    </div>
+
+{% endblock %}

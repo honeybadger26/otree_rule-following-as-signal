@@ -1,0 +1,86 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage 2
+{% endblock %}
+
+{% block content %}
+
+
+    {% if player.id_in_group == 4 %}
+
+
+    	{% include Constants.selection_instructions2 %}
+
+
+    <table align="center">
+    <tr><td></td><td> <p></p>   </td><td></td></tr>
+    <tr><td width=50px></td><td align="center">       
+
+	<p>A decider chose the blue bucket {{ highest_counter }} times and earned {{ highest_payoff }}. 
+
+		{% if group.partner_highest == 1 %}
+		{% formfield group.select1 %} 
+		{% endif %}
+
+		{% if group.partner_highest == 2 %}
+		{% formfield group.select2 %} 
+		{% endif %}
+
+		{% if group.partner_highest == 3 %}
+		{% formfield group.select3 %} 
+		{% endif %}
+
+
+    </td><td width=50px></td></tr>
+    <tr><td></td><td>  <p>&nbsp</p>  </td><td></td></tr>
+    <tr><td></td><td>
+
+	<p>A decider chose the blue bucket {{ middle_counter }} times and earned {{ middle_payoff }}. 
+
+		{% if group.partner_middle == 1 %}
+		{% formfield group.select1 %} 
+		{% endif %}
+
+		{% if group.partner_middle == 2 %}
+		{% formfield group.select2 %} 
+		{% endif %}
+
+		{% if group.partner_middle == 3 %}
+		{% formfield group.select3 %} 
+		{% endif %}
+
+
+	</p>
+    </td><td></td></tr>
+    <tr><td></td><td>  <p></p>  </td><td></td></tr>
+    <tr><td></td><td>
+
+	<p>A decider chose the blue bucket {{ lowest_counter }} times and earned {{ lowest_payoff }}.  
+
+		{% if group.partner_lowest == 1 %}
+		{% formfield group.select1 %} 
+		{% endif %}
+
+		{% if group.partner_lowest == 2 %}
+		{% formfield group.select2 %} 
+		{% endif %}
+
+		{% if group.partner_lowest == 3 %}
+		{% formfield group.select3 %} 
+		{% endif %}	
+
+    </td><td></td></tr>
+    <tr><td></td><td>    </td><td></td></tr>
+    </table>
+
+
+
+    {% endif %}
+
+    <p></p>
+    {% next_button%}
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+	Stage 3
+{% endblock %}
+
+{% block content %}
+
+
+    <table align="center">
+      <tr><td width=50px></td><td>
+
+        <p>You chose to keep {{ group.dictator_choice31 }} and give {{ group.dictator_choice32 }} to the selector during this interaction.</p>
+
+	<p><button name="next_round" value="True" class="btn btn-primary btn-large">Next round</button>
+</p>
+
+      </td><td width=50px></td></tr>  
+    </table>
+
+
+{% endblock %}

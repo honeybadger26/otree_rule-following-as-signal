@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   Selection Task
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.selection_template %}
+    {% formfields %}
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

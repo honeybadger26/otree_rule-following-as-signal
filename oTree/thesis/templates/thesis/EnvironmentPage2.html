@@ -1,0 +1,144 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+	Please Read the Instructions Closely and Answer the Questions Below.
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+  <div class="card">
+    <div class="card-header" id="heading-3">
+      <h4 class="mb-0">
+        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+          Part 2 
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-3" class="collapse show" data-parent="#accordion" aria-labelledby="heading-3">
+      <div class="card-body">
+        <p align="center">In this part, everything will stay the same as in part 1, except for stage 3 and the feedback. You will also stay in your role (decider or selector) from part 1. Again, this part consists of 15 rounds. For your convenience, we repeat the instructions for stage 1 and 2 below.</p>
+    <p><b>Note:</b> Tick the checkboxes in the sections below to show that you have read and understood the instructions. Otherwise, you will not be able to proceed.</p>
+      </div>
+
+
+      <div class="card-body">
+        <div id="accordion-3">
+          <div class="card">
+            <div class="card-header" id="heading-3-1">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3-1" aria-expanded="false" aria-controls="collapse-3-1">
+                  Stage 1
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-3-1" class="collapse" data-parent="#accordion-3" aria-labelledby="heading-3-1">
+              <div class="card-body">
+	      		<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Each decider will decide how to allocate 15 balls between two buckets on the computer screen. The decider's task is to put each ball, one-by-one, into one of the two buckets: the blue bucket or the yellow bucket.</p>
+<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For each ball the decider puts in the blue bucket he or she will receive 5 points and for each ball the decider puts in the yellow bucket he or she will receive 15 points.</p>
+<p align="center">The rule is to put the balls in the blue bucket.</p>
+<p align="center">The decider's payment for this stage will be based on the sum of the points from the blue and yellow buckets.</p>
+<p align="center">The selector will not take part in stage 1.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading-3-2">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3-2" aria-expanded="false" aria-controls="collapse-3-2">
+                  Stage 2
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-3-2" class="collapse" data-parent="#accordion-3" aria-labelledby="heading-3-2">
+              <div class="card-body">
+                <p align="center">The selector will start by receiving 450 points.</p>
+<p align="center">The selector will then learn about the decisions of all three deciders. Specifically, they will be told how many balls each decider placed in the blue and yellow bucket. <strong>The selector can then select which decider to interact with for stage 3. </strong>The selector has to select at least one decider to interact with but can also choose to interact with two deciders in stage 3 - or even all three.</p>
+<p align="center">For every decider that the selector wants to interact with in stage 3, the selector has to pay a cost of 150 points. If a decider is not selected for stage 3, he or she will skip this stage and wait for the others to finish.</p>
+<p align="center">Importantly, the selector will not be able to identify the deciders across rounds, but only learn about their behavior in stage 1 (the bucket task).</p>
+<p align="center">The deciders will not take part in stage 2.</p>
+              </div>
+            </div>
+          </div>
+
+	  <div class="card">
+            <div class="card-header" id="heading-3-3">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3-3" aria-expanded="false" aria-controls="collapse-3-3">
+                  Stage 3
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-3-3" class="collapse show" data-parent="#accordion-3" aria-labelledby="heading-3-3">
+              <div class="card-body">
+                <p align="center">If a decider is selected as interaction partner, he or she will receive 500 points.</p>
+<p align="center">The decider is then asked how many points he or she wants to keep and how many points to give to the selector. Hence, the decision of the decider determines the earnings of the decider as well as the selector&rsquo;s earnings for this stage.</p>
+<p align="center">After the decider made his or her decision, the selector will learn about the outcome.</p>
+<p align="center">The selector will not take part in stage 3.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood33 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading-3-4">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3-4" aria-expanded="false" aria-controls="collapse-3-4">
+                  Feedback in Part 2
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-3-4" class="collapse show" data-parent="#accordion-3" aria-labelledby="heading-3-4">
+              <div class="card-body">
+                <p align="center">After stage 3, the round is over and you will receive a summary of this round.</p>
+<p align="center">&nbsp;</p>
+<p align="center">In the role of the decider, you receive a summary of &hellip;</p>
+<p align="center">(a) your payoff from stage 1,</p>
+<p align="center">(b) whether you were selected as interaction partner for stage 3, and</p>
+<p align="center">(c) your die-roll report and how many points you and the selector earned, accordingly</p>
+<p align="center">&nbsp;</p>
+<p align="center">In the role of the selector, you receive a summary of &hellip;</p>
+<p align="center">(a) the deciders you chose as interaction partners for stage 3 and</p>
+<p align="center">(b) the die-roll report and resulting earnings for each decider you interacted with</p>
+<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+<p align="center">Then, you move to the next round, starting with stage 1.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood34 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p></p>
+
+    <p><b>Please answer the following questions.</b></p>
+
+ <div align="left">
+    <table>
+    <tr><td width=50px></td><td width=325px>If a decider was selected for stage 3, how many points do the decider and selector receive if the decider reports to have thrown a 1? .</td><td width=50px></td><td width=325px>{% formfield player.comprehension7 %}</td><td width=50px></td></tr>
+    <tr><td></td></td><td>If a decider was selected for stage 3, how many points do the decider and selector receive if the decider reports to have thrown a 6? </td><td></td><td>{% formfield player.comprehension8 %}</td></tr>
+    </table>
+
+ </div>
+
+ <p></p>
+    <button name="continue_env2" value="True" class="btn btn-primary btn-large">Click here to join part two</button>
+
+
+<p>&nbsp</p>
+
+{% endblock %}

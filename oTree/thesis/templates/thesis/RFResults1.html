@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Who Got Selected?
+{% endblock %}
+
+{% block content %}
+
+    <div align="center">
+    <table align="left">
+	<tr><td width=85px></td><td>
+	{% if player.id_in_group == partner1 %}
+	<p>In this round, you chose the yellow bucket {{ group.yellow_counter1 }} times, the blue bucket {{ group.blue_counter1 }} times, and were <b>{{ group.get_select1_display }}</b> for stage three. </p>
+	<p>A player chose the yellow bucket {{ group.yellow_counter2 }} times, the blue bucket {{ group.blue_counter2 }} times, and was <b>{{ group.get_select2_display }}</b> for stage three. </p>
+	<p>A player chose the yellow bucket {{ group.yellow_counter3 }} times, the blue bucket {{ group.blue_counter3 }} times, and was <b>{{ group.get_select3_display }}</b> for stage three. </p>
+	<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button> </p>
+	{% endif %}
+
+
+
+	{% if player.id_in_group == partner2 %}
+	<p>In this round, you chose the yellow bucket {{ group.yellow_counter2 }} times, the blue bucket {{ group.blue_counter2 }} times, and were <b>{{ group.get_select2_display }}</b> for stage three. </p>
+	<p>A player chose the yellow bucket {{ group.yellow_counter1 }} times, the blue bucket {{ group.blue_counter1 }} times, and was <b>{{ group.get_select1_display }}</b> for stage three. </p> 
+	<p>A player chose the yellow bucket {{ group.yellow_counter3 }} times, the blue bucket {{ group.blue_counter3 }} times, and was <b>{{ group.get_select3_display }}</b> for stage three. </p>
+	<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button> </p>
+	{% endif %}
+
+
+
+	{% if player.id_in_group == partner3 %}
+	<p>In this round, you chose the yellow bucket {{ group.yellow_counter3 }} times, the blue bucket {{ group.blue_counter3 }} times, and were <b>{{ group.get_select3_display }}</b> for stage three. </p>
+	<p>A player chose the yellow bucket {{ group.yellow_counter1 }} times, the blue bucket {{ group.blue_counter1 }} times, and was <b>{{ group.get_select1_display }}</b> for stage three. </p> 
+	<p>A player chose the yellow bucket {{ group.yellow_counter2 }} times, the blue bucket {{ group.blue_counter2 }} times, and was <b>{{ group.get_select2_display }}</b> for stage three. </p>
+	<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button> </p>
+	{% endif %}
+	</td><td width=85px></td></tr>
+	<tr><td></td></tr>
+    </table>
+
+
+
+    </div>
+
+    <p></p>
+
+{% endblock %}
+

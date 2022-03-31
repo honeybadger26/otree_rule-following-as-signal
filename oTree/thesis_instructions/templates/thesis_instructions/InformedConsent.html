@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Informed Consent
+{% endblock %}
+
+{% block content %}
+
+<div align="center">
+<table>
+<tr><td width=50px></td><td align="center">
+
+
+<p align="center">This study involves reading instructions and making a series of decisions that can affect your payment. The study involves one session and you will be compensated with at least 6.50 Euros or 2 credits. Yet, you can also earn more than 6.50 Euro, depending on your decisions in this experiment.</p>
+<p align="center">All instructions, decisions, and questionnaires will be presented to you on the computer. Participation is voluntary and at your own discretion. This means that you can withdraw from the study at any time and without having to explain or justify why. You will still receive at least 6.50 Euros or 2 credits.</p>
+<p align="center">All measures taken in this study are for scientific purposes only and all information collected during this study is confidential. The data will be stored in a coded way so that responses cannot be traced back to your identity.</p>
+<p align="center">At the end of the experiment, you will be debriefed with background information on the study. Your earnings will be paid out to you in cash after the session including the additional earnings you obtained during the experiment.</p>
+<p align="center">The study is coordinated by Dr. J&ouml;rg Gross (j.a.j.gross@fsw.leidenuniv.nl). Questions or complaints can be addressed to him.</p>
+
+
+
+
+
+    {% formfields %}
+    <p></p>
+    <button name="continue_consent" value="True" class="btn btn-primary btn-large">Continue to Information Brochure</button>
+
+
+
+</td><td width=50px></td></tr>
+</table>
+
+</div>
+
+{% endblock %}

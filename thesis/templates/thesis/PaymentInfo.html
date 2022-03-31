@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Thank you
+{% endblock %}
+
+{% block content %}
+
+    <table>
+    <tr><td width=50px></td><td>
+
+	<p> Based on the rounds that were randomly selected, you collected {{ participant.payoff }} and earned a <strong>total of {{ money_earned }} during this experiment.</strong> The earnings are based on two randomly selected rounds and are derived from your points in those rounds. After you have left the cubicle, the experimenter pays you in cash. </p>
+
+    </td><td width=50px></td></tr>
+    </table>
+
+{% next_button %}
+
+{% endblock %}
+

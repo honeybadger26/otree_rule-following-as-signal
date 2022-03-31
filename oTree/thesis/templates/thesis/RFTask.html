@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage One
+{% endblock %}
+
+{% block content %}
+
+
+	{% include Constants.rf_instructions %}
+
+	
+	{% if player.id_in_group == partner1 %}
+
+		<p><b>Which basket do you choose for ball {{ player.balls }} ?</b></p>
+
+		<p></p>
+		<table align="center">
+			<tr><td><button name="yellow_choice1" value="1" class="btn btn-primary btn-large">Yellow bucket</button></td><td width=180px></td>
+				<td><button name="blue_choice1" value="1" class="btn btn-primary btn-large">Blue bucket</button></td></tr>
+			<tr><td>{{ group.yellow_counter1 }} times chosen</td><td></td><td>{{ group.blue_counter1 }} times chosen</td></tr>
+			<tr><td></td><td width=50px><b>Total points</b> earned this round: <b>{{ group.payoff_rf1 }}</b></td><td></td></tr>
+
+		</table>
+	
+	{% endif %}
+
+
+
+
+
+	{% if player.id_in_group == partner2 %}
+
+		<p><b>Which basket do you choose for ball {{ player.balls }} ?</b></p>
+
+		<p></p>
+		<table align="center">
+			<tr><td><button name="yellow_choice2" value="1" class="btn btn-primary btn-large">yellow bucket</button></td><td width=180px></td>
+				<td><button name="blue_choice2" value="1" class="btn btn-primary btn-large">blue bucket</button></td></tr>
+			<tr><td>{{ group.yellow_counter2 }} times chosen</td><td></td><td>{{ group.blue_counter2 }} times chosen</td></tr>
+			<tr><td></td><td width=50px><b>Total points</b> earned this round: <b>{{ group.payoff_rf2 }}</b></td><td></td></tr>
+
+		</table>
+	
+	{% endif %}
+
+
+
+
+
+	{% if player.id_in_group == partner3 %}
+
+		<p><b>Which basket do you choose for ball {{ player.balls }} ?</b></p>
+
+		<p></p>
+		<table align="center">
+			<tr><td><button name="yellow_choice3" value="1" class="btn btn-primary btn-large">yellow bucket</button></td><td width=180px></td>
+				<td><button name="blue_choice3" value="1" class="btn btn-primary btn-large">blue bucket</button></td></tr>
+			<tr><td>{{ group.yellow_counter3 }} times chosen</td><td></td><td>{{ group.blue_counter3 }} times chosen</td></tr>
+			<tr><td></td><td width=50px><b>Total points</b> earned this round: <b>{{ group.payoff_rf3 }}</b></td><td></td></tr>
+
+		</table>
+	
+	{% endif %}
+
+
+
+{% endblock %}

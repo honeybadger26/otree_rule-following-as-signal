@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Round Feedback
+{% endblock %}
+
+{% block content %}
+
+
+<table align="center">
+ <tr><td width=50px></td><td>
+
+      {% if player.id_in_group == 1 %}
+	<p>In this round, you chose the blue bucket {{ group.blue_counter1 }} times. You were {{ group.get_select1_display }} and earned a total of {{ points_total1 }}.</p>
+      {% endif %}
+
+
+      {% if player.id_in_group == 2 %}
+	<p>In this round, you chose the blue bucket {{ group.blue_counter2 }} times. You were {{ group.get_select2_display }} and earned a total of {{ points_total2 }}.</p>
+      {% endif %}
+
+
+      {% if player.id_in_group == 3 %}
+	<p>In this round, you chose the blue bucket {{ group.blue_counter3 }} times. You were {{ group.get_select3_display }} and earned a total of {{ points_total3 }}.</p>
+      {% endif %}
+
+    <p></p>
+
+   
+    <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button>
+
+ </td><td width=50px></td></tr>
+</table>
+
+
+
+{% endblock %}

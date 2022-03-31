@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage Two
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.selection_instructions %}
+
+    <p></p>
+    <p align="center"> <button name="wait" value="True" class="btn btn-primary btn-large">Wait for selector</button> </p>
+
+{% endblock %}
+

@@ -1,0 +1,252 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Please Read the Instructions Closely and Answer the Questions Below.
+{% endblock %}
+
+{% block content %}
+
+
+
+<div>
+<table>
+ <tr><td width=10px></td><td>
+
+
+
+
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="heading-1">
+      <h4 class="mb-0">
+        <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+          General Instructions
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-1" class="collapse show" data-parent="#accordion" aria-labelledby="heading-1">
+      <div class="card-body">
+	<div class="card-body">
+		<p align="center">Welcome to the experiment! Below you will find detailed information about the study and a short test to check whether you understood the general setup. It is therefore important that you read the instructions closely. Please do not hesitate to call the experimenter if anything remains unclear to you.</p>
+<p align="center">In this study, you interact online with three other participants who are doing the study with you and are sitting in other cubicles. You will not meet any of the other participants, nor will you learn about their identity. Likewise, the other participants will not learn about your identity. Everything you do in this experiment will be completely anonymous.</p>
+<p align="center">Importantly, this study falls under the no-deception policy of Leiden University. Everything will be executed as stated in the instructions. There is no hidden information and no deception in this study.</p>
+<p align="centre"><strong>Note: </strong>Tick the checkboxes in each section below to show that you have read and understood the instructions. Otherwise, you will not be able to proceed.</strong></p>
+	</div>
+
+
+        <div id="accordion-1">
+          <div class="card">
+            <div class="card-header" id="heading-1-1">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
+                  Roles
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-1-1" class="collapse" data-parent="#accordion-1" aria-labelledby="heading-1-1">
+              <div class="card-body">
+	      		<p>In this study, you will be assigned to one of two roles, and you will remain in this role throughout the experiment. You will either be playing in the role of the "selector" or in the role of the "decider". In total, there is one selector and three deciders.<br />You will find out about your role at the start of the experiment.</p>
+	{% formfield player.understood11 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading-1-2">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1-2" aria-expanded="false" aria-controls="collapse-1-2">
+                  General Structure
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-1-2" class="collapse" data-parent="#accordion-1" aria-labelledby="heading-1-2">
+              <div class="card-body">
+                <p align="center">This study consists of <strong>two parts</strong>. Below, we will explain the first part in detail. After you have completed the first part of the experiment, we will give instructions about the second part.</p>
+	{% formfield player.understood12 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading-1-3">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1-3" aria-expanded="false" aria-controls="collapse-1-3">
+                  Payment
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-1-3" class="collapse" data-parent="#accordion-1" aria-labelledby="heading-1-3">
+              <div class="card-body">
+                <p align="center">At the end of the experiment, <strong>one round of this part will be selected randomly</strong> by the computer. Since you do not know which round will count for real, you should treat each round independently and as if this round is the one that counts.</p>
+<p align="center">&nbsp;The points you earn in this round will be converted to money at a conversion rate of <strong>100 points = 1 euro</strong> and added to your payment. Hence, your decisions have real consequences for your earnings and, potentially, the earnings of other participants.</p>
+<p align="center">If you have any questions now, do not hesitate to call the experimenter.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood13 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+        </div>      
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="card">
+    <div class="card-header" id="heading-2">
+      <h4 class="mb-0">
+        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+          Part 1
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-2" class="collapse show" data-parent="#accordion" aria-labelledby="heading-2">
+      <div class="card-body">
+        <p align="center">The first part of the study consists of 15 rounds. Each round has <strong>three stages</strong>.</p>
+      </div>
+
+
+      <div class="card-body">
+        <div id="accordion-2">
+          <div class="card">
+            <div class="card-header" id="heading-2-1">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2-1" aria-expanded="false" aria-controls="collapse-2-1">
+                  Stage 1
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-2-1" class="collapse" data-parent="#accordion-2" aria-labelledby="heading-2-1">
+              <div class="card-body">
+	      		<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Each decider will decide how to <strong>allocate 15 balls between two buckets</strong> on the computer screen. The decider's task is to put each ball, one-by-one, into one of the two buckets: the blue bucket or the yellow bucket.</p>
+<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For each ball the decider puts in the blue bucket he or she will receive 5 points and for each ball the decider puts in the yellow bucket he or she will receive 15 points.</p>
+<p align="center">The rule is to put the balls in the blue bucket.</p>
+<p align="center">The decider's payment for this stage will be based on the sum of the points from the blue and yellow buckets.</p>
+<p align="center">The selector will not take part in stage 1.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood21 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading-2-2">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2-2" aria-expanded="false" aria-controls="collapse-2-2">
+                  Stage 2
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-2-2" class="collapse" data-parent="#accordion-2" aria-labelledby="heading-2-2">
+              <div class="card-body">
+                <p align="center">The selector will start by receiving 450 points.</p>
+<p align="center">The selector will then learn about the decisions of all three deciders. Specifically, they will be told how many balls each decider placed in the blue and yellow bucket. The selector can then select which decider to interact with for stage 3. <strong>The selector has to select at least one decider to interact with</strong> but can also choose to interact with two deciders in stage 3 - or even all three.</p>
+<p align="center">For every decider that the selector wants to interact with in stage 3, the selector has to pay a cost of 150 points. If a decider is not selected for stage 3, he or she will skip this stage and wait for the others to finish.</p>
+<p align="center">Importantly, the selector will not be able to identify the deciders across rounds, but only learn about their behavior in stage 1 (the bucket task).</p>
+<p align="center">The deciders will not take part in stage 2.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood22 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+	  <div class="card">
+            <div class="card-header" id="heading-2-3">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2-3" aria-expanded="false" aria-controls="collapse-2-3">
+                  Stage 3
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-2-3" class="collapse" data-parent="#accordion-2" aria-labelledby="heading-2-3">
+              <div class="card-body">
+                <p align="center">If a decider is selected as interaction partner, he or she will receive 500 points.</p>
+<p align="center">The decider is then asked how many points he or she wants to keep and how many points to give to the selector. Hence, the decision of the decider determines the earnings of the decider as well as the selector&rsquo;s earnings for this stage.</p>
+<p align="center">After the decider made his or her decision, the selector will learn about the outcome.</p>
+<p align="center">The selector will not take part in stage 3.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood23 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+	  <div class="card">
+            <div class="card-header" id="heading-2-4">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2-4" aria-expanded="false" aria-controls="collapse-2-4">
+                  Feedback in Part 1
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-2-4" class="collapse" data-parent="#accordion-2" aria-labelledby="heading-2-4">
+              <div class="card-body">
+		<p align="center">After stage 3, the round is over and you will receive a summary of this round.</p>
+<p align="center">&nbsp;</p>
+<p align="center">In the role of the decider, you receive a summary of:</p>
+<p align="center">(a) your payoff from stage 1,</p>
+<p align="center">(b) whether you were selected as interaction partner for stage 3</p>
+<p align="center">(c) how many points you decided to keep for yourself and give to the selector</p>
+<p align="center">(d) your total sum of points you earned in this round</p>
+<p align="center">&nbsp;</p>
+<p align="center">In the role of the selector, you receive a summary of:</p>
+<p align="center">(a) the deciders you chose as interaction partners for stage 3</p>
+<p align="center">(b) how many points the deciders you interacted with decided to keep for themselves and give to you</p>
+<p align="center">(c) your total sum of points you earned in this round</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+<p align="center">Then, you move to the next round starting with stage 1.</p>
+<p align="center">&nbsp;</p>
+	{% formfield player.understood24 %}
+	<p></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<p></p>
+
+
+ <div align="center">
+
+    <p><b>Please answer the following questions.</b></p>
+
+
+ <div align="left">
+    <table>
+    <tr><td width=50px></td><td width=325px>Each round consists of ...</td><td width=50px></td><td width=325px>{% formfield player.comprehension1 %}</td><td width=50px></td></tr>&nbsp
+    <tr><td></td></td><td>What is the rule in the first stage?</td><td></td><td>{% formfield player.comprehension2 %}</td></tr> &nbsp
+    <tr><td></td></td><td>How many deciders can the selector select to interact with in stage 3?</td><td></td><td>{% formfield player.comprehension3 %}</td></tr>
+    <tr><td></td></td><td>What happens when a decider is not selected by the selector?</td><td></td><td>{% formfield player.comprehension4 %}</td></tr>
+    <tr><td></td></td><td>How many points does the selector have to pay to interact with one decider?</td><td></td><td>{% formfield player.comprehension5 %}</td></tr>
+    <tr><td></td></td><td>How many points does the decider receive if he/she is selected for stage 3?</td><td></td><td>{% formfield player.comprehension6 %}</td></tr>
+    </table>
+
+ </div>
+
+    <p>&nbsp</p>         
+    <button name="continue_experiment" value="True" class="btn btn-primary btn-large">Start The Experiment</button>
+
+</div>
+
+
+{% endblock %}
+
+
