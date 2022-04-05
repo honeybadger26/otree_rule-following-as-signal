@@ -13,17 +13,23 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'thesis_all',
+        'display_name': "Thesis (All)",
+        'num_demo_participants': 4,
+        'app_sequence': ['thesis_instructions', 'thesis', 'svotree', 'thesis_demographics',
+            'thesis_debriefing', 'payment_info'],
+    },
+    {
         'name': 'thesis_instructions',
         'display_name': "Thesis Instructions",
-        'num_demo_participants': 4,
+        'num_demo_participants': 1,
         'app_sequence': ['thesis_instructions'],
     },
     {
-        'name': 'thesis',
-        'display_name': "Thesis",
+        'name': 'thesis_only',
+        'display_name': "Thesis Only",
         'num_demo_participants': 4,
-        'app_sequence': ['thesis_instructions', 'thesis', 'svotree', 'thesis_demographics', 'thesis_debriefing',
-                         'payment_info'],
+        'app_sequence': ['thesis'],
     },
     {
         'name': 'svotree',
