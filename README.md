@@ -6,3 +6,10 @@
 ```
 docker-compose up --build
 ```
+- In your browser, go to [localhost:8000](http://localhost:8000)
+
+## Notes
+- If something goes wrong with the `docker-compose` command try the below command instead:
+```
+docker-compose down && docker-compose up --build --force-recreate
+```

@@ -67,10 +67,6 @@ class Group(BaseGroup):
 
     def make_selected_player_field():
         return models.BooleanField(
-            choices=[
-                [True, 'selected'],
-                [False, 'not selected']
-                ],
             label='select this decider for Stage 3',
             widget=widgets.CheckboxInput,
             blank=True
