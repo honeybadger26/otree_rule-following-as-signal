@@ -6,9 +6,10 @@
 
 {% block content %}
 
-    <p>Player 1: {{ group.get_select1_display }} </p>
-    <p>Player 2: {{ group.get_select2_display }} </p>
-    <p>Player 3: {{ group.get_select3_display }} </p>
+{% comment %} Probably need to fix this {% endcomment %}
+    <p>Player 1: {{ player.get_select_display }} </p>
+    <p>Player 2: {{ player.get_select_display }} </p>
+    <p>Player 3: {{ player.get_select_display }} </p>
 
     {% next_button %}
 

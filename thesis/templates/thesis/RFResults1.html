@@ -7,128 +7,29 @@
 
 {% block content %}
 
-
-    <table align="center">
-    <tr><td></td><td> <p></p>   </td><td></td></tr>
-    <tr><td width=50px></td><td align="center">       
-
-	<p>{{ highest_counter }}
-
-		{% if group.partner_highest == 1 %}
-		<b>{{ group.get_select1_display }}</b> for stage 3. 
-		{% endif %}
-
-		{% if group.partner_highest == 2 %}
-		<b>{{ group.get_select2_display }}</b> for stage 3. 
-		{% endif %}
-
-		{% if group.partner_highest == 3 %}
-		<b>{{ group.get_select3_display }}</b> for stage 3. 
-		{% endif %}
-
-	</p>
-
-    </td><td width=50px></td></tr>
-    <tr><td></td><td>  <p></p>  </td><td></td></tr>
-    <tr><td></td><td>
-
-	<p>{{ middle_counter }} 
-
-		{% if group.partner_middle == 1 %}
-		<b>{{ group.get_select1_display }} </b> for stage 3. 
-		{% endif %}
-
-		{% if group.partner_middle == 2 %}
-		<b>{{ group.get_select2_display }} </b> for stage 3. 
-		{% endif %}
-
-		{% if group.partner_middle == 3 %}
-		<b>{{ group.get_select3_display }} </b> for stage 3. 
-		{% endif %}
-
-	</p>
-
-    </td><td></td></tr>
-    <tr><td></td><td>  <p></p>  </td><td></td></tr>
-    <tr><td></td><td>
-
-	<p>{{ lowest_counter }} 
-
-		{% if group.partner_lowest == 1 %}
-		<b>{{ group.get_select1_display }}</b> for stage 3.
-		{% endif %}
-
-		{% if group.partner_lowest == 2 %}
-		<b>{{ group.get_select2_display }}</b> for stage 3.
-		{% endif %}
-
-		{% if group.partner_lowest == 3 %}
-		<b>{{ group.get_select3_display }}</b> for stage 3.
-		{% endif %}	
-	</p> 
-
-    </td><td></td></tr>
-    </table>
-
-
-
-    <div align="center">
-    <table align="center">
-	<tr><td width=50px></td><td  align="center">
-
-
-	
-
-
-
-	{% if player.id_in_group == 1 %}
-
-		{% if group.select1 == True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Go to stage 3</button> </p>
-		{% endif %}
-
-		{% if group.select1 != True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Wait for the others</button> </p>
-		{% endif %}
-
+{% for p in results %}
+<p>
+	{% if p.id == player.id_in_group %}
+		You chose the blue bucket {{ p.score }} times and were
+	{% else %}
+		Another decider chose the blue bucket {{ p.score }} times and was
 	{% endif %}
-
-
-	{% if player.id_in_group == 2 %}
-
-		{% if group.select2 == True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Go to stage 3</button> </p>
-		{% endif %}
-
-		{% if group.select2 != True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Wait for the others</button> </p>
-		{% endif %}
-
+	{% if p.selected %}
+		<b>selected</b>
+	{% else %}
+		<b>not selected</b>
 	{% endif %}
+	for stage 3.
+</p>
+{% endfor %}
 
-
-
-	{% if player.id_in_group == 3 %}
-
-		{% if group.select3 == True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Go to stage 3</button> </p>
-		{% endif %}
-
-		{% if group.select3 != True %}
-		<p align="center"> <button name="continue" value="True" class="btn btn-primary btn-large">Wait for the others</button> </p>
-		{% endif %}
-
-	{% endif %}
-
-	</td><td width=50px></td></tr>
-	<tr><td></td></tr>
-    </table>
-
-
-
-    </div>
-
-    <p></p>
+<button name="continue" value="True" class="btn btn-primary btn-large">
+{% if player.is_selected %}
+	Go to stage 3
+{% else %}
+	Wait for others
+{% endif %}
+</button>
 
 {% endblock %}
 

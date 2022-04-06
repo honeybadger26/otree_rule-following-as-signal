@@ -136,8 +136,18 @@ class EnvironmentPage2(Page):
         return self.subsession.round_number == (Constants.num_rounds/2)+1
 
     def error_message(self, values):
-        if values['comprehension7'] != 1 or values['comprehension8'] != 3:
-            return 'At least one answer is wrong. Please try again.'
+        solutions = dict(
+            comprehension7=1,
+            comprehension8=3
+        )
+            
+        error_messages = dict()
+
+        for field_name in solutions:
+            if values[field_name] != solutions[field_name]:
+                error_messages[field_name] = 'This answer is wrong'
+        
+        return error_messages
 
 
 class EnvironmentPage3(Page):
@@ -157,16 +167,16 @@ class FeedbackDeciders(Page):
         return self.player.role() == 'partner'
 
     def vars_for_template(self):
-        dictator1 = self.group.dictator_choice11 if self.group.dictator_choice11 is not None else 0
-        dictator2 = self.group.dictator_choice21 if self.group.dictator_choice21 is not None else 0
-        dictator3 = self.group.dictator_choice31 if self.group.dictator_choice31 is not None else 0
-        dictator41 = self.group.dictator_choice12 if self.group.dictator_choice12 is not None else 0
-        dictator42 = self.group.dictator_choice22 if self.group.dictator_choice22 is not None else 0
-        dictator43 = self.group.dictator_choice32 if self.group.dictator_choice32 is not None else 0
+        dictator1 = self.group.dictator_choice11 if self.group.field_maybe_none('dictator_choice11') is not None else 0
+        dictator2 = self.group.dictator_choice21 if self.group.field_maybe_none('dictator_choice21') is not None else 0
+        dictator3 = self.group.dictator_choice31 if self.group.field_maybe_none('dictator_choice31') is not None else 0
+        dictator41 = self.group.dictator_choice12 if self.group.field_maybe_none('dictator_choice12') is not None else 0
+        dictator42 = self.group.dictator_choice22 if self.group.field_maybe_none('dictator_choice22') is not None else 0
+        dictator43 = self.group.dictator_choice32 if self.group.field_maybe_none('dictator_choice32') is not None else 0
         dictator4 = dictator41 + dictator42 + dictator43
-        dieroll1 = Constants.dieroll_points[self.group.die_roll1-1] if self.group.die_roll1 is not None else 0
-        dieroll2 = Constants.dieroll_points[self.group.die_roll2-1] if self.group.die_roll2 is not None else 0
-        dieroll3 = Constants.dieroll_points[self.group.die_roll3-1] if self.group.die_roll3 is not None else 0
+        dieroll1 = Constants.dieroll_points[self.group.die_roll1-1] if self.group.field_maybe_none('die_roll1') is not None else 0
+        dieroll2 = Constants.dieroll_points[self.group.die_roll2-1] if self.group.field_maybe_none('die_roll2') is not None else 0
+        dieroll3 = Constants.dieroll_points[self.group.die_roll3-1] if self.group.field_maybe_none('die_roll3') is not None else 0
         dieroll4 = dieroll1 + dieroll2 + dieroll3
         select1 = 1 if self.group.select1 else 0
         select2 = 1 if self.group.select2 else 0
@@ -687,23 +697,13 @@ class RFResults1(Page):
         return self.player.role() == 'partner'
 
     def vars_for_template(self):
-        counter_tuples = [
-            [int(self.group.blue_counter1), str(self.group.select1), 1],
-            [int(self.group.blue_counter2), str(self.group.select2), 2],
-            [int(self.group.blue_counter3), str(self.group.select3), 3],
+
+        results = [
+            { 'id': 1, 'score': self.group.blue_counter1, 'selected': self.group.select1 },
+            { 'id': 2, 'score': self.group.blue_counter2, 'selected': self.group.select2 },
+            { 'id': 3, 'score': self.group.blue_counter3, 'selected': self.group.select3 }
         ]
-        sorted_counter = sorted(counter_tuples, key=lambda counter: counter[0])
-        self.group.decider_highest = sorted_counter[2][2]
-        self.group.partner_middle = sorted_counter [1][2]
-        self.group.partner_lowest = sorted_counter [0][2]
-        return {
-            'lowest_counter': 'You chose the blue bucket ' + str(sorted_counter[0][0]) + ' times and were ' if self.player.id_in_group == sorted_counter[0][2] else 'Another decider chose the blue bucket ' + str(sorted_counter[0][0]) + ' times and was ',
-            'lowest_select': sorted_counter[0][1],
-            'middle_counter': 'You chose the blue bucket ' + str(sorted_counter[1][0]) + ' times and were ' if self.player.id_in_group == sorted_counter[1][2] else 'Another decider chose the blue bucket ' + str(sorted_counter[1][0]) + ' times and was ',
-            'middle_select': sorted_counter[1][1],
-            'highest_counter': 'You chose the blue bucket ' + str(sorted_counter[2][0]) + ' times and were ' if self.player.id_in_group == sorted_counter[2][2] else 'Another decider chose the blue bucket ' + str(sorted_counter[2][0]) + ' times and was ',
-            'highest_select': sorted_counter[2][1],
-        }
+        return { 'results': sorted(results, key=lambda r: r['score']) }
 
 
 class RFResults21(Page):
@@ -989,7 +989,7 @@ class DieRollResults1(Page):
 
     def vars_for_template(self):
         points = 'So, both you and the selector earn ' + str(Constants.dieroll_points[self.group.die_roll1-1]) + '.' \
-            if self.group.die_roll1 is not None else ''
+            if self.group.field_maybe_none('die_roll1') is not None else ''
         return {
             'points': points
         }
@@ -1003,7 +1003,7 @@ class DieRollResults2(Page):
 
     def vars_for_template(self):
         points = 'So, both you and the selector earn ' + str(Constants.dieroll_points[self.group.die_roll2-1]) + '.' \
-            if self.group.die_roll2 is not None else ''
+            if self.group.field_maybe_none('die_roll2') is not None else ''
         return {
             'points': points
         }
@@ -1017,7 +1017,7 @@ class DieRollResults3(Page):
 
     def vars_for_template(self):
         points = 'So, both you and the selector earn ' + str(Constants.dieroll_points[self.group.die_roll3-1]) + '.' \
-            if self.group.die_roll3 is not None else ''
+            if self.group.field_maybe_none('die_roll3') is not None else ''
         return {
             'points': points
         }
@@ -1029,9 +1029,9 @@ class DieRollResults4(Page):
         return self.round_number > Constants.num_rounds/2 and self.player.role() == 'selector'
 
     def vars_for_template(self):
-        die_roll1 = 'One decider rolled a ' + str(self.group.die_roll1) + '.' if self.group.die_roll1 is not None else ''
-        die_roll2 = 'One decider rolled a ' + str(self.group.die_roll2) + '.' if self.group.die_roll2 is not None else ''
-        die_roll3 = 'One decider rolled a ' + str(self.group.die_roll3) + '.' if self.group.die_roll3 is not None else ''
+        die_roll1 = 'One decider rolled a ' + str(self.group.die_roll1) + '.' if self.group.field_maybe_none('die_roll1') is not None else ''
+        die_roll2 = 'One decider rolled a ' + str(self.group.die_roll2) + '.' if self.group.field_maybe_none('die_roll2') is not None else ''
+        die_roll3 = 'One decider rolled a ' + str(self.group.die_roll3) + '.' if self.group.field_maybe_none('die_roll3') is not None else ''
         selected1 = 1 if self.group.select1 else 0
         selected2 = 1 if self.group.select2 else 0
         selected3 = 1 if self.group.select3 else 0
@@ -1045,24 +1045,22 @@ class DieRollResults4(Page):
         earning_total = Constants.endowment_selection + earning1 + earning2 + earning3
         points1 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter1) + \
                   ' times reported a ' + str(self.group.die_roll1) + '. So, you earn ' \
-                  + str(earning1) + ' for this interaction.' if self.group.die_roll1 is not None else ''
+                  + str(earning1) + ' for this interaction.' if self.group.field_maybe_none('die_roll1') is not None else ''
         points2 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter2) + \
                   ' times reported a ' + str(self.group.die_roll2) + '. So, you earn ' \
-                  + str(earning2) + ' for this interaction.' if self.group.die_roll2 is not None else ''
+                  + str(earning2) + ' for this interaction.' if self.group.field_maybe_none('die_roll2') is not None else ''
         points3 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter3) + \
                   ' times reported a ' + str(self.group.die_roll3) + '. So, you earn ' \
-                  + str(earning3) + ' for this interaction.' if self.group.die_roll3 is not None else ''
+                  + str(earning3) + ' for this interaction.' if self.group.field_maybe_none('die_roll3') is not None else ''
 
         dieroll_tuples = [
-            [int(self.group.blue_counter1), self.group.die_roll1, str(points1), 1],
-            [int(self.group.blue_counter2), self.group.die_roll2, str(points2), 2],
-            [int(self.group.blue_counter3), self.group.die_roll3, str(points3), 3],
+            [int(self.group.blue_counter1), str(points1)],
+            [int(self.group.blue_counter2), str(points2)],
+            [int(self.group.blue_counter3), str(points3)],
         ]
-        sorted_dieroll = sorted(dieroll_tuples, key=lambda dieroll: dieroll[0])
+        sorted_dieroll = sorted(dieroll_tuples, key=lambda d: d[0])
         return {
-            'lowest_counter': sorted_dieroll[0][2],
-            'middle_counter': sorted_dieroll[1][2],
-            'highest_counter': sorted_dieroll[2][2],
+            'dieroll_results': [ x[1] for x in sorted_dieroll if x[1] is not None ],
             'die_roll1': die_roll1,
             'die_roll2': die_roll2,
             'die_roll3': die_roll3,

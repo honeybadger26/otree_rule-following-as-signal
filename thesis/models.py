@@ -18,7 +18,7 @@ repeat 20 times.
 class Constants(BaseConstants):
     name_in_url = 'thesis'
     players_per_group = 4
-    num_rounds = 30
+    num_rounds = 2 # TODO: Default is 30
     payoff_round1 = random.randint(1, num_rounds/2)
     payoff_round2 = random.randint((num_rounds/2)+1, num_rounds)
 
@@ -174,28 +174,28 @@ class Group(BaseGroup):
         p4 = self.get_player_by_id(4)
 
         #keep
-        dictator111 = self.in_round(Constants.payoff_round1).dictator_choice11 if self.in_round(Constants.payoff_round1).dictator_choice11 is not None else c(0)
-        dictator112 = self.in_round(Constants.payoff_round2).dictator_choice11 if self.in_round(Constants.payoff_round2).dictator_choice11 is not None else c(0)
-        dictator121 = self.in_round(Constants.payoff_round1).dictator_choice21 if self.in_round(Constants.payoff_round1).dictator_choice21 is not None else c(0)
-        dictator122 = self.in_round(Constants.payoff_round2).dictator_choice21 if self.in_round(Constants.payoff_round2).dictator_choice21 is not None else c(0)
-        dictator131 = self.in_round(Constants.payoff_round1).dictator_choice31 if self.in_round(Constants.payoff_round1).dictator_choice31 is not None else c(0)
-        dictator132 = self.in_round(Constants.payoff_round2).dictator_choice31 if self.in_round(Constants.payoff_round2).dictator_choice31 is not None else c(0)
+        dictator111 = self.in_round(Constants.payoff_round1).dictator_choice11 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice11') is not None else c(0)
+        dictator112 = self.in_round(Constants.payoff_round2).dictator_choice11 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice11') is not None else c(0)
+        dictator121 = self.in_round(Constants.payoff_round1).dictator_choice21 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice21') is not None else c(0)
+        dictator122 = self.in_round(Constants.payoff_round2).dictator_choice21 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice21') is not None else c(0)
+        dictator131 = self.in_round(Constants.payoff_round1).dictator_choice31 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice31') is not None else c(0)
+        dictator132 = self.in_round(Constants.payoff_round2).dictator_choice31 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice31') is not None else c(0)
 
         #give
-        dictator211 = self.in_round(Constants.payoff_round1).dictator_choice12 if self.in_round(Constants.payoff_round1).dictator_choice12 is not None else c(0)
-        dictator212 = self.in_round(Constants.payoff_round2).dictator_choice12 if self.in_round(Constants.payoff_round2).dictator_choice12 is not None else c(0)
-        dictator221 = self.in_round(Constants.payoff_round1).dictator_choice22 if self.in_round(Constants.payoff_round1).dictator_choice22 is not None else c(0)
-        dictator222 = self.in_round(Constants.payoff_round2).dictator_choice22 if self.in_round(Constants.payoff_round2).dictator_choice22 is not None else c(0)
-        dictator231 = self.in_round(Constants.payoff_round1).dictator_choice32 if self.in_round(Constants.payoff_round1).dictator_choice32 is not None else c(0)
-        dictator232 = self.in_round(Constants.payoff_round2).dictator_choice32 if self.in_round(Constants.payoff_round2).dictator_choice32 is not None else c(0)
+        dictator211 = self.in_round(Constants.payoff_round1).dictator_choice12 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice12') is not None else c(0)
+        dictator212 = self.in_round(Constants.payoff_round2).dictator_choice12 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice12') is not None else c(0)
+        dictator221 = self.in_round(Constants.payoff_round1).dictator_choice22 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice22') is not None else c(0)
+        dictator222 = self.in_round(Constants.payoff_round2).dictator_choice22 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice22') is not None else c(0)
+        dictator231 = self.in_round(Constants.payoff_round1).dictator_choice32 if self.in_round(Constants.payoff_round1).field_maybe_none('dictator_choice32') is not None else c(0)
+        dictator232 = self.in_round(Constants.payoff_round2).dictator_choice32 if self.in_round(Constants.payoff_round2).field_maybe_none('dictator_choice32') is not None else c(0)
         dictator = dictator211 + dictator212 + dictator221 + dictator222 + dictator231 + dictator232
 
-        dieroll11 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll1-1] if self.in_round(Constants.payoff_round1).die_roll1 is not None else c(0)
-        dieroll12 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll1-1] if self.in_round(Constants.payoff_round2).die_roll1 is not None else c(0)
-        dieroll21 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll2-1] if self.in_round(Constants.payoff_round1).die_roll2 is not None else c(0)
-        dieroll22 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll2-1] if self.in_round(Constants.payoff_round2).die_roll2 is not None else c(0)
-        dieroll31 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll3-1] if self.in_round(Constants.payoff_round1).die_roll3 is not None else c(0)
-        dieroll32 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll3-1] if self.in_round(Constants.payoff_round2).die_roll3 is not None else c(0)
+        dieroll11 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll1-1] if self.in_round(Constants.payoff_round1).field_maybe_none('die_roll1') is not None else c(0)
+        dieroll12 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll1-1] if self.in_round(Constants.payoff_round2).field_maybe_none('die_roll1') is not None else c(0)
+        dieroll21 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll2-1] if self.in_round(Constants.payoff_round1).field_maybe_none('die_roll2') is not None else c(0)
+        dieroll22 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll2-1] if self.in_round(Constants.payoff_round2).field_maybe_none('die_roll2') is not None else c(0)
+        dieroll31 = Constants.dieroll_points[self.in_round(Constants.payoff_round1).die_roll3-1] if self.in_round(Constants.payoff_round1).field_maybe_none('die_roll3') is not None else c(0)
+        dieroll32 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll3-1] if self.in_round(Constants.payoff_round2).field_maybe_none('die_roll3') is not None else c(0)
         dieroll = dieroll11 + dieroll12 + dieroll21 + dieroll22 + dieroll31 + dieroll32
 
         select11 = 1 if self.in_round(Constants.payoff_round1).select1 is True else 0
@@ -225,6 +225,15 @@ class Player(BasePlayer):
             return 'selector'
         else:
             return 'partner'
+
+
+    def is_selected(self):
+        return (self.id_in_group == 1 and self.group.select1) or \
+            (self.id_in_group == 2 and self.group.select2) or \
+            (self.id_in_group == 3 and self.group.select3)
+
+    def get_select_display(self):
+        return 'selected' if self.is_selected() else 'not selected'
 
     def make_bucket_choice_field():
         return models.IntegerField(
