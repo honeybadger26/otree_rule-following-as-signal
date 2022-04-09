@@ -15,5 +15,5 @@ docker-compose down && docker-compose up --build --force-recreate
 ```
 
 ## Todo
-[ ] Left align all text
-[ ] Enable Dictator block only
+- [ ] Left align all text
+- [ ] Enable Dictator block only
