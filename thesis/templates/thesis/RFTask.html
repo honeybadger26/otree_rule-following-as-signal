@@ -7,63 +7,51 @@
 
 {% block content %}
 
-
 	{% include Constants.rf_instructions %}
 
-	
-	{% if player.id_in_group == 1 %}
+	<br />
+	<p>Which bucket do you choose for ball {{ ball_count }} ?</p>
+	<br />
 
-		<p>Which bucket do you choose for ball {{ player.balls }} ?</p>
+	<table align="center">
+		<tr>
+			<td>
+				<input type="hidden" name="yellow_choice" />
+				<button onclick="handle_yellow_chosen()" name="yellow_choice_btn" class="btn btn-primary btn-large">
+					Yellow bucket
+				</button>
+			</td>
+			<td width=180px></td>
+			<td>
+				<input type="hidden" name="blue_choice" />
+				<button onclick="handle_blue_chosen()" name="blue_choice_btn" class="btn btn-primary btn-large">
+					Blue bucket
+				</button>
+			</td>
+		</tr>
+		<tr>
+			<td>{{ player.yellow_count }} times chosen</td>
+			<td></td>
+			<td>{{ player.blue_count }} times chosen</td>
+		</tr>
+	</table>
 
-		<p></p>
-		<table align="center">
-			<tr><td><button name="yellow_choice101" value="1" class="btn btn-primary btn-large">Yellow bucket</button></td><td width=180px></td>
-				<td><button name="blue_choice101" value="1" class="btn btn-primary btn-large">Blue bucket</button></td></tr>
-			<tr><td>{{ group.yellow_counter1 }} times chosen</td><td></td><td>{{ group.blue_counter1 }} times chosen</td></tr>
-			<tr><td></td><td width=50px>Total points earned this round: {{ group.payoff_rf1 }}</td><td></td></tr>
-
-		</table>
-	
-	{% endif %}
-
-
-
-
-
-	{% if player.id_in_group == 2 %}
-
-		<p>Which bucket do you choose for ball {{ player.balls }} ?</p>
-
-		<p></p>
-		<table align="center">
-			<tr><td><button name="yellow_choice201" value="1" class="btn btn-primary btn-large">Yellow bucket</button></td><td width=180px></td>
-				<td><button name="blue_choice201" value="1" class="btn btn-primary btn-large">Blue bucket</button></td></tr>
-			<tr><td>{{ group.yellow_counter2 }} times chosen</td><td></td><td>{{ group.blue_counter2 }} times chosen</td></tr>
-			<tr><td></td><td width=50px>Total points earned this round: {{ group.payoff_rf2 }}</td><td></td></tr>
-
-		</table>
-	
-	{% endif %}
-
-
-
-
-
-	{% if player.id_in_group == 3 %}
-
-		<p>Which bucket do you choose for ball {{ player.balls }} ?</p>
-
-		<p></p>
-		<table align="center">
-			<tr><td><button name="yellow_choice301" value="1" class="btn btn-primary btn-large">Yellow bucket</button></td><td width=180px></td>
-				<td><button name="blue_choice301" value="1" class="btn btn-primary btn-large">Blue bucket</button></td></tr>
-			<tr><td>{{ group.yellow_counter3 }} times chosen</td><td></td><td>{{ group.blue_counter3 }} times chosen</td></tr>
-			<tr><td></td><td width=50px>Total points earned this round: {{ group.payoff_rf3 }}</td><td></td></tr>
-
-		</table>
-	
-	{% endif %}
-
-
+	<br />
+	<p>Total points earned this round: {{ group.payoff_rf1 }}</p>
 
 {% endblock %}
+
+{{ block scripts }}
+	<script>
+		$('input[name="yellow_choice"]').val(false);
+		$('input[name="blue_choice"]').val(false);
+
+		function handle_yellow_chosen() {
+			$('input[name="yellow_choice"]').val(true);
+		}
+
+		function handle_blue_chosen() {
+			$('input[name="blue_choice"]').val(true);
+		}
+	</script>
+{{ endblock }}
