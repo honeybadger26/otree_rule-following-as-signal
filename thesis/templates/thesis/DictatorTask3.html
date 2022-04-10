@@ -6,27 +6,11 @@
 {% endblock %}
 
 {% block content %}
-
-
-
-{{ group.select1 }}
-{{ group.select2 }}
-{{ group.select3 }}
-
-
-
-    <div align="center">
 	{% include Constants.dictator_instructions %}
 
-    <table align="center">
-    	<tr><td>Keep for yourself: </td><td width=50px></td><td>{% formfield group.dictator_choice31 %}</td><td></td></tr>
-    	<tr><td>Give to selector: </td><td></td><td>{% formfield group.dictator_choice32 %}</td><td></td></tr>
-    </table>
-    </div>
+    {{ formfield group.dictator_choice31 }}
+    {{ formfield group.dictator_choice32 }}
 
-
-    <p></p>	
-    <button name="submit" value="1" class="btn btn-primary btn-large">Submit</button>
-
+    {{ next_button }}
 
 {% endblock %}

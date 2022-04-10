@@ -7,9 +7,6 @@
 
 {% block content %}
 
-    <div align="center">
-
-
 	{% if subsession.round_number < 16 %}
 	{% include Constants.dictator_instructions2 %}
 	{% endif %}
@@ -18,11 +15,7 @@
 	{% include Constants.dieroll_instructions2 %}
 	{% endif %}
 
-	<button name="wait" value="1" class="btn btn-primary btn-large">Wait for the deciders</button>
-
-    </div>
-
-    <p></p>
+	<button class="btn btn-primary btn-large">Wait for the deciders</button>
 
 {% endblock %}
 

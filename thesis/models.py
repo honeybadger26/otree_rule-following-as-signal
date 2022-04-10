@@ -67,7 +67,7 @@ class Group(BaseGroup):
 
     def make_selected_player_field():
         return models.BooleanField(
-            label='select this decider for Stage 3',
+            label='Select this decider for Stage 3',
             widget=widgets.CheckboxInput,
             blank=True
         )
@@ -75,13 +75,13 @@ class Group(BaseGroup):
     def make_dictator_choice_keep_field():
         return models.CurrencyField(
             choices=[c(250), c(300), c(350), c(400), c(450), c(500)],
-            label=''
+            label='Keep for yourself'
         )
 
     def make_dictator_choice_give_field():
         return models.CurrencyField(
             choices=[c(0), c(50), c(100), c(150), c(200), c(250)],
-            label=''
+            label='Give to selector'
         )
 
     def make_die_roll_field():
@@ -99,21 +99,6 @@ class Group(BaseGroup):
     partner2 = make_partner_number_field(1)
     partner3 = make_partner_number_field(2)
 
-    partner_highest = models.IntegerField(
-        initial=0,
-        blank=True
-    )
-
-    partner_middle = models.IntegerField(
-        initial=0,
-        blank=True
-    )
-
-    partner_lowest = models.IntegerField(
-        initial=0,
-        blank=True
-    )
-
     decider_highest = models.IntegerField(
         initial=0,
         blank=True
@@ -129,6 +114,7 @@ class Group(BaseGroup):
         blank=True
     )
 
+    # TODO: get rid of these
     yellow_counter1 = make_bucket_counter_field()
     yellow_counter2 = make_bucket_counter_field()
     yellow_counter3 = make_bucket_counter_field()
@@ -167,6 +153,16 @@ class Group(BaseGroup):
     four= models.CurrencyField(initial=0)
     five = models.CurrencyField(initial=0)
 
+    def get_selected_count(self, round_num):
+        count = 0
+        g = self.in_round(round_num)
+
+        for p in g.get_players():
+            if p.selected:
+                count += 1
+
+        return count
+
     def set_payoffs(self):
         p1 = self.get_player_by_id(1)
         p2 = self.get_player_by_id(2)
@@ -198,18 +194,14 @@ class Group(BaseGroup):
         dieroll32 = Constants.dieroll_points[self.in_round(Constants.payoff_round2).die_roll3-1] if self.in_round(Constants.payoff_round2).field_maybe_none('die_roll3') is not None else c(0)
         dieroll = dieroll11 + dieroll12 + dieroll21 + dieroll22 + dieroll31 + dieroll32
 
-        select11 = 1 if self.in_round(Constants.payoff_round1).select1 is True else 0
-        select12 = 1 if self.in_round(Constants.payoff_round2).select1 is True else 0
-        select21 = 1 if self.in_round(Constants.payoff_round1).select2 is True else 0
-        select22 = 1 if self.in_round(Constants.payoff_round2).select2 is True else 0
-        select31 = 1 if self.in_round(Constants.payoff_round1).select3 is True else 0
-        select32 = 1 if self.in_round(Constants.payoff_round2).select3 is True else 0
-        select = select11 + select21 + select31 + select12 + select22 + select32
+        selected_count = \
+            self.get_selected_count(Constants.payoff_round1) + \
+            self.get_selected_count(Constants.payoff_round2)
 
         p1.payoff = self.in_round(Constants.payoff_round1).payoff_rf1 + self.in_round(Constants.payoff_round2).payoff_rf1 + dictator111 + dictator112 + dieroll11 + dieroll12 + Constants.dieroll_points[self.dieroll_end1-1]
         p2.payoff = self.in_round(Constants.payoff_round1).payoff_rf2 + self.in_round(Constants.payoff_round2).payoff_rf2 + dictator121 + dictator122 + dieroll21 + dieroll22 + Constants.dieroll_points[self.dieroll_end2-1]
         p3.payoff = self.in_round(Constants.payoff_round1).payoff_rf3 + self.in_round(Constants.payoff_round2).payoff_rf3 + dictator131 + dictator132 + dieroll31 + dieroll32 + Constants.dieroll_points[self.dieroll_end3-1]
-        p4.payoff = (Constants.endowment_selection * 2) - (Constants.selection_fee * select) + dictator + dieroll + Constants.dieroll_points[self.dieroll_end4-1]
+        p4.payoff = (Constants.endowment_selection * 2) - (Constants.selection_fee * selected_count) + dictator + dieroll + Constants.dieroll_points[self.dieroll_end4-1]
 
         self.one = self.in_round(Constants.payoff_round1).payoff_rf1 + self.in_round(Constants.payoff_round2).payoff_rf1
         self.two = dictator111 + dictator112
@@ -221,19 +213,10 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     def role(self):
-        if self.id_in_group == Constants.partner_selector:
-            return 'selector'
-        else:
-            return 'partner'
-
-
-    def is_selected(self):
-        return (self.id_in_group == 1 and self.group.select1) or \
-            (self.id_in_group == 2 and self.group.select2) or \
-            (self.id_in_group == 3 and self.group.select3)
+        return 'selector' if self.id_in_group == Constants.partner_selector else 'partner'
 
     def get_select_display(self):
-        return 'selected' if self.is_selected() else 'not selected'
+        return 'selected' if self.selected else 'not selected'
 
     def make_bucket_choice_field():
         return models.IntegerField(
@@ -249,8 +232,18 @@ class Player(BasePlayer):
 
     yellow_choice = models.BooleanField()
     blue_choice = models.BooleanField()
+
     yellow_count = models.IntegerField(initial=0)
     blue_count = models.IntegerField(initial=0)
+    
+    yellow_score = models.CurrencyField(initial=0)
+    blue_score = models.CurrencyField(initial=0)
+
+    selected = models.BooleanField(
+        label='Select this decider for Stage 3',
+        widget=widgets.CheckboxInput,
+        initial=False
+    )
 
     continue_env1 = models.BooleanField()
     continue_env2 = models.BooleanField()
@@ -277,11 +270,3 @@ class Player(BasePlayer):
         ],
         label=''
     )
-
-
-
-
-
-
-
-

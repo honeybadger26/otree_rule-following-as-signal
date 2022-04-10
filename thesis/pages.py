@@ -74,10 +74,7 @@ class FeedbackDeciders(Page):
         dieroll2 = Constants.dieroll_points[self.group.die_roll2-1] if self.group.field_maybe_none('die_roll2') is not None else 0
         dieroll3 = Constants.dieroll_points[self.group.die_roll3-1] if self.group.field_maybe_none('die_roll3') is not None else 0
         dieroll4 = dieroll1 + dieroll2 + dieroll3
-        select1 = 1 if self.group.select1 else 0
-        select2 = 1 if self.group.select2 else 0
-        select3 = 1 if self.group.select3 else 0
-        select_num = select1 + select2 + select3
+        select_num = self.group.get_selected_count(self.subsession.round_number)
         points_total1 = self.group.payoff_rf1 + dictator1 \
             if self.subsession.round_number <= Constants.num_rounds/2 \
             else self.group.payoff_rf1 + dieroll1
@@ -116,7 +113,7 @@ class PayoffsWaitPage(WaitPage):
 ########################################
 # STAGE 1: RULE-FOLLOWING
 ########################################
-class RFTask2(Page):
+class RFTaskStart(Page):
 
     def is_displayed(self):
         return self.player.role() == 'selector'
@@ -130,16 +127,30 @@ class RFTask(Page):
         return self.player.role() == 'partner'
 
     def vars_for_template(self):
-        return { 'ball_count': self.player.yellow_count + self.player.blue_count + 1 }
+        total_points = 0
+
+        if self.player.id_in_group == 1:
+            total_points = self.group.payoff_rf1
+        elif self.player.id_in_group == 2:
+            total_points = self.group.payoff_rf2
+        elif self.player.id_in_group == 3:
+            total_points = self.group.payoff_rf3
+
+        return {
+            'ball_count': self.player.yellow_count + self.player.blue_count + 1,
+            'total_points': total_points
+        }
 
     def before_next_page(self):
         payoff = 0
 
         if self.player.yellow_choice:
             self.player.yellow_count += 1
+            self.player.yellow_score += Constants.endowment_yellow
             payoff = Constants.endowment_yellow
         elif self.player.blue_choice:
             self.player.blue_count += 1
+            self.player.blue_score += Constants.endowment_blue
             payoff = Constants.endowment_blue
 
         if self.player.id_in_group == 1:
@@ -156,12 +167,16 @@ class RFResults1(Page):
         return self.player.role() == 'partner'
 
     def vars_for_template(self):
+        results = []
 
-        results = [
-            { 'id': 1, 'score': self.group.blue_counter1, 'selected': self.group.select1 },
-            { 'id': 2, 'score': self.group.blue_counter2, 'selected': self.group.select2 },
-            { 'id': 3, 'score': self.group.blue_counter3, 'selected': self.group.select3 }
-        ]
+        for p in self.group.get_players():
+            if p.role() == 'partner':
+                results.append({
+                    'id': p.id_in_group,
+                    'score': p.blue_score,
+                    'selected': p.selected
+                })
+
         return { 'results': sorted(results, key=lambda r: r['score']) }
 
 
@@ -177,39 +192,38 @@ class RFResults21(Page):
 class RFResults2(Page):
 
     form_model = 'group'
-    form_fields = ['select1',
-                   'select2',
-                   'select3']
+    form_fields = ['select1', 'select2', 'select3']
 
     def is_displayed(self):
         return self.player.role() == 'selector'
 
     def vars_for_template(self):
-        counter_tuples = [
-            [int(self.group.blue_counter1), self.group.payoff_rf1, self.form_fields[0], 1],
-            [int(self.group.blue_counter2), self.group.payoff_rf2, self.form_fields[1], 2],
-            [int(self.group.blue_counter3), self.group.payoff_rf3, self.form_fields[2], 3],
-        ]
-        sorted_counter = sorted(counter_tuples, key=lambda counter: counter[0])
-        self.group.partner_highest = sorted_counter[2][3]
-        self.group.partner_middle = sorted_counter [1][3]
-        self.group.partner_lowest = sorted_counter [0][3]
-        return {
-            'lowest_counter': sorted_counter[0][0],
-            'lowest_payoff': sorted_counter[0][1],
-            'lowest_select': sorted_counter[0][2],
-            'middle_counter': sorted_counter[1][0],
-            'middle_payoff': sorted_counter[1][1],
-            'middle_select': sorted_counter[1][2],
-            'highest_counter': sorted_counter[2][0],
-            'highest_payoff': sorted_counter[2][1],
-            'highest_select': sorted_counter[2][2],
-        }
+        results = []
+
+        for p in self.group.get_players():
+            if p.role() == 'partner':
+                results.append({
+                    'id': p.id_in_group,
+                    'blue_count': int(p.blue_count),
+                    'payoff': p.blue_score + p.yellow_score,
+                    'field': 'select' + str(p.id_in_group)
+                })
+
+        return { 'results': sorted(results, key=lambda p: p['blue_count']) }
 
     def error_message(self, values):
-        print('values is', values)
-        if values["select1"] is not True and values["select2"] is not True and values["select3"] is not True:
+        if values["select1"] is not True and \
+            values["select2"] is not True and \
+            values["select3"] is not True:
             return 'Select at least one partner.'
+
+    def before_next_page(self):
+        for p in self.group.get_players():
+            p.selected = \
+                (p.id_in_group == 1 and self.group.select1) or \
+                (p.id_in_group == 2 and self.group.select2) or \
+                (p.id_in_group == 3 and self.group.select3)
+
 
 
 class StageThreeSelector(Page):
@@ -282,6 +296,7 @@ class DictatorResults(Page):
         selected2 = 1 if self.group.select2 else 0
         selected3 = 1 if self.group.select3 else 0
         selected_num = selected1 + selected2 + selected3
+        # TODO: need to fix this
         dictator1 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter1) + \
             ' times decided to keep ' + str(self.group.dictator_choice11) + ' and give ' \
             + str(self.group.dictator_choice12) + ' to you. Therefore, you earned ' + \
@@ -535,7 +550,7 @@ page_sequence = [
     EnvironmentPage1,
     Role,
     EnvironmentPage2,
-    RFTask2
+    RFTaskStart
 ] + [
     RFTask for i in range(15) # TODO: make this not hardcoded
 ] + [

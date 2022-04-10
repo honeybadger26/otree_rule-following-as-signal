@@ -7,32 +7,11 @@
 
 {% block content %}
 
-
-<table align="center">
- <tr><td width=50px></td><td>
-
-      {% if player.id_in_group == 1 %}
-	<p>In this round, you chose the blue bucket {{ group.blue_counter1 }} times. You were {{ player.get_select_display }} and earned a total of {{ points_total1 }}.</p>
-      {% endif %}
-
-
-      {% if player.id_in_group == 2 %}
-	<p>In this round, you chose the blue bucket {{ group.blue_counter2 }} times. You were {{ player.get_select_display }} and earned a total of {{ points_total2 }}.</p>
-      {% endif %}
-
-
-      {% if player.id_in_group == 3 %}
-	<p>In this round, you chose the blue bucket {{ group.blue_counter3 }} times. You were {{ player.get_select_display }} and earned a total of {{ points_total3 }}.</p>
-      {% endif %}
-
-    <p></p>
-
+<p>
+  In this round, you chose the blue bucket {{ player.blue_count }} times. You were
+  {{ player.get_select_display }} and earned a total of {{ points_total1 }}.
+</p>
    
-    <button name="continue" value="True" class="btn btn-primary btn-large">Continue</button>
-
- </td><td width=50px></td></tr>
-</table>
-
-
+<button name="continue" value="True" class="btn btn-primary btn-large">Continue</button>
 
 {% endblock %}
