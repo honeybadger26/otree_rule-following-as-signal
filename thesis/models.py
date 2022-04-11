@@ -29,16 +29,11 @@ class Constants(BaseConstants):
     dictator_instructions = 'thesis/InstructionsDictator.html'
     dictator_instructions2 = 'thesis/InstructionsDictator2.html'
     dictator_instructions3 = 'thesis/InstructionsDictator3.html'
-    dieroll_instructions = 'thesis/InstructionsDieRoll.html'
-    dieroll_instructions2 = 'thesis/InstructionsDieRoll2.html'
-    dieroll_instructions_end = 'thesis/InstructionsDieRollEnd.html'
 
     endowment_selection = c(450)
     endowment_stage_three = c(500)
     endowment_yellow = c(15)
     endowment_blue = c(5)
-    dieroll_points = [c(0), c(50), c(100), c(150), c(200), c(250)]
-
     selection_fee = c(150)
 
     partner_selector = 4
@@ -57,30 +52,10 @@ class Group(BaseGroup):
             blank=True
         )
 
-    def make_die_roll_field():
-        return models.IntegerField(
-            min=1, max=6,
-            label='',
-            blank=True
-        )
-
-    all_players = models.IntegerField(
-        initial=random.shuffle([1, 2, 3, 4])
-    )
-
     # TODO: remove these
     select1 = make_selected_player_field()
     select2 = make_selected_player_field()
     select3 = make_selected_player_field()
-
-    die_roll1 = make_die_roll_field()
-    die_roll2 = make_die_roll_field()
-    die_roll3 = make_die_roll_field()
-
-    dieroll_end1 = make_die_roll_field()
-    dieroll_end2 = make_die_roll_field()
-    dieroll_end3 = make_die_roll_field()
-    dieroll_end4 = make_die_roll_field()
 
     #Payoffs
     payoff_rf1 = models.CurrencyField(initial=0)
