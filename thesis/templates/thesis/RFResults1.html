@@ -10,9 +10,9 @@
 {% for p in results %}
 <p>
 	{% if p.id == player.id_in_group %}
-		You chose the blue bucket {{ p.score }} times and were
+		You chose the blue bucket {{ p.blue_count }} times and were
 	{% else %}
-		Another decider chose the blue bucket {{ p.score }} times and was
+		Another decider chose the blue bucket {{ p.blue_count }} times and was
 	{% endif %}
 	{% if p.selected %}
 		<b>selected</b>
@@ -23,13 +23,7 @@
 </p>
 {% endfor %}
 
-<button name="continue" value="True" class="btn btn-primary btn-large">
-{% if player.selected %}
-	Go to stage 3
-{% else %}
-	Wait for others
-{% endif %}
-</button>
+{{ next_button }}
 
 {% endblock %}
 

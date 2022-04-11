@@ -8,9 +8,8 @@
 {% block content %}
 	{% include Constants.dictator_instructions %}
 
-    {{ formfield group.dictator_choice31 }}
-    {{ formfield group.dictator_choice32 }}
-
+    {{ formfield 'amount_keep' }}
+    {{ formfield 'amount_give' }}
+    
     {{ next_button }}
-
 {% endblock %}

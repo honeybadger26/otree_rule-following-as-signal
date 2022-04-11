@@ -63,36 +63,16 @@ class FeedbackDeciders(Page):
         return self.player.role() == 'partner'
 
     def vars_for_template(self):
-        dictator1 = self.group.dictator_choice11 if self.group.field_maybe_none('dictator_choice11') is not None else 0
-        dictator2 = self.group.dictator_choice21 if self.group.field_maybe_none('dictator_choice21') is not None else 0
-        dictator3 = self.group.dictator_choice31 if self.group.field_maybe_none('dictator_choice31') is not None else 0
-        dictator41 = self.group.dictator_choice12 if self.group.field_maybe_none('dictator_choice12') is not None else 0
-        dictator42 = self.group.dictator_choice22 if self.group.field_maybe_none('dictator_choice22') is not None else 0
-        dictator43 = self.group.dictator_choice32 if self.group.field_maybe_none('dictator_choice32') is not None else 0
-        dictator4 = dictator41 + dictator42 + dictator43
-        dieroll1 = Constants.dieroll_points[self.group.die_roll1-1] if self.group.field_maybe_none('die_roll1') is not None else 0
-        dieroll2 = Constants.dieroll_points[self.group.die_roll2-1] if self.group.field_maybe_none('die_roll2') is not None else 0
-        dieroll3 = Constants.dieroll_points[self.group.die_roll3-1] if self.group.field_maybe_none('die_roll3') is not None else 0
-        dieroll4 = dieroll1 + dieroll2 + dieroll3
-        select_num = self.group.get_selected_count(self.subsession.round_number)
-        points_total1 = self.group.payoff_rf1 + dictator1 \
-            if self.subsession.round_number <= Constants.num_rounds/2 \
-            else self.group.payoff_rf1 + dieroll1
-        points_total2 = self.group.payoff_rf2 + dictator2 \
-            if self.subsession.round_number <= Constants.num_rounds/2 \
-            else self.group.payoff_rf2 + dieroll2
-        points_total3 = self.group.payoff_rf3 + dictator3 \
-            if self.subsession.round_number <= Constants.num_rounds/2 \
-            else self.group.payoff_rf3 + dieroll3
-        points_total4 = (Constants.endowment_selection * select_num) - (Constants.selection_fee * select_num) + dictator4 \
-            if self.subsession.round_number <= Constants.num_rounds/2 \
-            else (Constants.endowment_selection * select_num) - (Constants.selection_fee * select_num) + dieroll4
-        return {
-            'points_total1': points_total1,
-            'points_total2': points_total2,
-            'points_total3': points_total3,
-            'points_total4': points_total4
-        }
+        total_points = self.player.amount_keep if self.player.field_maybe_none('amount_keep') is not None else c(0)
+
+        if self.player.id_in_group == 1:
+            total_points += self.group.payoff_rf1
+        elif self.player.id_in_group == 2:
+            total_points += self.group.payoff_rf2
+        elif self.player.id_in_group == 3:
+            total_points += self.group.payoff_rf3
+
+        return { 'points_total': total_points }
 
 
 class ResultsWaitPage(WaitPage):
@@ -173,11 +153,11 @@ class RFResults1(Page):
             if p.role() == 'partner':
                 results.append({
                     'id': p.id_in_group,
-                    'score': p.blue_score,
+                    'blue_count': p.blue_count,
                     'selected': p.selected
                 })
 
-        return { 'results': sorted(results, key=lambda r: r['score']) }
+        return { 'results': sorted(results, key=lambda r: r['blue_count']) }
 
 
 class RFResults21(Page):
@@ -234,48 +214,18 @@ class StageThreeSelector(Page):
 ########################################
 # STAGE 3.A: DICTATOR TASK
 ########################################
-class DictatorTask1(Page):
-    form_model = 'group'
-    form_fields = ['dictator_choice11',
-                   'dictator_choice12']
+class DictatorTask(Page):
+    form_model = 'player'
+    form_fields = ['amount_keep', 'amount_give']
 
     def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 1 \
-               and self.group.select1 is True
+        return \
+            self.round_number <= Constants.num_rounds/2 and \
+            self.player.role() == 'partner' and \
+            self.player.selected
 
     def error_message(self, values):
-        print('values is', values)
-        if values['dictator_choice11'] + values['dictator_choice12'] != Constants.endowment_stage_three:
-            return 'The points have to add up to ' + str(Constants.endowment_stage_three)
-
-
-class DictatorTask2(Page):
-    form_model = 'group'
-    form_fields = ['dictator_choice21',
-                   'dictator_choice22']
-
-    def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 2 \
-               and self.group.select2 is True
-
-    def error_message(self, values):
-        print('values is', values)
-        if values['dictator_choice21'] + values['dictator_choice22'] != Constants.endowment_stage_three:
-            return 'The points have to add up to ' + str(Constants.endowment_stage_three)
-
-
-class DictatorTask3(Page):
-    form_model = 'group'
-    form_fields = ['dictator_choice31',
-                   'dictator_choice32']
-
-    def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 3 \
-               and self.group.select3 is True
-
-    def error_message(self, values):
-        print('values is', values)
-        if values['dictator_choice31'] + values['dictator_choice32'] != Constants.endowment_stage_three:
+        if values['amount_keep'] + values['amount_give'] != Constants.endowment_stage_three:
             return 'The points have to add up to ' + str(Constants.endowment_stage_three)
 
 
@@ -285,65 +235,38 @@ class DictatorResults(Page):
         return self.round_number <= Constants.num_rounds/2 and self.player.role() == 'selector'
 
     def vars_for_template(self):
-        earning1 = self.group.dictator_choice12 - Constants.selection_fee if self.group.select1 \
-            is True else 0
-        earning2 = self.group.dictator_choice22 - Constants.selection_fee if self.group.select2 \
-            is True else 0
-        earning3 = self.group.dictator_choice32 - Constants.selection_fee if self.group.select3 \
-            is True else 0
-        earning_total = Constants.endowment_selection + earning1 + earning2 + earning3
-        selected1 = 1 if self.group.select1 else 0
-        selected2 = 1 if self.group.select2 else 0
-        selected3 = 1 if self.group.select3 else 0
-        selected_num = selected1 + selected2 + selected3
-        # TODO: need to fix this
-        dictator1 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter1) + \
-            ' times decided to keep ' + str(self.group.dictator_choice11) + ' and give ' \
-            + str(self.group.dictator_choice12) + ' to you. Therefore, you earned ' + \
-            str(earning1) + ' for this interaction.' if self.group.select1 is True else ''
-        dictator2 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter2) + \
-            ' times decided  to keep ' + str(self.group.dictator_choice21) + ' and give ' \
-            + str(self.group.dictator_choice22) + ' to you. Therefore, you earned ' + \
-            str(earning2) + ' for this interaction.' if self.group.select2 is True else ''
-        dictator3 = 'A decider who chose the blue bucket ' + str(self.group.blue_counter3) + \
-            ' times decided  to keep ' + str(self.group.dictator_choice31) + ' and give ' \
-            + str(self.group.dictator_choice32) + ' to you. Therefore, you earned ' + \
-            str(earning3) + ' for this interaction.' if self.group.select3 is True else ''
+        results = []
+        earnings_total = Constants.endowment_selection
+        selected_count = 0
 
-        dictator_tuples = [
-            [int(self.group.blue_counter1), str(dictator1), 1],
-            [int(self.group.blue_counter2), str(dictator2), 2],
-            [int(self.group.blue_counter3), str(dictator3), 3],
-        ]
-        sorted_dictator = sorted(dictator_tuples, key=lambda dictator: dictator[0])
-        return {
-            'lowest_counter': sorted_dictator[0][1],
-            'middle_counter': sorted_dictator[1][1],
-            'highest_counter': sorted_dictator[2][1],
-            'earning1': earning1,
-            'earning2': earning2,
-            'earning3': earning3,
-            'earning_total': earning_total,
-            'selected_num': selected_num
+        for p in self.group.get_players():
+            if p.role() == 'partner' and p.selected:
+                earnings = p.amount_give - Constants.selection_fee if p.selected else c(0)
+                earnings_total += earnings
+                selected_count += 1 if p.selected else 0
+
+                results.append({
+                    'id': p.id_in_group,
+                    'blue_count': p.blue_count,
+                    'amount_keep': p.amount_keep,
+                    'amount_give': p.amount_give,
+                    'earnings': earnings
+                })
+
+        return { 
+            'results': sorted(results, key=lambda r: r['blue_count']),
+            'earning_total': earnings_total,
+            'selected_num': selected_count
         }
 
 
-class DictatorResults1(Page):
+class DictatorResultsDecider(Page):
 
     def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 1 and self.group.select1 is True
-
-
-class DictatorResults2(Page):
-
-    def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 2 and self.group.select2 is True
-
-
-class DictatorResults3(Page):
-
-    def is_displayed(self):
-        return self.round_number <= Constants.num_rounds/2 and self.player.id_in_group == 3 and self.group.select3 is True
+        return \
+            self.round_number <= Constants.num_rounds/2 and \
+            self.player.role() == 'partner' and \
+            self.player.selected
 
 
 ########################################
@@ -549,7 +472,7 @@ class DieRollResults4(Page):
 page_sequence = [
     EnvironmentPage1,
     Role,
-    EnvironmentPage2,
+    # EnvironmentPage2,
     RFTaskStart
 ] + [
     RFTask for i in range(15) # TODO: make this not hardcoded
@@ -560,33 +483,29 @@ page_sequence = [
     ResultsWaitPage,
     RFResults1,
     StageThreeSelector,
-    DictatorTask1,
-    DictatorTask2,
-    DictatorTask3,
-    DieRollTask11,
-    DieRollTask21,
-    DieRollTask31,
-    DieRollTask12,
-    DieRollTask22,
-    DieRollTask32,
+    DictatorTask,
+#    DieRollTask11,
+#    DieRollTask21,
+#    DieRollTask31,
+#    DieRollTask12,
+#    DieRollTask22,
+#    DieRollTask32,
     ResultsWaitPage,
     DictatorResults,
-    DictatorResults1,
-    DictatorResults2,
-    DictatorResults3,
-    DieRollResults1,
-    DieRollResults2,
-    DieRollResults3,
-    DieRollResults4,
+    DictatorResultsDecider,
+#    DieRollResults1,
+#    DieRollResults2,
+#    DieRollResults3,
+#    DieRollResults4,
     FeedbackDeciders,
     EnvironmentPage3,
-    DieRollTaskEnd11,
-    DieRollTaskEnd12,
-    DieRollTaskEnd21,
-    DieRollTaskEnd22,
-    DieRollTaskEnd31,
-    DieRollTaskEnd32,
-    DieRollTaskEnd41,
-    DieRollTaskEnd42,
+#    DieRollTaskEnd11,
+#    DieRollTaskEnd12,
+#    DieRollTaskEnd21,
+#    DieRollTaskEnd22,
+#    DieRollTaskEnd31,
+#    DieRollTaskEnd32,
+#    DieRollTaskEnd41,
+#    DieRollTaskEnd42,
     PayoffsWaitPage,
 ]
