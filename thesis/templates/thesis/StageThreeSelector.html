@@ -6,16 +6,13 @@
 {% endblock %}
 
 {% block content %}
-
-	{% if subsession.round_number < 16 %}
-	{% include Constants.dictator_instructions2 %}
-	{% endif %}
-
-	{% if subsession.round_number > 15 %}
-	{% include Constants.dieroll_instructions2 %}
-	{% endif %}
-
+	<div class="card bg-light instructions">
+		<div class="card-body">
+			Each decider you selected as interaction partner will now receive 500 points and is asked
+			how many points he or she wants to keep and how many points he or she wants to give you.
+		</div>
+	</div>
+	<br />
 	<button class="btn btn-primary btn-large">Wait for the deciders</button>
-
 {% endblock %}
 

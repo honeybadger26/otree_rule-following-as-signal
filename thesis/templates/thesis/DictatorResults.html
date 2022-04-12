@@ -8,7 +8,7 @@
 {% block content %}
   <p>
     <strong>You got 450 points and spent 150 points on each selected decider</strong> and you
-    interacted with {{ selected_num }} out of the 3 deciders.
+    interacted with {{ group.num_selected }} out of the 3 deciders.
   </p>
 
   {{ for p in results }}
@@ -19,7 +19,7 @@
     </p>
   {{ endfor }}
 
-  <p>In this round, <strong>you earned a total of {{ earning_total }}</strong>.</p>
+  <p>In this round, <strong>you earned a total of {{ player.payoff }}</strong>.</p>
 
   {{ next_button }}
 {% endblock %}

@@ -1,11 +1,45 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c
 from ._builtin import Page, WaitPage
-from .models import Constants
+from .models import C
+
+class Instructions(Page):
+    form_model = 'player'
+    form_fields = ['understood1', 'understood11', 'understood12', 'understood13', 'understood2',
+        'understood21', 'understood22', 'understood23', 'understood24', 'comprehension1',
+        'comprehension2', 'comprehension3', 'comprehension4', 'comprehension5', 'comprehension6']
+
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
+    def error_message(self, values):
+        solutions = dict(
+            comprehension1=2,
+            comprehension2=2,
+            comprehension3=1,
+            comprehension4=1,
+            comprehension5=3,
+            comprehension6=3
+        )
+            
+        error_messages = dict()
+
+        for field_name in solutions:
+            if values[field_name] != solutions[field_name]:
+                error_messages[field_name] = 'This answer is wrong'
+        
+        return error_messages
+
 
 class EnvironmentPage1(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == 1
+
+
+class EnvironmentPage2(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == C.PT1_NUM_ROUNDS + 1
 
 
 class Role(Page):
@@ -33,45 +67,25 @@ class RFTask(Page):
     def is_displayed(self):
         return self.player.role() == 'partner'
 
-    def vars_for_template(self):
-        total_points = 0
-
-        if self.player.id_in_group == 1:
-            total_points = self.group.payoff_rf1
-        elif self.player.id_in_group == 2:
-            total_points = self.group.payoff_rf2
-        elif self.player.id_in_group == 3:
-            total_points = self.group.payoff_rf3
-
-        return {
-            'ball_count': self.player.yellow_count + self.player.blue_count + 1,
-            'total_points': total_points
-        }
-
     def before_next_page(self):
-        payoff = 0
-
         if self.player.yellow_choice:
             self.player.yellow_count += 1
-            self.player.yellow_score += Constants.endowment_yellow
-            payoff = Constants.endowment_yellow
         elif self.player.blue_choice:
             self.player.blue_count += 1
-            self.player.blue_score += Constants.endowment_blue
-            payoff = Constants.endowment_blue
 
-        if self.player.id_in_group == 1:
-            self.group.payoff_rf1 += payoff
-        elif self.player.id_in_group == 2:
-            self.group.payoff_rf2 += payoff
-        elif self.player.id_in_group == 3:
-            self.group.payoff_rf3 += payoff
+        self.player.set_rf_payoff()
 
 
 class RFWaitForSelector(Page):
 
     def is_displayed(self):
         return self.player.role() == 'partner'
+
+
+class RFSelectorPayoffWaitPage(WaitPage):
+    
+    def after_all_players_arrive(self):
+        self.group.set_selector_initial_payoff()
 
 
 class RFSelection(Page):
@@ -90,7 +104,7 @@ class RFSelection(Page):
                 results.append({
                     'id': p.id_in_group,
                     'blue_count': int(p.blue_count),
-                    'payoff': p.blue_score + p.yellow_score,
+                    'payoff': p.payoff,
                     'field': 'select' + str(p.id_in_group)
                 })
 
@@ -108,6 +122,12 @@ class RFSelection(Page):
                 (p.id_in_group == 1 and self.group.select1) or \
                 (p.id_in_group == 2 and self.group.select2) or \
                 (p.id_in_group == 3 and self.group.select3)
+
+
+class RFDeciderPayoffWaitPage(WaitPage):
+    
+    def after_all_players_arrive(self):
+        self.group.set_deciders_chosen_payoffs()
 
 
 class RFResults(Page):
@@ -139,54 +159,44 @@ class DictatorTask(Page):
     form_fields = ['amount_keep', 'amount_give']
 
     def is_displayed(self):
-        return \
-            self.round_number <= Constants.pt1_num_rounds and \
-            self.player.role() == 'partner' and \
-            self.player.selected
+        return self.player.role() == 'partner' and self.player.selected
 
     def error_message(self, values):
-        if values['amount_keep'] + values['amount_give'] != Constants.endowment_stage_three:
-            return 'The points have to add up to ' + str(Constants.endowment_stage_three)
+        if values['amount_keep'] + values['amount_give'] != C.ENDOWMENT_STAGE_THREE:
+            return 'The points have to add up to ' + str(C.ENDOWMENT_STAGE_THREE)
+
+
+class DictatorPayoffsWaitPage(WaitPage):
+
+    def after_all_players_arrive(self):
+        self.group.set_dictator_payoffs()
 
 
 class DictatorResults(Page):
 
     def is_displayed(self):
-        return self.round_number <= Constants.pt1_num_rounds and self.player.role() == 'selector'
+        return self.player.role() == 'selector'
 
     def vars_for_template(self):
         results = []
-        earnings_total = Constants.endowment_selection
-        selected_count = 0
 
         for p in self.group.get_players():
             if p.role() == 'partner' and p.selected:
-                earnings = p.amount_give - Constants.selection_fee if p.selected else c(0)
-                earnings_total += earnings
-                selected_count += 1 if p.selected else 0
-
                 results.append({
                     'id': p.id_in_group,
                     'blue_count': p.blue_count,
                     'amount_keep': p.amount_keep,
                     'amount_give': p.amount_give,
-                    'earnings': earnings
+                    'earnings': p.amount_give - C.SELECTION_FEE if p.selected else c(0)
                 })
 
-        return { 
-            'results': sorted(results, key=lambda r: r['blue_count']),
-            'earning_total': earnings_total,
-            'selected_num': selected_count
-        }
+        return { 'results': sorted(results, key=lambda r: r['blue_count']), }
 
 
 class DictatorResultsDecider(Page):
 
     def is_displayed(self):
-        return \
-            self.round_number <= Constants.pt1_num_rounds and \
-            self.player.role() == 'partner' and \
-            self.player.selected
+        return self.player.role() == 'partner' and self.player.selected
 
 
 class FeedbackDeciders(Page):
@@ -194,45 +204,33 @@ class FeedbackDeciders(Page):
     def is_displayed(self):
         return self.player.role() == 'partner'
 
-    def vars_for_template(self):
-        total_points = self.player.amount_keep if self.player.field_maybe_none('amount_keep') is not None else c(0)
-
-        if self.player.id_in_group == 1:
-            total_points += self.group.payoff_rf1
-        elif self.player.id_in_group == 2:
-            total_points += self.group.payoff_rf2
-        elif self.player.id_in_group == 3:
-            total_points += self.group.payoff_rf3
-
-        return { 'points_total': total_points }
-
 
 class EnvironmentPage3(Page):
 
     def is_displayed(self):
-        return self.subsession.round_number == Constants.num_rounds
+        return self.subsession.round_number == C.NUM_ROUNDS
 
     def vars_for_template(self):
-        return {
-            'money_earned': self.participant.payoff.to_real_world_currency(self.session)
-        }
+        return { 'money_earned': self.participant.payoff.to_real_world_currency(self.session) }
 
 
 class PayoffsWaitPage(WaitPage):
 
     def is_displayed(self):
-        return self.subsession.round_number == Constants.num_rounds
+        return self.subsession.round_number == C.NUM_ROUNDS
 
     def after_all_players_arrive(self):
-        self.group.set_payoffs()
+        self.group.set_final_payoffs()
 
 
 page_sequence = [
+    Instructions,
     EnvironmentPage1,
+    EnvironmentPage2,
     Role,
     RFTaskStart
 ] + [
-    RFTask for i in range(Constants.rftask_num_rounds)
+    RFTask for i in range(C.RFTASK_NUM_ROUNDS)
 ] + [
     RFWaitForSelector,
     ResultsWaitPage,

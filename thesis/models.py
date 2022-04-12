@@ -1,10 +1,8 @@
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range,
+    Currency as c
 )
 import random
-import array as arr
-
 
 author = 'Sebastian Simon'
 
@@ -14,32 +12,23 @@ partner selection stage, and two environments comprised of a dictator game and a
 repeat 20 times. 
 """
 
+class C(BaseConstants):
+    NAME_IN_URL = 'thesis'
+    PLAYERS_PER_GROUP = 4
+    PT1_NUM_ROUNDS = 1
+    PT2_NUM_ROUNDS = 1
+    NUM_ROUNDS = PT1_NUM_ROUNDS + PT2_NUM_ROUNDS # TODO: Default is 30
+    PAYOFF_ROUND1 = random.randint(1, PT1_NUM_ROUNDS)
+    PAYOFF_ROUND2 = random.randint(PT1_NUM_ROUNDS+1, NUM_ROUNDS)
+    RFTASK_NUM_ROUNDS = 15
 
-class Constants(BaseConstants):
-    name_in_url = 'thesis'
-    players_per_group = 4
-    pt1_num_rounds = 1
-    pt2_num_rounds = 1
-    num_rounds = pt1_num_rounds + pt2_num_rounds # TODO: Default is 30
-    payoff_round1 = random.randint(1, pt1_num_rounds)
-    payoff_round2 = random.randint(pt1_num_rounds+1, num_rounds)
-    rftask_num_rounds = 15
+    ENDOWMENT_SELECTION = c(450)
+    ENDOWMENT_STAGE_THREE = c(500)
+    SELECTION_FEE = c(150)
+    KEEP_AMOUNTS = [c(250), c(300), c(350), c(400), c(450), c(500)]
+    GIVE_AMOUNTS = [c(0), c(50), c(100), c(150), c(200), c(250)]
 
-    rf_instructions = 'thesis/InstructionsRF.html'
-    rf_instructions2 = 'thesis/InstructionsRF2.html'
-    selection_instructions = 'thesis/InstructionsSelection.html'
-    selection_instructions2 = 'thesis/InstructionsSelection2.html'
-    dictator_instructions = 'thesis/InstructionsDictator.html'
-    dictator_instructions2 = 'thesis/InstructionsDictator2.html'
-    dictator_instructions3 = 'thesis/InstructionsDictator3.html'
-
-    endowment_selection = c(450)
-    endowment_stage_three = c(500)
-    endowment_yellow = c(15)
-    endowment_blue = c(5)
-    selection_fee = c(150)
-
-    partner_selector = 4
+    PARTNER_SELECTOR = 4
 
 
 class Subsession(BaseSubsession):
@@ -47,6 +36,7 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
+    num_selected = models.IntegerField(initial=0)
 
     def make_selected_player_field():
         return models.BooleanField(
@@ -55,68 +45,50 @@ class Group(BaseGroup):
             blank=True
         )
 
-    # TODO: remove these
+    # TODO: remove these?
     select1 = make_selected_player_field()
     select2 = make_selected_player_field()
     select3 = make_selected_player_field()
 
-    #Payoffs
-    payoff_rf1 = models.CurrencyField(initial=0)
-    payoff_rf2 = models.CurrencyField(initial=0)
-    payoff_rf3 = models.CurrencyField(initial=0)
+    def set_selector_initial_payoff(self):
+        self.get_player_by_id(4).payoff += C.ENDOWMENT_SELECTION
 
-    def get_selected_count(self, round_num):
-        count = 0
-        g = self.in_round(round_num)
+    def set_deciders_chosen_payoffs(self):
+        for p in self.get_players():
+            if p.id_in_group == 4:
+                continue
 
-        for p in g.get_players():
             if p.selected:
-                count += 1
+                self.num_selected += 1
+                p.payoff += C.ENDOWMENT_STAGE_THREE
 
-        return count
+        self.get_player_by_id(4).payoff -= self.num_selected * C.SELECTION_FEE
 
-    def set_payoffs(self):
-        p1 = self.get_player_by_id(1)
-        p2 = self.get_player_by_id(2)
-        p3 = self.get_player_by_id(3)
-        p4 = self.get_player_by_id(4)
+    def set_dictator_payoffs(self):
+        amount_given = c(0)
 
-        #keep
-        dictator111 = p1.in_round(Constants.payoff_round1).amount_keep if p1.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
-        dictator121 = p2.in_round(Constants.payoff_round1).amount_keep if p2.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
-        dictator131 = p3.in_round(Constants.payoff_round1).amount_keep if p3.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
+        for p in self.get_players():
+            if p.field_maybe_none('amount_give') is not None:
+                p.payoff -= p.amount_give
+                amount_given += p.amount_give
+        
+        self.get_player_by_id(4).payoff += amount_given
 
-        #give
-        dictator211 = p1.in_round(Constants.payoff_round1).amount_give if p1.in_round(Constants.payoff_round1).field_maybe_none('amount_give') is not None else c(0)
-        dictator212 = p1.in_round(Constants.payoff_round2).amount_give if p1.in_round(Constants.payoff_round2).field_maybe_none('amount_give') is not None else c(0)
-        dictator221 = p2.in_round(Constants.payoff_round1).amount_give if p2.in_round(Constants.payoff_round1).field_maybe_none('amount_give') is not None else c(0)
-        dictator222 = p2.in_round(Constants.payoff_round2).amount_give if p2.in_round(Constants.payoff_round2).field_maybe_none('amount_give') is not None else c(0)
-        dictator231 = p3.in_round(Constants.payoff_round1).amount_give if p3.in_round(Constants.payoff_round1).field_maybe_none('amount_give') is not None else c(0)
-        dictator232 = p3.in_round(Constants.payoff_round2).amount_give if p3.in_round(Constants.payoff_round2).field_maybe_none('amount_give') is not None else c(0)
-        dictator = dictator211 + dictator212 + dictator221 + dictator222 + dictator231 + dictator232
-
-        selected_count = \
-            self.get_selected_count(Constants.payoff_round1) + \
-            self.get_selected_count(Constants.payoff_round2)
-
-        p1.payoff = self.in_round(Constants.payoff_round1).payoff_rf1 + self.in_round(Constants.payoff_round2).payoff_rf1 + dictator111
-        p2.payoff = self.in_round(Constants.payoff_round1).payoff_rf2 + self.in_round(Constants.payoff_round2).payoff_rf2 + dictator121
-        p3.payoff = self.in_round(Constants.payoff_round1).payoff_rf3 + self.in_round(Constants.payoff_round2).payoff_rf3 + dictator131
-        p4.payoff = (Constants.endowment_selection * 2) - (Constants.selection_fee * selected_count) + dictator
+    def set_final_payoffs(self):
+        for p in self.get_players():
+            p.participant.payoff = 0
+            p.payoff = \
+                p.in_round(C.PAYOFF_ROUND1).payoff + \
+                p.in_round(C.PAYOFF_ROUND2).payoff
+        
 
 class Player(BasePlayer):
 
     def role(self):
-        return 'selector' if self.id_in_group == Constants.partner_selector else 'partner'
+        return 'selector' if self.id_in_group == C.PARTNER_SELECTOR else 'partner'
 
     def get_select_display(self):
         return 'selected' if self.selected else 'not selected'
-
-    def make_bucket_choice_field():
-        return models.IntegerField(
-            initial=0,
-            blank=True
-        )
 
     def make_understood_field(label):
         return models.BooleanField(
@@ -124,36 +96,103 @@ class Player(BasePlayer):
             widget=widgets.CheckboxInput
         )
 
+    def set_rf_payoff(self):
+        endowment_yellow = c(0)
+        endowment_blue = c(0)
+
+        if self.subsession.round_number <= C.PT1_NUM_ROUNDS:
+            endowment_yellow = c(self.session.config['pt1_endowment_yellow'])
+            endowment_blue = c(self.session.config['pt1_endowment_blue'])
+        elif self.subsession.round_number <= C.NUM_ROUNDS:
+            endowment_yellow = c(self.session.config['pt2_endowment_yellow'])
+            endowment_blue = c(self.session.config['pt2_endowment_blue'])
+
+        self.payoff += (self.yellow_count * endowment_yellow) + \
+            (self.blue_count * endowment_blue)
+
+    def get_current_ball_num(self):
+            return self.yellow_count + self.blue_count + 1,
+
     yellow_choice = models.BooleanField()
     blue_choice = models.BooleanField()
 
     yellow_count = models.IntegerField(initial=0)
     blue_count = models.IntegerField(initial=0)
     
-    yellow_score = models.CurrencyField(initial=0)
-    blue_score = models.CurrencyField(initial=0)
-
     selected = models.BooleanField(
         label='Select this decider for Stage 3',
         widget=widgets.CheckboxInput,
-        initial=False
-    )
+        initial=False)
 
     amount_keep = models.CurrencyField(
         choices=[c(250), c(300), c(350), c(400), c(450), c(500)],
-        label='Keep for yourself'
-    )
+        label='Keep for yourself')
 
     amount_give = models.CurrencyField(
         choices=[c(0), c(50), c(100), c(150), c(200), c(250)],
-        label='Give to selector'
-    )
+        label='Give to selector')
 
+    understood1 = make_understood_field('the general instructions')
+    understood11 = make_understood_field('the "Roles" section')
+    understood12 = make_understood_field('the "General Structure" section')
+    understood13 = make_understood_field('the "Payment" section')
+    understood2 = make_understood_field('"Part 1"')
+    understood21 = make_understood_field('stage 1')
+    understood22 = make_understood_field('stage 2')
+    understood23 = make_understood_field('stage 3')
+    understood24 = make_understood_field('the "End of a Round in Part 1" section')
     understood3 = make_understood_field('"Part 2"')
     understood31 = make_understood_field('stage 1')
     understood32 = make_understood_field('stage 2')
     understood33 = make_understood_field('stage 3')
     understood34 = make_understood_field('the "Feedback in Part 1" section')
+
+    comprehension1 = models.IntegerField(
+        choices=[
+            [1, '2 stages'],
+            [2, '3 stages'],
+            [3, '4 stages']
+            ],
+        label='')
+
+    comprehension2 = models.IntegerField(
+        choices=[
+            [1, 'Place each ball into the yellow bucket'],
+            [2, 'Place each ball into the blue bucket']
+        ],
+        label=''
+    )
+
+    comprehension3 = models.IntegerField(
+        choices=[
+            [1, 'Between 1 and 3'],
+            [2, 'Between 0 and 3'],
+            [3, 'Only 1'],
+        ],
+        label='')
+
+    comprehension4 = models.IntegerField(
+        choices=[
+            [1, 'He or she will not take part in stage 3'],
+            [2, 'He or she will do the task alone'],
+        ],
+        label='')
+
+    comprehension5 = models.IntegerField(
+        choices=[
+            [1, 'Nothing'],
+            [2, '100 points'],
+            [3, '150 points'],
+        ],
+        label='')
+
+    comprehension6 = models.IntegerField(
+        choices=[
+            [1, '100 points'],
+            [2, '250 points'],
+            [3, '500 points'],
+        ],
+        label='')
 
     comprehension7 = models.IntegerField(
         choices=[
@@ -169,5 +208,4 @@ class Player(BasePlayer):
             [2, '150 points each'],
             [3, '250 points each']
         ],
-        label=''
-    )
+        label='')

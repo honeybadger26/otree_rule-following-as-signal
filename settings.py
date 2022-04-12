@@ -18,6 +18,10 @@ SESSION_CONFIGS = [
         'num_demo_participants': 4,
         'app_sequence': ['thesis_instructions', 'thesis', 'svotree', 'thesis_demographics',
             'thesis_debriefing', 'payment_info'],
+        'pt1_endowment_yellow': 15,
+        'pt1_endowment_blue': 5,
+        'pt2_endowment_yellow': 15,
+        'pt2_endowment_blue': 15,
     },
     {
         'name': 'thesis_instructions',
@@ -30,6 +34,10 @@ SESSION_CONFIGS = [
         'display_name': "Thesis Only",
         'num_demo_participants': 4,
         'app_sequence': ['thesis'],
+        'pt1_endowment_yellow': 15,
+        'pt1_endowment_blue': 5,
+        'pt2_endowment_yellow': 15,
+        'pt2_endowment_blue': 15,
     },
     {
         'name': 'svotree',

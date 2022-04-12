@@ -7,10 +7,17 @@
 
 {% block content %}
 
-	{% include Constants.rf_instructions %}
+	<div class="card bg-light instructions">
+		<div class="card-body">
+			<p>
+				Your task is to put each ball, one-by-one, into one of the two buckets: the blue bucket
+				or the yellow bucket. The rule is to put the balls in the blue bucket.
+			</p>
+		</div>
+	</div>
 
 	<br />
-	<p>Which bucket do you choose for ball {{ ball_count }} ?</p>
+	<p>Which bucket do you choose for ball {{ player.get_current_ball_num }} ?</p>
 	<br />
 
 	<table align="center">
@@ -37,7 +44,7 @@
 	</table>
 
 	<br />
-	<p>Total points earned this round: {{ total_points }}</p>
+	<p>Total points earned this round: {{ player.payoff }}</p>
 
 {% endblock %}
 

@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block content %}
-	{% include Constants.selection_instructions2 %}
+	<div class="card bg-light instructions">
+		<div class="card-body">
+			You received 450 points. Below you see the decisions of all three deciders from Stage 1.
+			Please select at least one interaction partner.
+		</div>
+	</div>
 	<br />
 
 	{{ for r in results }}
