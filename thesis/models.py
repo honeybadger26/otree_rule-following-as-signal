@@ -18,9 +18,12 @@ repeat 20 times.
 class Constants(BaseConstants):
     name_in_url = 'thesis'
     players_per_group = 4
-    num_rounds = 2 # TODO: Default is 30
-    payoff_round1 = random.randint(1, num_rounds/2)
-    payoff_round2 = random.randint((num_rounds/2)+1, num_rounds)
+    pt1_num_rounds = 1
+    pt2_num_rounds = 1
+    num_rounds = pt1_num_rounds + pt2_num_rounds # TODO: Default is 30
+    payoff_round1 = random.randint(1, pt1_num_rounds)
+    payoff_round2 = random.randint(pt1_num_rounds+1, num_rounds)
+    rftask_num_rounds = 15
 
     rf_instructions = 'thesis/InstructionsRF.html'
     rf_instructions2 = 'thesis/InstructionsRF2.html'
@@ -80,11 +83,8 @@ class Group(BaseGroup):
 
         #keep
         dictator111 = p1.in_round(Constants.payoff_round1).amount_keep if p1.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
-        dictator112 = p1.in_round(Constants.payoff_round2).amount_keep if p1.in_round(Constants.payoff_round2).field_maybe_none('amount_keep') is not None else c(0)
         dictator121 = p2.in_round(Constants.payoff_round1).amount_keep if p2.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
-        dictator122 = p2.in_round(Constants.payoff_round2).amount_keep if p2.in_round(Constants.payoff_round2).field_maybe_none('amount_keep') is not None else c(0)
         dictator131 = p3.in_round(Constants.payoff_round1).amount_keep if p3.in_round(Constants.payoff_round1).field_maybe_none('amount_keep') is not None else c(0)
-        dictator132 = p3.in_round(Constants.payoff_round2).amount_keep if p3.in_round(Constants.payoff_round2).field_maybe_none('amount_keep') is not None else c(0)
 
         #give
         dictator211 = p1.in_round(Constants.payoff_round1).amount_give if p1.in_round(Constants.payoff_round1).field_maybe_none('amount_give') is not None else c(0)
