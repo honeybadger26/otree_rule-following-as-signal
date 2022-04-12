@@ -36,9 +36,8 @@ class PlayerBot(Bot):
         if self.player.role() == 'selector':
             yield pages.RFTaskStart
             yield pages.RFSelection, {
-                'select1': random.choice([True, False]),
-                'select2': random.choice([True, False]), 
-                'select3': random.choice([True, False]), 
+                'select1': True,
+                'select3': True
             }
             yield pages.StageThreeSelector
             yield pages.DictatorResults

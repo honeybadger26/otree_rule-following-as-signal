@@ -7,15 +7,15 @@
 
 {% block content %}
   <p>
-    <strong>You got 450 points and spent 150 points on each selected decider</strong> and you
-    interacted with {{ group.num_selected }} out of the 3 deciders.
+    <strong>You got {{ C.ENDOWMENT_SELECTION }} and spent {{ C.SELECTION_FEE }}  on each selected
+    decider</strong> and you interacted with {{ group.num_selected }} out of the 3 deciders.
   </p>
 
   {{ for p in results }}
     <p>
       A decider who chose the blue bucket {{ p.blue_count }} times decided to keep
       {{ p.amount_keep }} and give {{ p.amount_give }} to you. Therefore, you earned
-      {{ p.earnings }} for this interaction.
+      {{ p.amount_give }} for this interaction.
     </p>
   {{ endfor }}
 

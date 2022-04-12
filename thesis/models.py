@@ -42,7 +42,8 @@ class Group(BaseGroup):
         return models.BooleanField(
             label='Select this decider for Stage 3',
             widget=widgets.CheckboxInput,
-            blank=True
+            blank=True,
+            initial=False
         )
 
     # TODO: remove these?
@@ -58,8 +59,11 @@ class Group(BaseGroup):
             if p.id_in_group == 4:
                 continue
 
-            if p.selected:
+            if (p.id_in_group == 1 and self.select1) or \
+                (p.id_in_group == 2 and self.select2) or \
+                (p.id_in_group == 3 and self.select3):
                 self.num_selected += 1
+                p.selected = True
                 p.payoff += C.ENDOWMENT_STAGE_THREE
 
         self.get_player_by_id(4).payoff -= self.num_selected * C.SELECTION_FEE
@@ -107,11 +111,13 @@ class Player(BasePlayer):
             endowment_yellow = c(self.session.config['pt2_endowment_yellow'])
             endowment_blue = c(self.session.config['pt2_endowment_blue'])
 
-        self.payoff += (self.yellow_count * endowment_yellow) + \
-            (self.blue_count * endowment_blue)
+        if self.yellow_choice:
+            self.payoff += endowment_yellow
+        elif self.blue_choice:
+            self.payoff += endowment_blue
 
     def get_current_ball_num(self):
-            return self.yellow_count + self.blue_count + 1,
+            return self.yellow_count + self.blue_count + 1
 
     yellow_choice = models.BooleanField()
     blue_choice = models.BooleanField()

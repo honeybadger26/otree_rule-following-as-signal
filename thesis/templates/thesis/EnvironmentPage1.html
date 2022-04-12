@@ -7,14 +7,14 @@
 
 {% block content %}
     <p>
-        The first part of the study consists of <strong>15 rounds</strong>. Each round has <strong>
+        The first part of the study consists of <strong>{{ C.PT1_NUM_ROUNDS }} rounds</strong>. Each round has <strong>
         three stages</strong>. For your convenience, the instructions for stage 3 are shown below.
     </p>
 
     <div class="card bg-light instructions">
         <div class="card-body">
             <p>
-                Each decider the selector chooses as interaction partner will receive 500 points and is
+                Each decider the selector chooses as interaction partner will receive {{ C.ENDOWMENT_STAGE_THREE }} and is
                 asked to decide how many points he or she wants to keep and how many points he or she
                 wants to give to the selector.
             </p>

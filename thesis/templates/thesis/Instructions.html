@@ -78,7 +78,7 @@
   <div class="card-body">
     <h3>Part 1</h3>
     <p>
-      The first part of the study consists of 15 rounds. Each round has <strong>three stages
+      The first part of the study consists of {{ C.PT1_NUM_ROUNDS }} rounds. Each round has <strong>three stages
       </strong>.
     </p>
     {% formfield player.understood2 %}
@@ -87,11 +87,11 @@
       <div class="card-body">
         <h5>Stage 1</h5>
         <p>
-          Each decider will decide how to allocate 15 balls between two buckets on the computer
+          Each decider will decide how to allocate {{ C.RFTASK_NUM_ROUNDS }} balls between two buckets on the computer
           screen. The deciders' task is to put each ball, one-by-one, into one of the two
           buckets: the blue bucket or the yellow bucket. For each ball the decider puts in the
-          blue bucket he or she will receive 5 points and for each ball the decider puts in the
-          yellow bucket he or she will receive 15 points.
+          blue bucket he or she will receive {{ subsession.session.config.pt1_endowment_blue }} points and for each ball the decider puts in the
+          yellow bucket he or she will receive {{ subsession.session.config.pt1_endowment_yellow }} points.
         </p>
         <p>The rule is to put the balls in the blue bucket.</p>
         <p>
@@ -105,7 +105,7 @@
     <div class="card bg-light m-3">
       <div class="card-body">
         <h5>Stage 2</h5>
-        <p>The selector will start by receiving 450 points.</p>
+        <p>The selector will start by receiving {{ C.ENDOWMENT_SELECTION }}.</p>
         <p>
           The selector will then learn about the decisions of all three deciders. Specifically, the
           selector will be told how many balls each decider placed in the blue bucket. The selector
@@ -114,7 +114,7 @@
           two deciders in stage 3 - or even with all three.
         </p>
         <p>
-          For every decider that the selector chooses, the selector has to pay a cost of 150 points.
+          For every decider that the selector chooses, the selector has to pay a cost of {{ C.SELECTION_FEE }}.
           If a decider is not selected for stage 3, he or she will skip this stage, wait for the
           others to finish, and not earn be able to earn more.
         </p>
@@ -130,7 +130,7 @@
     <div class="card bg-light m-3">
       <div class="card-body">
         <h5>Stage 3</h5>
-        <p>If a decider is selected as interaction partner, he or she will receive 500 points.</p>
+        <p>If a decider is selected as interaction partner, he or she will receive {{ C.ENDOWMENT_STAGE_THREE }}.</p>
         <p>
           The decider is then asked how many points he or she wants to keep and how many points he
           or she wants to give to the selector. Hence, the decision of the decider determines the

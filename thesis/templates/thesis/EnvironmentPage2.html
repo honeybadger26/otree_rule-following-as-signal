@@ -8,8 +8,8 @@
 {% block content %}
     <p>
       In this part, everything will stay the same as in part 1, except that the decider will receive
-      <strong>5 points</strong> for putting each ball in the blue bucket, the same number of points
-      if they were to put the ball in the yellow bucket.
+      <strong>{{ subsession.session.config.pt2_endowment_blue }} points</strong> for putting each ball in the blue bucket and
+      <strong>{{ subsession.session.config.pt2_endowment_yellow }} points</strong> for putting each ball in the yellow bucket.
     </p>
     {{ next_button }}
 {% endblock %}

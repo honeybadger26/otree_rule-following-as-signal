@@ -48,12 +48,6 @@ class Role(Page):
         return self.subsession.round_number == 1
 
 
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
 class RFTaskStart(Page):
 
     def is_displayed(self):
@@ -89,7 +83,6 @@ class RFSelectorPayoffWaitPage(WaitPage):
 
 
 class RFSelection(Page):
-
     form_model = 'group'
     form_fields = ['select1', 'select2', 'select3']
 
@@ -102,7 +95,6 @@ class RFSelection(Page):
         for p in self.group.get_players():
             if p.role() == 'partner':
                 results.append({
-                    'id': p.id_in_group,
                     'blue_count': int(p.blue_count),
                     'payoff': p.payoff,
                     'field': 'select' + str(p.id_in_group)
@@ -115,14 +107,6 @@ class RFSelection(Page):
             values["select2"] is not True and \
             values["select3"] is not True:
             return 'Select at least one partner.'
-
-    def before_next_page(self):
-        for p in self.group.get_players():
-            p.selected = \
-                (p.id_in_group == 1 and self.group.select1) or \
-                (p.id_in_group == 2 and self.group.select2) or \
-                (p.id_in_group == 3 and self.group.select3)
-
 
 class RFDeciderPayoffWaitPage(WaitPage):
     
@@ -143,7 +127,7 @@ class RFResults(Page):
                 results.append({
                     'id': p.id_in_group,
                     'blue_count': p.blue_count,
-                    'selected': p.selected
+                    'select_result': p.get_select_display
                 })
 
         return { 'results': sorted(results, key=lambda r: r['blue_count']) }
@@ -183,11 +167,9 @@ class DictatorResults(Page):
         for p in self.group.get_players():
             if p.role() == 'partner' and p.selected:
                 results.append({
-                    'id': p.id_in_group,
                     'blue_count': p.blue_count,
                     'amount_keep': p.amount_keep,
-                    'amount_give': p.amount_give,
-                    'earnings': p.amount_give - C.SELECTION_FEE if p.selected else c(0)
+                    'amount_give': p.amount_give
                 })
 
         return { 'results': sorted(results, key=lambda r: r['blue_count']), }
@@ -233,13 +215,13 @@ page_sequence = [
     RFTask for i in range(C.RFTASK_NUM_ROUNDS)
 ] + [
     RFWaitForSelector,
-    ResultsWaitPage,
+    RFSelectorPayoffWaitPage,
     RFSelection,
-    ResultsWaitPage,
+    RFDeciderPayoffWaitPage,
     RFResults,
     StageThreeSelector,
     DictatorTask,
-    ResultsWaitPage,
+    DictatorPayoffsWaitPage,
     DictatorResults,
     DictatorResultsDecider,
     FeedbackDeciders,

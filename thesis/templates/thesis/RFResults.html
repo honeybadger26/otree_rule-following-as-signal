@@ -14,12 +14,7 @@
 	{% else %}
 		Another decider chose the blue bucket {{ p.blue_count }} times and was
 	{% endif %}
-	{% if p.selected %}
-		<b>selected</b>
-	{% else %}
-		<b>not selected</b>
-	{% endif %}
-	for stage 3.
+	<b>{{ p.select_result }}</b> for stage 3.
 </p>
 {% endfor %}
 
