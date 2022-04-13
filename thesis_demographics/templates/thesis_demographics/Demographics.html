@@ -6,25 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-
-    <div align="center">
-    <table align="center">
-	<tr><td width=170px></td><td width=300px>Your age:</td><td width=50px></td><td>{% formfield player.age %}</td><td width=100px></td></tr>
-	<tr><td></td><td>Your gender:</td><td></td><td>{% formfield player.gender %}</td></tr>
-	<tr><td></td><td>Your field of study?</td><td></td><td>{% formfield player.your_study %}</td><td></td></tr>
-	<tr><td></td><td>Why did you participate in this study?</td><td></td><td>{% formfield player.reason %}</td><td></td></tr>
-	<tr><td></td><td>In how many experiments similar to this one did you participate already?</td><td></td><td>{% formfield player.nr_similar_experiments %}</td><td></td></tr>
-	<tr><td></td><td>Did you receive all information about this experiment during the experiment?</td><td></td><td>{% formfield player.other_info %}</td><td></td></tr>
-	<tr><td></td><td>Do you believe you interacted with real humans?</td><td></td><td>{% formfield player.real_humans %}</td><td></td></tr>
-
-    </table>
-
-    <p></p>
-    <div align="center">
-	<button name="show_debriefing" value="True" class="btn btn-primary btn-large">Show Debriefing</button>
-    </div>
-    </div>
-
-
+    {{ formfields }}
+    {{ next_button }}
 {% endblock %}
