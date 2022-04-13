@@ -4,7 +4,7 @@
 - Download and install [Docker](https://www.docker.com/products/docker-desktop/)
 - `cd` to this folder and run:
 ```
-docker-compose up --build
+docker-compose up
 ```
 - In your browser, go to [localhost:8000](http://localhost:8000)
 
