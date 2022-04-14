@@ -38,6 +38,12 @@
 		- Not a student
 	- Remove "why did you participate in this study" question
 	- Replace "How many experiments question" with "How many experiments in MonLEE question", same as groupreputation3 project
+	- Remove "Did you receive all information about this experiment during the experiment?" question
+	- Remove "Do you believe you interacted with real humans?" question
+- Debriefing
+	- Toby has uploaded some edits to Debriefing.html. Debriefing2.html is redundant and can be deleted?
+- Thank you
+	- change reference from Euros to dollars
 
 
 ## Toby
@@ -52,6 +58,8 @@
 	- Part 1
 		- Stage 2
 			- Is it clear that groups remain the same for all 15 rounds? Should it be made more explicit?
+- Payment info page
+	- Update based on whether using PayID or other
 
 
 
