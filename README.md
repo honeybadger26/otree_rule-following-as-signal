@@ -27,22 +27,15 @@ docker-compose build && docker-compose run otree test
 
 ---
 
-## Todo
+# Todo - Simon
 
-<!--Things that need to be addressed in the software. Please tag with "@done" as they are addressed -->
-
-### Simon
-
-- **@done** Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)?
-- Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded (rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc.). I can make the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
+- Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
 	- Make ENDOWMENT_SELECTION variable
     - Make ENDOWMENT_STAGE_THREE variable
     - Make SELECTION_FEE variable
 - Instructions page
-	- 100 points = 1 Euro --> "1 Dollar"
 	- Baseline of 650 points for earnings may need to be changed, TBD
 	- Roles subsection
-		- put "selector" and "decider" in boldface when they first appear
 		- include a picture in this subseection, after first para -- "players.png" (temporarily stored in root level of this repository)
 	- Part 1
 		- Stage 1
@@ -56,10 +49,19 @@ docker-compose build && docker-compose run otree test
 	- add pictures of buckets over the buttons
 - Decider, Stage 3
 	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
+- Demographic survey
+	- Gender question -- code it the same way as in groupreputation3 project
+
+## Done
+
+- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)?
+- Instructions page
+	- 100 points = 1 Euro --> "1 Dollar"
+	- Roles subsection
+		- put "selector" and "decider" in boldface when they first appear
 - Part 2 intro page
 	- Add new para at end: "The rule is to place the balls in the blue bucket."
 - Demographic survey
-	- Gender question -- code it the same way as in groupreputation3 project
 	- Add field of study options
 		- Engineering
 		- Medicine/Health sciences
@@ -72,11 +74,14 @@ docker-compose build && docker-compose run otree test
 	- Remove "Did you receive all information about this experiment during the experiment?" question
 	- Remove "Do you believe you interacted with real humans?" question
 - Debriefing
-	- Toby has uploaded some edits to Debriefing.html. Debriefing2.html is redundant and can be deleted?
+	- Toby has uploaded some edits to Debriefing.html
+	- Debriefing2.html is redundant and can be deleted?
 - Thank you
 	- change reference from Euros to dollars
 
-### Toby
+---
+
+# Todo - Toby
 
 - Consent page/Explanatory statement
 	- Consent page needs updated contact information

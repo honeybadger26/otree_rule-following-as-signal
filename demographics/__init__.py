@@ -26,34 +26,33 @@ class Player(BasePlayer):
         label='Your gender')
 
     your_study = models.StringField(
-        choices=['Psychology', 'Philosophy', 'Politics', 'Economics', 'Other'],
+        choices=[
+            'Business/Marketing',
+            'Economics', 
+            'Engineering',
+            'Medicine/Health sciences',
+            'Natural sciences',
+            'Philosophy', 
+            'Politics', 
+            'Psychology', 
+            'Social Sciences',
+            'Other',
+            'Not a student',
+        ],
         label='Your field of study')
-
-    reason = models.StringField(
-        choices=['Science', 'Money', 'Other'],
-        label='Why did you participate in this study?')
 
     nr_similar_experiments = models.IntegerField(
         min=0, max=20,
-        label='In how many experiments similar to this one did you participate already?')
-
-    other_info = models.StringField(
-        choices=['Yes', 'No'],
-        label='Did you receive all information about this experiment during the experiment?')
-
-    real_humans = models.StringField(
-        choices=['Yes', 'No'],
-        label='Do you believe you interacted with real humans?')
+        label='How many experiments have you done in MonLEE in the past?')
 
 
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age',
-                   'gender',
-                   'your_study',
-                   'reason',
-                   'nr_similar_experiments',
-                   'other_info',
-                   'real_humans']
+    form_fields = [
+        'age',
+        'gender',
+        'your_study',
+        'nr_similar_experiments',
+    ]
 
 page_sequence = [Demographics]
