@@ -1,4 +1,4 @@
-# Thesis
+# Rule Following As Signal
 
 ## Instructions
 
@@ -33,7 +33,7 @@ docker-compose build && docker-compose run otree test
 
 ### Simon
 
-- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)?
+- **@done** Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)?
 - Reference to amounts that can be earned -- are these based on variables or hard coded?
 - Instructions page
 	- 100 points = 1 Euro --> "1 Dollar"

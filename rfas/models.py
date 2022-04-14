@@ -13,7 +13,7 @@ repeat 20 times.
 """
 
 class C(BaseConstants):
-    NAME_IN_URL = 'thesis'
+    NAME_IN_URL = 'rfas'
     PLAYERS_PER_GROUP = 4
     PT1_NUM_ROUNDS = 1
     PT2_NUM_ROUNDS = 1

@@ -1,7 +1,7 @@
 from otree.api import *
 
 class Constants(BaseConstants):
-    name_in_url = 'thesis_demographics'
+    name_in_url = 'demographics'
     players_per_group = None
     num_rounds = 1
 

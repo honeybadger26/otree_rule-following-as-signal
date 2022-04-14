@@ -13,12 +13,12 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'thesis_instructions'
+    name_in_url = 'instructions'
     players_per_group = None
     num_rounds = 1
 
-    player_instructions = 'thesis_instructions/PlayerInstructions.html'
-    selector_instructions = 'thesis_instructions/SelectorInstructions.html'
+    player_instructions = 'instructions/PlayerInstructions.html'
+    selector_instructions = 'instructions/SelectorInstructions.html'
 
 
 class Subsession(BaseSubsession):
