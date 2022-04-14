@@ -5,25 +5,31 @@
 - Download and install [Docker](https://www.docker.com/products/docker-desktop/)
 - `cd` to this folder and run:
 ```
-docker-compose up
+./run.sh
 ```
 - In your browser, go to [localhost:8000](http://localhost:8000)
 
 ## Notes
 
-- If something goes wrong with the `docker-compose` command try the below command instead:
+- If there is a 'permission denied' error when attempting to run `./run.sh` try:
 ```
-docker-compose down && docker-compose up --build --force-recreate
+chmod +x run.sh && ./run.sh
+```
+- If something else goes wrong try:
+```
+docker system prune -a && ./run.sh
 ```
 
 ## Tests
 
 To run tests, use the following:
 ```
-docker-compose build && docker-compose run otree test
+./run.sh -t
 ```
-- Note 1: To run a specific test, add the test name to the end of `otree test`
-- Note 2: If you have already built the image you can omit the `docker-compose build` command
+or
+```
+./run.sh -t <test_name>
+```
 
 ---
 

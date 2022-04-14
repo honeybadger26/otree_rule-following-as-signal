@@ -6,7 +6,6 @@ case "$@" in
         docker run -it --rm -p 8000:8000 -e OTREE_PRODUCTION=0 -v $(pwd):/usr/src/app otree-rfas-dev
         ;;
     -p)
-        git clean -fdx
         docker build -f Dockerfile.prod -t otree-rfas-prod .
         docker run -it --rm -p 8000:8000 -e OTREE_PRODUCTION=1 otree-rfas-prod
         ;;
