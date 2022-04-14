@@ -25,6 +25,21 @@
 - Decider, Stage 3
 	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
 
+- Part 2 intro page
+	- Add new para at end: "The rule is to place the balls in the blue bucket."
+- Demographic survey
+	- Gender question -- code it the same way as in groupreputation3 project
+	- Add field of study options
+		- Engineering
+		- Medicine/Health sciences
+		- Natural sciences
+		- Business/Marketing
+		- Social Sciences
+		- Not a student
+	- Remove "why did you participate in this study" question
+	- Replace "How many experiments question" with "How many experiments in MonLEE question", same as groupreputation3 project
+
+
 ## Toby
 
 
@@ -40,14 +55,3 @@
 
 
 
-Maximum earnings for a decider on a round:
-
-225 + 500 == 725 (keep zero in dictator game)
-
-If they follow rule, they give up 150
-
-If they split fairly, they give up 250
-
-If they don't get chosen, they give up 250-500, depending on how selfish.
-
-Maximum earnings for a selector: 1500 if they receive 500 from all three. More realistically 750, if they get 50/50 splits from three.
