@@ -34,7 +34,10 @@ docker-compose build && docker-compose run otree test
 ### Simon
 
 - **@done** Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)?
-- Reference to amounts that can be earned -- are these based on variables or hard coded?
+- Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded (rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc.). I can make the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
+	- Make ENDOWMENT_SELECTION variable
+    - Make ENDOWMENT_STAGE_THREE variable
+    - Make SELECTION_FEE variable
 - Instructions page
 	- 100 points = 1 Euro --> "1 Dollar"
 	- Baseline of 650 points for earnings may need to be changed, TBD
