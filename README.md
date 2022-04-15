@@ -51,7 +51,7 @@ docker-compose build && docker-compose run otree test
 	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
 - Demographic survey
 	- Gender question -- code it the same way as in groupreputation3 project	
-- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: You appear to have done this for main app, but not for thesis_debriefing; thesis_demographics; etc. Please change these also]
+- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?]
 
 ## Done
 
