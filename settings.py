@@ -24,6 +24,8 @@ SESSION_CONFIGS = [
             'debriefing',
             'payment_info'
         ],
+        'endowment_selection': 450,
+        'selection_fee': 150,
         'pt1_endowment_yellow': 15,
         'pt1_endowment_blue': 5,
         'pt2_endowment_yellow': 15,
@@ -40,6 +42,8 @@ SESSION_CONFIGS = [
         'display_name': "Rule Following As Signal",
         'num_demo_participants': 4,
         'app_sequence': ['rfas'],
+        'endowment_selection': 450,
+        'selection_fee': 150,
         'pt1_endowment_yellow': 15,
         'pt1_endowment_blue': 5,
         'pt2_endowment_yellow': 15,

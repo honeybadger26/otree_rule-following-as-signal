@@ -22,9 +22,7 @@ class C(BaseConstants):
     PAYOFF_ROUND2 = random.randint(PT1_NUM_ROUNDS+1, NUM_ROUNDS)
     RFTASK_NUM_ROUNDS = 15
 
-    ENDOWMENT_SELECTION = c(450)
     ENDOWMENT_STAGE_THREE = c(500)
-    SELECTION_FEE = c(150)
     KEEP_AMOUNTS = [c(250), c(300), c(350), c(400), c(450), c(500)]
     GIVE_AMOUNTS = [c(0), c(50), c(100), c(150), c(200), c(250)]
 
@@ -52,7 +50,7 @@ class Group(BaseGroup):
     select3 = make_selected_player_field()
 
     def set_selector_initial_payoff(self):
-        self.get_player_by_id(4).payoff += C.ENDOWMENT_SELECTION
+        self.get_player_by_id(4).payoff += c(self.session.config['endowment_selection'])
 
     def set_deciders_chosen_payoffs(self):
         for p in self.get_players():
@@ -66,7 +64,7 @@ class Group(BaseGroup):
                 p.selected = True
                 p.payoff += C.ENDOWMENT_STAGE_THREE
 
-        self.get_player_by_id(4).payoff -= self.num_selected * C.SELECTION_FEE
+        self.get_player_by_id(4).payoff -= self.num_selected * self.session.config['selection_fee']
 
     def set_dictator_payoffs(self):
         amount_given = c(0)

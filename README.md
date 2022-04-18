@@ -37,8 +37,6 @@ or
 
 - Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
 	- Make ENDOWMENT_SELECTION variable
-    - Make ENDOWMENT_STAGE_THREE variable
-    - Make SELECTION_FEE variable
 - Instructions page
 	- Baseline of 650 points for earnings may need to be changed, TBD
 	- Roles subsection
@@ -61,6 +59,9 @@ or
 
 ## Done
 
+- Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
+    - Make ENDOWMENT_STAGE_THREE variable
+    - Make SELECTION_FEE variable
 - Instructions page
 	- 100 points = 1 Euro --> "1 Dollar"
 	- Roles subsection
