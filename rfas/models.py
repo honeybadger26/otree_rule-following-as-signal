@@ -23,8 +23,7 @@ class C(BaseConstants):
     RFTASK_NUM_ROUNDS = 15
 
     ENDOWMENT_STAGE_THREE = c(500)
-    KEEP_AMOUNTS = [c(250), c(300), c(350), c(400), c(450), c(500)]
-    GIVE_AMOUNTS = [c(0), c(50), c(100), c(150), c(200), c(250)]
+    KEEP_GIVE_AMOUNTS =  [ c(i*50) for i in range(int(ENDOWMENT_STAGE_THREE/50)+1) ]
 
     PARTNER_SELECTOR = 4
 
@@ -129,11 +128,11 @@ class Player(BasePlayer):
         initial=False)
 
     amount_keep = models.CurrencyField(
-        choices=[c(250), c(300), c(350), c(400), c(450), c(500)],
+        choices=C.KEEP_GIVE_AMOUNTS,
         label='Keep for yourself')
 
     amount_give = models.CurrencyField(
-        choices=[c(0), c(50), c(100), c(150), c(200), c(250)],
+        choices=C.KEEP_GIVE_AMOUNTS,
         label='Give to selector')
 
     understood1 = make_understood_field('the general instructions')

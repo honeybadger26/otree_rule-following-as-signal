@@ -39,6 +39,17 @@ or
 	- Make ENDOWMENT_SELECTION variable
 - Instructions page
 	- Baseline of 650 points for earnings may need to be changed, TBD
+- Demographic survey
+	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead]	
+- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?] [Simon: Not sure what's going on here. These folders must be generated somehow as they aren't checked into the git repo...]
+
+## Done
+
+- Decider, Stage 3
+	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
+- Decider, Stage 1
+	- add pictures of buckets over the buttons
+- Instructions page
 	- Roles subsection
 		- include a picture in this subseection, after first para -- "players.png" (temporarily stored in root level of this repository)
 	- Part 1
@@ -49,16 +60,6 @@ or
 		- Stage 3
 			- Add image "decider-allocates.png" after the second para
 		- Checkbox for all of Part 1 should appear after the Feedback sub-box
-- Decider, Stage 1
-	- add pictures of buckets over the buttons
-- Decider, Stage 3
-	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
-- Demographic survey
-	- Gender question -- code it the same way as in groupreputation3 project	
-- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?]
-
-## Done
-
 - Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
     - Make ENDOWMENT_STAGE_THREE variable
     - Make SELECTION_FEE variable

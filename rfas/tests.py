@@ -54,7 +54,7 @@ class PlayerBot(Bot):
             yield pages.RFResults
 
             if self.player.selected:
-                keep_amount = random.choice(C.KEEP_AMOUNTS)
+                keep_amount = random.choice(C.KEEP_GIVE_AMOUNTS)
                 yield pages.DictatorTask, {
                     'amount_keep': keep_amount,
                     'amount_give': C.ENDOWMENT_STAGE_THREE - keep_amount

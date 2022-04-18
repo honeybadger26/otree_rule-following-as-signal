@@ -33,6 +33,7 @@
           throughout the experiment. You will either be playing in the role of the <b>selector</b> or in
           the role of a <b>decider</b>. In total, there is one selector and there are three deciders.
         </p>
+        <img class="instruction-img" src="{{ static 'players.png' }}" />
         <p>
           You will find out about your role at the start of the experiment.
         </p>
@@ -81,7 +82,6 @@
       The first part of the study consists of {{ C.PT1_NUM_ROUNDS }} rounds. Each round has <strong>three stages
       </strong>.
     </p>
-    {% formfield player.understood2 %}
 
     <div class="card bg-light m-3">
       <div class="card-body">
@@ -93,6 +93,7 @@
           blue bucket he or she will receive {{ session.config.pt1_endowment_blue }} points and for each ball the decider puts in the
           yellow bucket he or she will receive {{ session.config.pt1_endowment_yellow }} points.
         </p>
+        <img class="instruction-img" src="{{ static 'decider-choice.png' }}" />
         <p>The rule is to put the balls in the blue bucket.</p>
         <p>
           The deciders' payments in this stage will be based on the sum of the points of the blue
@@ -113,6 +114,7 @@
           select at least one decider to interact with</strong> but can also choose to interact with
           two deciders in stage 3 - or even with all three.
         </p>
+        <img class="instruction-img" src="{{ static 'selector-choose-partners.png' }}" />
         <p>
           For every decider that the selector chooses, the selector has to pay a cost of {{ session.config.selection_fee }} points.
           If a decider is not selected for stage 3, he or she will skip this stage, wait for the
@@ -136,6 +138,7 @@
           or she wants to give to the selector. Hence, the decision of the decider determines the
           earnings of the decider as well as the earnings of the selector in this stage.
         </p>
+        <img class="instruction-img" src="{{ static 'decider-allocates.png' }}" />
         <p>
           After the decider has made his or her decision, the selector will learn about the
           outcome.
@@ -165,6 +168,8 @@
         {% formfield player.understood24 %}
       </div>
     </div>
+
+    {% formfield player.understood2 %}
   </div>
 </div>
 

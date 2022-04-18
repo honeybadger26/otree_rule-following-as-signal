@@ -20,7 +20,12 @@
 	<p>Which bucket do you choose for ball {{ player.get_current_ball_num }}?</p>
 	<br />
 
-	<table align="center">
+	<table align="center" style="text-align: center;">
+		<tr>
+			<td><img class="bucket-img" src="{{ static 'yellowbucket.png' }}" /></td>
+			<td></td>
+			<td><img class="bucket-img" src="{{ static 'bluebucket.png' }}" /></td>
+		</tr>
 		<tr>
 			<td>
 				<input type="hidden" name="yellow_choice" />

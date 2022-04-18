@@ -20,10 +20,7 @@ class Player(BasePlayer):
         min=16, max=80,
         label='Your age')
 
-    gender = models.StringField(
-        choices=['Male', 'Female', 'Other'],
-        widget=widgets.RadioSelectHorizontal,
-        label='Your gender')
+    gender = models.StringField(label='Your gender')
 
     your_study = models.StringField(
         choices=[
