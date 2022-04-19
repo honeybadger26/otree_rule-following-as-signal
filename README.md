@@ -40,8 +40,9 @@ or
 - Instructions page
 	- Baseline of 650 points for earnings may need to be changed, TBD
 - Demographic survey
-	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead]	
-- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?] [Simon: Not sure what's going on here. These folders must be generated somehow as they aren't checked into the git repo...]
+	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead.]
+		- [Toby: no, I really need it coded in the same way as groupreputation3. This is an ethics committee requirement on how we gather this data.]
+- Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?] [Simon: Not sure what's going on here. These folders must be generated somehow as they aren't checked into the git repo...] [Toby: Ah, ok, I'll ignore/delete.]
 
 ## Done
 
@@ -101,4 +102,4 @@ or
 		- Stage 2
 			- Is it clear that groups remain the same for all 15 rounds? Should it be made more explicit?
 - Payment info page
-	- Update based on whether using PayID or other
+	- Update based on whether using PayID or other method
