@@ -43,7 +43,7 @@ class PlayerBot(Bot):
             yield pages.DictatorResults
 
         if self.player.role() == 'partner':
-            for _ in range(C.RFTASK_NUM_ROUNDS):
+            for _ in range(C.RFTASK_NUM_BALLS):
                 yellow_choce = random.choice([True, False])
                 blue_choce = not yellow_choce
                 yield pages.RFTask, {
@@ -54,10 +54,10 @@ class PlayerBot(Bot):
             yield pages.RFResults
 
             if self.player.selected:
-                keep_amount = random.choice(C.KEEP_GIVE_AMOUNTS)
+                keep_amount = random.choice(self.player.keep_give_amounts())
                 yield pages.DictatorTask, {
                     'amount_keep': keep_amount,
-                    'amount_give': C.ENDOWMENT_STAGE_THREE - keep_amount
+                    'amount_give': self.session.config['endowment_stage3'] - keep_amount
                 }
                 yield pages.DictatorResultsDecider
 

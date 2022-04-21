@@ -20,12 +20,10 @@ class C(BaseConstants):
     NUM_ROUNDS = PT1_NUM_ROUNDS + PT2_NUM_ROUNDS # TODO: Default is 30
     PAYOFF_ROUND1 = random.randint(1, PT1_NUM_ROUNDS)
     PAYOFF_ROUND2 = random.randint(PT1_NUM_ROUNDS+1, NUM_ROUNDS)
-    RFTASK_NUM_ROUNDS = 15
-
-    ENDOWMENT_STAGE_THREE = c(500)
-    KEEP_GIVE_AMOUNTS =  [ c(i*50) for i in range(int(ENDOWMENT_STAGE_THREE/50)+1) ]
-
+    RFTASK_NUM_BALLS = 15
     PARTNER_SELECTOR = 4
+
+    ENDOWMENT_INCREMENT = 50
 
 
 class Subsession(BaseSubsession):
@@ -61,7 +59,7 @@ class Group(BaseGroup):
                 (p.id_in_group == 3 and self.select3):
                 self.num_selected += 1
                 p.selected = True
-                p.payoff += C.ENDOWMENT_STAGE_THREE
+                p.payoff += self.session.config['endowment_stage3']
 
         self.get_player_by_id(4).payoff -= self.num_selected * self.session.config['selection_fee']
 
@@ -127,13 +125,19 @@ class Player(BasePlayer):
         widget=widgets.CheckboxInput,
         initial=False)
 
-    amount_keep = models.CurrencyField(
-        choices=C.KEEP_GIVE_AMOUNTS,
-        label='Keep for yourself')
+    amount_keep = models.CurrencyField(label='Keep for yourself')
+    amount_give = models.CurrencyField(label='Give to selector')
 
-    amount_give = models.CurrencyField(
-        choices=C.KEEP_GIVE_AMOUNTS,
-        label='Give to selector')
+    def keep_give_amounts(self):
+        endowment = c(self.session.config['endowment_stage3'])
+        increment = C.ENDOWMENT_INCREMENT
+        return [ c(i*increment) for i in range(int(endowment/increment)+1) ]
+
+    def amount_keep_choices(self):
+        return self.keep_give_amounts()
+
+    def amount_give_choices(self):
+        return self.keep_give_amounts()
 
     understood1 = make_understood_field('the general instructions')
     understood11 = make_understood_field('the "Roles" section')

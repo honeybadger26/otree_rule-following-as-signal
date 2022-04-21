@@ -37,7 +37,7 @@
           throughout the experiment. You will either be playing in the role of the <b>selector</b> or in
           the role of a <b>decider</b>. In total, there is one selector and there are three deciders.
         </p>
-        <img class="instruction-img" src="{{ static 'players.png' }}" />
+        <img class="instruction-img" style="" src="{{ static 'players.png' }}" onload="this.width*=1.5;" />
         <p>
           You will find out about your role at the start of the experiment.
         </p>
@@ -95,14 +95,13 @@
 			The selector will not take part in stage 1.
 		</p>
         <p>
-          Each decider will decide how to allocate {{ C.RFTASK_NUM_ROUNDS }} balls between two buckets on the computer
+          Each decider will decide how to allocate {{ C.RFTASK_NUM_BALLS }} balls between two buckets on the computer
           screen. The deciders' task is to put each ball, one-by-one, into one of the two
           buckets: the blue bucket or the yellow bucket. For each ball the decider puts in the
           blue bucket he or she will receive {{ session.config.pt1_endowment_blue }} points and for each ball the decider puts in the
           yellow bucket he or she will receive {{ session.config.pt1_endowment_yellow }} points.
         </p>
         <img class="instruction-img" src="{{ static 'decider-choice.png' }}" />
-        <br>
 		<p>The rule is to put the balls in the blue bucket.</p>
         <p>
           The deciders' payments in this stage will be based on the sum of the points of the blue
@@ -141,7 +140,7 @@
     <div class="card bg-light m-3">
       <div class="card-body">
         <h5>Stage 3</h5>
-        <p>If a decider is selected as interaction partner, he or she will receive {{ C.ENDOWMENT_STAGE_THREE }}.</p>
+        <p>If a decider is selected as interaction partner, he or she will receive {{ session.config.endowment_stage3 }}.</p>
         <p>
           The decider is then asked how many points he or she wants to keep and how many points he
           or she wants to give to the selector. Hence, the decision of the decider determines the

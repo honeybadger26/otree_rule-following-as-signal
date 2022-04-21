@@ -146,8 +146,8 @@ class DictatorTask(Page):
         return self.player.role() == 'partner' and self.player.selected
 
     def error_message(self, values):
-        if values['amount_keep'] + values['amount_give'] != C.ENDOWMENT_STAGE_THREE:
-            return 'The points have to add up to ' + str(C.ENDOWMENT_STAGE_THREE)
+        if values['amount_keep'] + values['amount_give'] != self.session.config['endowment_stage3']:
+            return 'The points have to add up to ' + str(self.session.config['endowment_stage3'])
 
 
 class DictatorPayoffsWaitPage(WaitPage):
@@ -212,7 +212,7 @@ page_sequence = [
     Role,
     RFTaskStart
 ] + [
-    RFTask for i in range(C.RFTASK_NUM_ROUNDS)
+    RFTask for i in range(C.RFTASK_NUM_BALLS)
 ] + [
     RFWaitForSelector,
     RFSelectorPayoffWaitPage,

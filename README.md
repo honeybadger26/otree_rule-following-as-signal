@@ -35,18 +35,10 @@ or
 
 # Todo - Simon
 
-- Where are we at with Part 2? I can't see code for it...?
-- Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier] [Toby: fine to leave KEEP_ and GIVE_ hard coded]
-	- Make ENDOWMENT_SELECTION variable
+- Where are we at with Part 2? I can't see code for it...? [Simon: As discussed this is done, but hard to clearly see. Under `rfas/models.py` there are PTx_NUM_ROUNDS variables which you can use to change the number of rounds of each part]
 - Instructions page
-	- Baseline of 650 points for earnings needs to be changed
-		- Earning as follows:
-			- everyone gets $10 show up fee
-			- Then points from the experiment are added to $10.
-			- Each point is worth $0.03 (but this should be a variable I can adjust at )
-	- Increase size of graphic in "Roles" box by about 50% (I can generate a higher res image if required)
+	- Increase size of graphic in "Roles" box by about 50% (I can generate a higher res image if required) [Simon: This is done. Check out the image and if its too low res for your liking then replace `_static/players.png`]
 	- "Click the blue headings to collapse the subsections." -- this functionality doesn't appear to be working. Is it easy to restore?
-	- Centre images
 - Demographic survey
 	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead.]
 		- [Toby: no, I really need it coded in the same way as groupreputation3. This is an ethics committee requirement on how we gather this data.]
@@ -56,6 +48,13 @@ or
 
 ## Done
 
+- Instructions page
+	- Baseline of 650 points for earnings needs to be changed
+		- Earning as follows:
+			- everyone gets $10 show up fee
+			- Then points from the experiment are added to $10.
+			- Each point is worth $0.03 (but this should be a variable I can adjust at )
+	- Centre images
 - Decider, Stage 3
 	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
 - Decider, Stage 1
@@ -72,6 +71,7 @@ or
 			- Add image "decider-allocates.png" after the second para
 		- Checkbox for all of Part 1 should appear after the Feedback sub-box
 - Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
+	- Make ENDOWMENT_SELECTION variable
     - Make ENDOWMENT_STAGE_THREE variable
     - Make SELECTION_FEE variable
 - Instructions page

@@ -6,8 +6,8 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 0.01,
-    'participation_fee': 0,
+    'real_world_currency_per_point': 0.03,
+    'participation_fee': 10/0.03,
     'doc': "",
 }
 
@@ -25,6 +25,7 @@ SESSION_CONFIGS = [
             'payment_info'
         ],
         'endowment_selection': 450,
+        'endowment_stage3': 500,
         'selection_fee': 150,
         'pt1_endowment_yellow': 15,
         'pt1_endowment_blue': 5,
@@ -43,6 +44,7 @@ SESSION_CONFIGS = [
         'num_demo_participants': 4,
         'app_sequence': ['rfas'],
         'endowment_selection': 450,
+        'endowment_stage3': 500,
         'selection_fee': 150,
         'pt1_endowment_yellow': 15,
         'pt1_endowment_blue': 5,
