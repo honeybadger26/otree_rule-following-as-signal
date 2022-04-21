@@ -20,7 +20,7 @@ class Player(BasePlayer):
     name = models.StringField(label='Surname, First Name')
 
     consent = models.BooleanField(
-        label='I herewith consent to participate in this study.',
+        label='I consent to participate in this study.',
         widget=widgets.CheckboxInput)
 
     read = models.BooleanField(

@@ -11,17 +11,21 @@
   <div class="card-body">
     <h3>General Instructions</h3>
 		<p>
-      Welcome to the experiment! Below you will find detailed information about the study and a short
-      test to check whether you understood the general setup. It is therefore important that you read
-      the instructions closely. Click the blue headings to collapse the subsections.
+      Welcome to the experiment! Below you will find detailed
+      information about the study and a short test to check whether
+      you understood the general setup. It is therefore important
+      that you read the instructions closely. Click the blue headings
+      to collapse the subsections.
     </p>
     <p>
-      There is no deception and no hidden information in this study. Please do not hesitate to call
-      the experimenter if anything remains unclear to you.
+      There is no deception and no hidden information in this study.
+      Please do not hesitate to call the experimenter if anything
+      remains unclear to you.
     </p>
     <p>
-      <strong>Note:</strong> Tick the checkboxes in the subsections below to show that you have read
-      and understood the instructions. Otherwise, you will not be able to proceed.
+      <strong>Note:</strong> Tick the checkboxes in the subsections
+      below to show that you have read and understood the
+      instructions. Otherwise, you will not be able to proceed.
     </p>
     {% formfield player.understood1 %}
 
@@ -63,11 +67,12 @@
         </p>
         <p>
           The points you earn in a round will be converted to money at a conversion rate of
-          <strong>100 points = 1 Dollar</strong>. Hence, your decisions have real consequences for
-          your earnings and, potentially, the earnings of other participants. You will start with
-          0 points and if your point total is below 650 points at the end of the experiment, you
-          will still get paid 6.50 Dollars. Therefore, you can earn a bonus if your point total is
-          above 650 points.
+          <strong>100 points = 3 Dollars</strong>. Hence, your decisions have real consequences for
+          your earnings and, potentially, the earnings of other participants. 
+		  
+		  Any points you earn in the experiment will be added to your
+		  $10 participation fee to determine your overall payment at the
+		  end of the session.
         </p>
         {% formfield player.understood13 %}
       </div>
@@ -86,6 +91,9 @@
     <div class="card bg-light m-3">
       <div class="card-body">
         <h5>Stage 1</h5>
+		<p>
+			The selector will not take part in stage 1.
+		</p>
         <p>
           Each decider will decide how to allocate {{ C.RFTASK_NUM_ROUNDS }} balls between two buckets on the computer
           screen. The deciders' task is to put each ball, one-by-one, into one of the two
@@ -94,10 +102,11 @@
           yellow bucket he or she will receive {{ session.config.pt1_endowment_yellow }} points.
         </p>
         <img class="instruction-img" src="{{ static 'decider-choice.png' }}" />
-        <p>The rule is to put the balls in the blue bucket.</p>
+        <br>
+		<p>The rule is to put the balls in the blue bucket.</p>
         <p>
           The deciders' payments in this stage will be based on the sum of the points of the blue
-          bucket and the yellow bucket. The selector will not take part in stage 1.
+          bucket and the yellow bucket. 
         </p>
         {% formfield player.understood21 %}
       </div>
@@ -122,7 +131,7 @@
         </p>
         <p>
           Importantly, the selector will not be able to identify the deciders across rounds, but
-          only learn about their behavior in stage 1 (the bucket task). Specifically, the selector
+          only learn about their behavior in stage 1 of the present round. Specifically, the selector
           will be told how many balls each decider placed in the blue bucket.
         </p>
         {% formfield player.understood22 %}
