@@ -35,9 +35,6 @@ or
 
 # Todo - Simon
 
-
-- Instructions page
-	- "Click the blue headings to collapse the subsections." -- this functionality doesn't appear to be working. Is it easy to restore?
 - Demographic survey
 	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead.]
 		- [Toby: no, I really need it coded in the same way as groupreputation3. This is an ethics committee requirement on how we gather this data.]
@@ -75,6 +72,7 @@ or
 		- Stage 3
 			- Add image "decider-allocates.png" after the second para
 		- Checkbox for all of Part 1 should appear after the Feedback sub-box
+	- "Click the blue headings to collapse the subsections."
 - Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
 	- Make ENDOWMENT_SELECTION variable
     - Make ENDOWMENT_STAGE_THREE variable
