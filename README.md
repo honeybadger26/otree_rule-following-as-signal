@@ -35,9 +35,8 @@ or
 
 # Todo - Simon
 
-- Where are we at with Part 2? I can't see code for it...? [Simon: As discussed this is done, but hard to clearly see. Under `rfas/models.py` there are PTx_NUM_ROUNDS variables which you can use to change the number of rounds of each part]
+
 - Instructions page
-	- Increase size of graphic in "Roles" box by about 50% (I can generate a higher res image if required) [Simon: This is done. Check out the image and if its too low res for your liking then replace `_static/players.png`]
 	- "Click the blue headings to collapse the subsections." -- this functionality doesn't appear to be working. Is it easy to restore?
 - Demographic survey
 	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead.]
@@ -45,6 +44,9 @@ or
 - Instructions program
 	- Request payID, in the same way you coded it for groupreputation3. This program to come as last page in the Instructions program.
 	- Delete Information Brochure page
+- Payment Info program
+	- Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.]
+	- What variable(s) determine the round(s) that are paid? I'd like to be able to explain on the payment info page which round was selected to be paid.
 
 ## Done
 
@@ -54,6 +56,7 @@ or
 			- everyone gets $10 show up fee
 			- Then points from the experiment are added to $10.
 			- Each point is worth $0.03 (but this should be a variable I can adjust at )
+	- Increase size of graphic in "Roles" box by about 50% (I can generate a higher res image if required) 
 	- Centre images
 - Decider, Stage 3
 	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
@@ -98,19 +101,17 @@ or
 - Thank you
 	- change reference from Euros to dollars
 - Various applications have names like "thesis", "thesis-instructions", etc. This is redundant and distracting. Can we do a global change to wherever "thesis" occurs in a program name, change it to "rfas" (rule following as signal)? [TH: Why do we still have folders for "thesis_debriefing" etc?] [Simon: Not sure what's going on here. These folders must be generated somehow as they aren't checked into the git repo...] [Toby: Ah, ok, I'll ignore/delete.]
+- Where are we at with Part 2? I can't see code for it...? [Simon: As discussed this is done, but hard to clearly see. Under `rfas/models.py` there are PTx_NUM_ROUNDS variables which you can use to change the number of rounds of each part]
 
 ---
 
 # Todo - Toby
 
 - Consent page/Explanatory statement
-	- Consent page needs updated contact information
-	- Reference to Euros need to be replaced with dollars throughout
-	- Reference to earning credits needs to be removed.
-- Payments: why is the baseline payment 6.50, when the MAXIMUM the selector can earn appears to be 5? That seems to ruin any incentive to pick a good partner... Or do they add earnings across parts  1 and 2?
-- Instructions page
-	- Part 1
-		- Stage 2
-			- Is it clear that groups remain the same for all 15 rounds? Should it be made more explicit?
+	- Consent page needs updated contact information @done
+	- Reference to Euros need to be replaced with dollars throughout @done
+	- Reference to earning credits needs to be removed. @done
+	- Clarify are participants paid for 1 round from EACH part, or 1 round from either part?
 - Payment info page
 	- Update based on whether using PayID or other method
+	- Add breakdown of payment info to final screen. Explain which rounds were selected.
