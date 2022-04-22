@@ -17,30 +17,15 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    name = models.StringField(label='Surname, First Name')
-
-    consent = models.BooleanField(
-        label='I consent to participate in this study.',
-        widget=widgets.CheckboxInput)
-
-    read = models.BooleanField(
-        label='I herewith confirm that I have read and understood the information '
-              'above.',
-        widget=widgets.CheckboxInput)
+    pay_id = models.StringField(label='PayID')
 
 # Pages #
 
 class InformedConsent(Page):
+    pass
+
+class PayID(Page):
     form_model = 'player'
-    form_fields = ['consent']
+    form_fields = ['pay_id']
 
-
-class InformationBrochure(Page):
-    form_model = 'player'
-    form_fields = ['read']
-
-
-page_sequence = [
-    InformedConsent,
-    InformationBrochure,
-]
+page_sequence = [InformedConsent, PayID]

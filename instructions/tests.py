@@ -1,10 +1,9 @@
+from sys import path_importer_cache
 from otree.api import Currency as c, currency_range
-from . import pages
-from ._builtin import Bot
-from .models import Constants
-
+from . import *
 
 class PlayerBot(Bot):
 
     def play_round(self):
-        pass
+        yield InformedConsent
+        yield PayID, { 'pay_id': 'asldkj1232' }

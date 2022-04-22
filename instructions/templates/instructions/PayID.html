@@ -1,0 +1,13 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    PayID
+{% endblock %}
+
+{% block content %}
+    <p>Please enter your PayID to continue.</p>
+    <p>This will be used to pay you at the end of the experiment.</p>
+    {{ formfields }}
+    {{ next_button }}
+{% endblock %}

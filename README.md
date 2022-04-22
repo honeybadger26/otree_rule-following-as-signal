@@ -35,9 +35,6 @@ or
 
 # Todo - Simon
 
-- Instructions program
-	- Request payID, in the same way you coded it for groupreputation3. This program to come as last page in the Instructions program.
-	- Delete Information Brochure page
 - Payment Info program
 	- Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.]
 	- What variable(s) determine the round(s) that are paid? I'd like to be able to explain on the payment info page which round was selected to be paid.
@@ -46,7 +43,13 @@ or
 
 ## Done
 
-- Instructions page
+- Experiment Instructions
+	- Request payID, in the same way you coded it for groupreputation3. This program to come as last page in the Instructions program.
+	- Delete Information Brochure page
+- Rule Following Instructions
+	- 100 points = 1 Euro --> "1 Dollar"
+	- Roles subsection
+		- put "selector" and "decider" in boldface when they first appear
 	- Baseline of 650 points for earnings needs to be changed
 		- Earning as follows:
 			- everyone gets $10 show up fee
@@ -54,11 +57,6 @@ or
 			- Each point is worth $0.03 (but this should be a variable I can adjust at )
 	- Increase size of graphic in "Roles" box by about 50% (I can generate a higher res image if required) 
 	- Centre images
-- Decider, Stage 3
-	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
-- Decider, Stage 1
-	- add pictures of buckets over the buttons
-- Instructions page
 	- Roles subsection
 		- include a picture in this subseection, after first para -- "players.png" (temporarily stored in root level of this repository)
 	- Part 1
@@ -70,14 +68,14 @@ or
 			- Add image "decider-allocates.png" after the second para
 		- Checkbox for all of Part 1 should appear after the Feedback sub-box
 	- "Click the blue headings to collapse the subsections."
+- Decider, Stage 3
+	- Decider should have the option to give up to 500 points to selector, and keep none for self -- as well as intermediate options (current list of options is constrained so can not give more than half away.)
+- Decider, Stage 1
+	- add pictures of buckets over the buttons
 - Reference to amounts that can be earned -- are these based on variables or hard coded? [Simon: These are hard coded, see rfas/models.py - ENDOWMENT_SELECTION, ENDOWMENT_STAGE_THREE, etc. I can make all the below variable (editable through session config), but KEEP_ and GIVE_ AMOUNTS are a bit trickier]
 	- Make ENDOWMENT_SELECTION variable
     - Make ENDOWMENT_STAGE_THREE variable
     - Make SELECTION_FEE variable
-- Instructions page
-	- 100 points = 1 Euro --> "1 Dollar"
-	- Roles subsection
-		- put "selector" and "decider" in boldface when they first appear
 - Part 2 intro page
 	- Add new para at end: "The rule is to place the balls in the blue bucket."
 - Demographic survey
