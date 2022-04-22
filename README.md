@@ -47,6 +47,8 @@ or
 - Payment Info program
 	- Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.]
 	- What variable(s) determine the round(s) that are paid? I'd like to be able to explain on the payment info page which round was selected to be paid.
+- Replace SVO program
+	- Instead of the SVO program, participants are to be given a couple of questionnaries. See file "new_questions.md". Suggested program titles are in the file.
 
 ## Done
 
