@@ -6,21 +6,11 @@ from .models import Constants
 class PlayerBot(Bot):
 
     def play_round(self):
-
-        yield (pages.Demographics, {
-            'q_country': 'BS',
-            'q_age': 24,
-            'q_gender': 'Male'})
-
-        yield (pages.CognitiveReflectionTest, {
-            'crt_bat': 10,
-            'crt_widget': 5,
-            'crt_lake': 48
-        })
-
-        for value in [
-            self.player.crt_bat,
-            self.player.q_country,
-            self.player.payoff
-        ]:
-            assert value is not None
+        yield pages.SliderPrimaryContinuous, {
+            'slider1': 4,
+            'slider2': 2,
+            'slider3': 1,
+            'slider4': 4,
+            'slider5': 6,
+            'slider6': 2,
+        }

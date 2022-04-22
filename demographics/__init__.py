@@ -15,7 +15,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
     age = models.IntegerField(
         min=16, max=80,
         label='Your age')

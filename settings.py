@@ -69,22 +69,15 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['debriefing'],
     },
-    {
-        'name': 'payment_info',
-        'display_name': "Payment Info",
-        'num_demo_participants': 1,
-        'app_sequence': ['payment_info'],
-    },
 ]
 # see the end of this file for the inactive session configs
-
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'EUR'
+REAL_WORLD_CURRENCY_CODE = 'AUD'
 USE_POINTS = True
 POINTS_DECIMAL_PLACES = 0
 POINTS_CUSTOM_NAME = 'points'

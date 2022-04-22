@@ -36,8 +36,9 @@ or
 # Todo - Simon
 
 - Payment Info program
-	- Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.]
+	- Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.] [Simon: I believe the variables is `REAL_WORLD_CURRENCY_CODE` in `settings.py`. Currently, I have it set to AUD]
 	- What variable(s) determine the round(s) that are paid? I'd like to be able to explain on the payment info page which round was selected to be paid.
+		- These variables are now available using `session.vars.rfas_payed_round1` and `session.vars.rfas_payed_round2`. I've added a paragraph on the payment info page showing how to use them so edit this as you see fit. Adding this means that you now cannot run Payment Info by itself on the server page (since it now relies on the RFAS task being completed)
 - Replace SVO program
 	- Instead of the SVO program, participants are to be given a couple of questionnaries. See file "new_questions.md". Suggested program titles are in the file.
 

@@ -27,7 +27,10 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    
+    def creating_session(self):
+        self.session.vars['rfas_payed_round1'] = C.PAYOFF_ROUND1
+        self.session.vars['rfas_payed_round2'] = C.PAYOFF_ROUND2 - C.PT1_NUM_ROUNDS
 
 
 class Group(BaseGroup):
