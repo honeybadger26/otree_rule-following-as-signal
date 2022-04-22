@@ -35,9 +35,6 @@ or
 
 # Todo - Simon
 
-- Demographic survey
-	- Gender question -- code it the same way as in groupreputation3 project [Simon: I would avoid doing this. Looking back, that code was a bit hacky to achieve what I needed. I've made this free text entry instead.]
-		- [Toby: no, I really need it coded in the same way as groupreputation3. This is an ethics committee requirement on how we gather this data.]
 - Instructions program
 	- Request payID, in the same way you coded it for groupreputation3. This program to come as last page in the Instructions program.
 	- Delete Information Brochure page
@@ -95,6 +92,7 @@ or
 	- Replace "How many experiments question" with "How many experiments in MonLEE question", same as groupreputation3 project
 	- Remove "Did you receive all information about this experiment during the experiment?" question
 	- Remove "Do you believe you interacted with real humans?" question
+	- Gender question -- code it the same way as in groupreputation3 project
 - Debriefing
 	- Toby has uploaded some edits to Debriefing.html
 	- Debriefing2.html is redundant and can be deleted?

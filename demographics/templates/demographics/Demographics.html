@@ -6,6 +6,76 @@
 {% endblock %}
 
 {% block content %}
-    {{ formfields }}
+    {{ formfield 'age' }}
+
+    <div>
+        <div>Your gender</div>
+        <input type="hidden" name="gender" />
+
+        <label><input type="checkbox" id="gender_male" /> Male</label><br />
+        <label><input type="checkbox" id="gender_female" /> Female</label><br />
+        <label><input type="checkbox" id="gender_pnts" /> Prefer not to say</label><br />
+        <label><input type="checkbox" id="gender_eb" /> [Enter below]</label>
+        <input disabled type="text" id="gender_eb_value" class="form-control" style="margin-top: .6rem" /> 
+        {{ formfield_errors 'gender' }}
+    </div>
+
+    {{ formfield 'your_study' }}
+    {{ formfield 'nr_similar_experiments' }}
+
     {{ next_button }}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function getGender() {
+            if ($('#gender_pnts').prop('checked')) return 'Prefer not to say';
+            if ($('#gender_eb').prop('checked')) return $('#gender_eb_value').val();
+
+            var genders = [];
+            if ($('#gender_male').prop('checked')) genders.push('Male');
+            if ($('#gender_female').prop('checked')) genders.push('Female');
+            return genders.length ? genders.join(', ') : null;
+        }
+
+        $('#gender_male').change(function() {
+            if (this.checked) {
+                $('#gender_pnts').prop('checked', false);
+                $('#gender_eb').prop('checked', false);
+                $('#gender_eb_value').prop('disabled', true);
+            }
+            $('input[name="gender"]').val(getGender());
+        });
+        $('#gender_female').change(function() {
+            if (this.checked) {
+                $('#gender_pnts').prop('checked', false);
+                $('#gender_eb').prop('checked', false);
+                $('#gender_eb_value').prop('disabled', true);
+            }
+            $('input[name="gender"]').val(getGender());
+        });
+        $('#gender_pnts').change(function() {
+            if (this.checked) {
+                $('#gender_male').prop('checked', false);
+                $('#gender_female').prop('checked', false);
+                $('#gender_eb').prop('checked', false);
+                $('#gender_eb_value').prop('disabled', true);
+            }
+            $('input[name="gender"]').val(getGender());
+        });
+        $('#gender_eb').change(function() {
+            if (this.checked) {
+                $('#gender_male').prop('checked', false);
+                $('#gender_female').prop('checked', false);
+                $('#gender_pnts').prop('checked', false);
+                $('#gender_eb_value').prop('disabled', false);
+            } else {
+                $('#gender_eb_value').prop('disabled', true);
+            }
+            $('input[name="gender"]').val(getGender());
+        });
+        $('#gender_eb_value').on('input', function(e) {
+            $('input[name="gender"]').val(e.target.value);
+        })
+    </script>
 {% endblock %}
