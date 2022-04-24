@@ -19,7 +19,7 @@ SESSION_CONFIGS = [
         'app_sequence': [
             'instructions',
             'rfas',
-            'svotree',
+            # add new questions here
             'demographics',
             'debriefing',
             'payment_info'
@@ -50,12 +50,6 @@ SESSION_CONFIGS = [
         'pt1_endowment_blue': 5,
         'pt2_endowment_yellow': 15,
         'pt2_endowment_blue': 15,
-    },
-    {
-        'name': 'svotree',
-        'display_name': "SVO",
-        'num_demo_participants': 1,
-        'app_sequence': ['svotree'],
     },
     {
         'name': 'demographics',
