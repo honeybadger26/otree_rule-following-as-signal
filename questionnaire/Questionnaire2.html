@@ -1,0 +1,35 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}
+  Questionnaire Part 2
+{{ endblock }}
+
+{{ block content }}
+  <p>
+    This questionnaire includes some commonly heard statements about one's religious life. They
+    are very diverse. Your task is to rate your agreement or disagreement with each statement
+    on a 9-point scale ranging from strongly disagree (1) to strongly agree (9). Try to rate
+    each of the statements, not leaving any blank.
+  </p>
+
+  {{ for field in form }}
+    {{ field.label }} 
+    <table class="likert-table">
+      <tr>
+        {{ for choice in field }}
+          <th>{{ choice.label }}</th>
+        {{ endfor }}
+      </tr>
+      <tr>
+        <td colspan="{{field.choices|length}}">
+          <input type="range" class="form-range" min="1" max="{{field.choices|length}}" step="1" name="{{field.name}}" id="{{field.id}}">
+        </td>
+      </tr>
+    </table>
+    {{ formfield_errors field.name }}
+    <br />
+  {{ endfor }}
+
+  {{ next_button }}
+
+{{ endblock }}

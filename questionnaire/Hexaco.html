@@ -1,0 +1,36 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}
+    Questionnaire
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        Please indicate to what extent you agree with the following statements, using the following
+        answering categories: 1 = strongly disagree, 2 = disagree, 3 = neutral (neither agree, nor
+        disagree), 4 = agree, and 5 = strongly agree.
+    </p>
+
+    {{ for field in form }}
+        {{ field.label }} 
+        <table class="likert-table">
+        <tr>
+            {{ for choice in field }}
+            <th>{{ choice.label }}</th>
+            {{ endfor }}
+        </tr>
+        <tr>
+            <td colspan="{{field.choices|length}}">
+            <input type="range" class="form-range" min="1" max="{{field.choices|length}}" step="1" name="{{field.name}}" id="{{field.id}}">
+            </td>
+        </tr>
+        </table>
+        {{ formfield_errors field.name }}
+        <br />
+    {{ endfor }}
+
+    {{ next_button }}
+{{ endblock }}
+
+

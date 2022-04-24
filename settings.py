@@ -19,7 +19,7 @@ SESSION_CONFIGS = [
         'app_sequence': [
             'instructions',
             'rfas',
-            # add new questions here
+            'questionnaire',
             'demographics',
             'debriefing',
             'payment_info'
@@ -50,6 +50,12 @@ SESSION_CONFIGS = [
         'pt1_endowment_blue': 5,
         'pt2_endowment_yellow': 15,
         'pt2_endowment_blue': 15,
+    },
+    {
+        'name': 'questionnaire',
+        'display_name': "Questionnaire",
+        'num_demo_participants': 1,
+        'app_sequence': ['questionnaire'],
     },
     {
         'name': 'demographics',
