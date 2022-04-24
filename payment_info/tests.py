@@ -4,5 +4,4 @@ from . import *
 class PlayerBot(Bot):
 
     def play_round(self):
-        print(self.html)
         yield Submission(PaymentInfo, check_html=False)
