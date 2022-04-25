@@ -54,7 +54,7 @@
             throughout the experiment. You will either be playing in the role of the <b>selector</b> or in
             the role of a <b>decider</b>. In total, there is one selector and there are three deciders.
           </p>
-          <img class="instruction-img" style="" src="{{ static 'players.png' }}" onload="this.width*=1.5;" />
+          <img class="instruction-img" style="" src="{{ static 'players.png' }}" onload="this.width*=1.0;" />
           <p>
             You will find out about your role at the start of the experiment.
           </p>
@@ -149,9 +149,11 @@
           </p>
           <img class="instruction-img" src="{{ static 'selector-choose-partners.png' }}" />
           <p>
-            For every decider that the selector chooses, the selector has to pay a cost of {{ session.config.selection_fee }} points.
-            If a decider is not selected for stage 3, he or she will skip this stage, wait for the
-            others to finish, and not earn be able to earn more.
+            For every decider that the selector chooses, the selector
+            has to pay a cost of {{ session.config.selection_fee }}
+            points. If a decider is not selected for stage 3, he or
+            she will skip this stage, wait for the others to finish,
+            and not earn be able to earn more.
           </p>
           <p>
             Importantly, the selector will not be able to identify the deciders across rounds, but
