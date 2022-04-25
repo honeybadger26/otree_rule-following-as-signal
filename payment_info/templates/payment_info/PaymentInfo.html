@@ -7,16 +7,16 @@
 
 {% block content %}
 	<p>
-        You collected {{ participant.payoff }} and earned a <strong>total of {{ money_earned }}
-        during this experiment.</strong> Your earnings are based on two randomly selected rounds
-        and are derived from your points in those rounds. If your point total is below 650 points,
-        you will still get paid $6.50. Any points above 650 points are considered to be your
-        bonus earnings.
+        You earned a <strong>total of {{ money_earned }} during this
+        experiment.</strong> Your earnings are based on two randomly
+        selected rounds, plus a participation fee of {{ variable here
+        }}.
     </p>
     <p>
-        The rounds that were selected for payment for part 1 and 2 respectively are rounds 
-        <strong>{{ session.vars.rfas_payed_round1 }}</strong> and
-        <strong>{{ session.vars.rfas_payed_round2 }}</strong>
+        The rounds that were selected for payment for part 1 and 2
+        respectively are rounds <strong>{{
+        session.vars.rfas_payed_round1 }}</strong> and <strong>{{
+        session.vars.rfas_payed_round2 }}</strong>
     </p>
     <p>
         <strong>The experimenter will distribute a receipt for you to
