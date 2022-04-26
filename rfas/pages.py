@@ -11,6 +11,11 @@ class Instructions(Page):
     def is_displayed(self):
         return self.subsession.round_number == 1
 
+    def vars_for_template(self):
+        return { 
+            'dollar_conversion': self.session.config['real_world_currency_per_point'] * 100
+        }
+
     def error_message(self, values):
         solutions = dict(
             comprehension1=2,

@@ -28,4 +28,4 @@ class PayID(Page):
     form_model = 'player'
     form_fields = ['pay_id']
 
-page_sequence = [InformedConsent, PayID]
+page_sequence = [InformedConsent]

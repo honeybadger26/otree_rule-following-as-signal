@@ -6,23 +6,56 @@
 {% endblock %}
 
 {% block content %}
-	<p>
-        You earned a <strong>total of {{ money_earned }} during this
-        experiment.</strong> Your earnings are based on two randomly
-        selected rounds, plus a participation fee of {{ variable here
-        }}.
-    </p>
-    <p>
-        The rounds that were selected for payment for part 1 and 2
-        respectively are rounds <strong>{{
-        session.vars.rfas_payed_round1 }}</strong> and <strong>{{
-        session.vars.rfas_payed_round2 }}</strong>
-    </p>
-    <p>
-        <strong>The experimenter will distribute a receipt for you to
-        sign. Please fill in the correct amount and sign your
-        receipt. Then quietly pack up your things and leave, dropping
-        your receipt with the experimenter on the way out.</strong>
-    </p>
+    <div id='main-content'>
+        <p>
+            You earned a <strong>total of {{ money_earned }} during this
+            experiment.</strong> Your earnings are based on two randomly
+            selected rounds, plus a participation fee of {{ participation_fee
+            }}.
+        </p>
+        <p>
+            The rounds that were selected for payment for part 1 and 2
+            respectively are rounds <strong>{{
+            session.vars.rfas_payed_round1 }}</strong> and <strong>{{
+            session.vars.rfas_payed_round2 }}</strong>
+        </p>
+        <p>
+            <strong>The experimenter will distribute a receipt for you to
+            sign. Please fill in the correct amount and sign your
+            receipt. Then quietly pack up your things and leave, dropping
+            your receipt with the experimenter on the way out.</strong>
+        </p>
+        <p>
+            Your participant ID is: <strong>{{ participant.code }}</strong>
+        </p>
+    </div>
+
+    <button
+        type="button"
+        class="otree-btn-next btn btn-primary" id="show-btn" style="display: none;" onclick="show_content();">
+        Click here to show your payment information
+    </button>
+
+    <button type="button" class="otree-btn-next btn btn-primary" id="hide-btn" onclick="hide_content();">
+        Click here to conceal your payment information
+    </button>
 {% endblock %}
+
+{{ block scripts }}
+    <script>
+        function hide_content() {
+            document.getElementById('main-content').style.display='none';
+            document.getElementById('hide-btn').style.display='none';
+
+            document.getElementById('show-btn').style.display='';
+        }
+
+        function show_content() {
+            document.getElementById('main-content').style.display='';
+            document.getElementById('hide-btn').style.display='';
+
+            document.getElementById('show-btn').style.display='none';
+        }
+    </script>
+{{ endblock }}
 

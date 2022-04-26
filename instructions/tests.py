@@ -6,4 +6,4 @@ class PlayerBot(Bot):
 
     def play_round(self):
         yield InformedConsent
-        yield PayID, { 'pay_id': 'asldkj1232' }
+        # yield PayID, { 'pay_id': 'asldkj1232' }

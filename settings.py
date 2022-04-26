@@ -6,8 +6,8 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 0.03,
-    'participation_fee': 10/0.03,
+    'real_world_currency_per_point': 0.02,
+    'participation_fee': 500,
     'doc': "",
 }
 
@@ -69,6 +69,12 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['debriefing'],
     },
+    # {
+    #     'name': 'payment_info',
+    #     'display_name': "Payment Info",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['payment_info'],
+    # },
 ]
 # see the end of this file for the inactive session configs
 

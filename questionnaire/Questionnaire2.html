@@ -13,24 +13,6 @@
     the statements, not leaving any blank.
   </p>
 
-  {{ for field in form }}
-    {{ field.label }} 
-    <table class="likert-table">
-      <tr>
-        {{ for choice in field }}
-          <th>{{ choice.label }}</th>
-        {{ endfor }}
-      </tr>
-      <tr>
-        <td colspan="{{field.choices|length}}">
-          <input type="range" class="form-range" min="1" max="{{field.choices|length}}" step="1" name="{{field.name}}" id="{{field.id}}">
-        </td>
-      </tr>
-    </table>
-    {{ formfield_errors field.name }}
-    <br />
-  {{ endfor }}
-
+  {{ include 'questionnaire/LikertQuestions.html' }}
   {{ next_button }}
-
 {{ endblock }}

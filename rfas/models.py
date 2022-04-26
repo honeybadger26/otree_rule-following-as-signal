@@ -15,8 +15,8 @@ repeat 20 times.
 class C(BaseConstants):
     NAME_IN_URL = 'rfas'
     PLAYERS_PER_GROUP = 4
-    PT1_NUM_ROUNDS = 1
-    PT2_NUM_ROUNDS = 1
+    PT1_NUM_ROUNDS = 3
+    PT2_NUM_ROUNDS = 3
     NUM_ROUNDS = PT1_NUM_ROUNDS + PT2_NUM_ROUNDS # TODO: Default is 30
     PAYOFF_ROUND1 = random.randint(1, PT1_NUM_ROUNDS)
     PAYOFF_ROUND2 = random.randint(PT1_NUM_ROUNDS+1, NUM_ROUNDS)

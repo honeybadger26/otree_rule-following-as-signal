@@ -35,27 +35,26 @@ or
 
 # Todo - Simon
 
-- Change default value participation fee to 500 points.
-- Number of rounds per part -- currently just 1. Please set to 3 for further testing.
-- Remove the PayID page from the experiment (sorry -- had second thoughts about how to do this part.)
-- Change default currency per point to 0.02.
-- Display participant ID on the final screen, similar to other recent experiments.
-- Give participants button to hide their payout when they have finished, similar to other recent experiments.
-- Instructions page. Collapsible headings now work, but they only appear blue while I hover mouse over. Can you make them blue at all times? If not, please remove the word "blue" from the instructions.
-- Instructions page. Payment info box does not update when I change  the value of the currency per point variables: 
-  
-  > The points you earn in a round will be converted to money at a conversion rate of <strong>100 points = 3 Dollars</strong>..
-  
-  Can you program this using relevant variables so it updates each session?
+- Display participant ID on the final screen, similar to other recent experiments. [Simon: Added final paragraph to `payment_info\templates\payment_info\PaymentInfo.html`]
+
+## Done
+
 - Religion Questionnaire -- 9 point sliders. Force responses -- at the moment, if you click next, it advances you to the next page, and records your responses as 5 for each item. (Check SVO program for how they force responses on slider items?)
 	- 9 point sliders. Is it possible to display the number that the participant is selecting as they move the slider? Or just to have some check marks above so they have some sense of where the possible options are?
 - HEXACO questionnaire -- same problem as religion questionnaire. Isn't really forcing a response.
 - Payment Info program
 	- I've reworded the first paragraph to indicate what I want it to report. It needs to tell people their earnings from the experiment PLUS the $10.00 participation fee.
-
-
-## Done
-
+- Instructions page. Payment info box does not update when I change  the value of the currency per point variables: 
+  
+  > The points you earn in a round will be converted to money at a conversion rate of <strong>100 points = 3 Dollars</strong>..
+  
+  Can you program this using relevant variables so it updates each session?
+- Instructions page. Collapsible headings now work, but they only appear blue while I hover mouse over. Can you make them blue at all times? If not, please remove the word "blue" from the instructions.
+- Give participants button to hide their payout when they have finished, similar to other recent experiments.
+- Change default value participation fee to 500 points.
+- Number of rounds per part -- currently just 1. Please set to 3 for further testing.
+- Remove the PayID page from the experiment (sorry -- had second thoughts about how to do this part.)
+- Change default currency per point to 0.02.
 - Replace SVO program
 	- Instead of the SVO program, participants are to be given a couple of questionnaries. See file "new_questions.md". Suggested program titles are in the file.
 - Experiment Instructions

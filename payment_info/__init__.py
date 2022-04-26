@@ -1,5 +1,5 @@
 from otree.api import *
-import random
+from otree.api import Currency as c, currency_range
 
 # Models #
 
@@ -24,6 +24,7 @@ class PaymentInfo(Page):
     def vars_for_template(self):
         return {
             'redemption_code': self.participant.label or self.participant.code,
+            'participation_fee': c(self.session.config['participation_fee']).to_real_world_currency(self.session),
             'money_earned': self.participant.payoff.to_real_world_currency(self.session)
         }
 
