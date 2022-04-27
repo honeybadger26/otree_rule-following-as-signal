@@ -35,9 +35,9 @@ or
 
 # Todo - Simon
 
-- Something has gone wrong with the transition between Part 1 and Part 2. There is no screen advising Deciders that in Part 1 the payoffs for bucket selection will be different. I have created a new file EnvironmentPageX that should have all the necessary info, but please check if it works as expected without bugs. Please make sure ALL players (deciders and selectors) see this page just before they begin Part 2.
-- If somebody doesn't answer one of the HEXACO questions, and tries to submit, ALL their answers get reset.
-- Same problem in Religion questionnaire. Leaving any question unanswered brings back all the questions unanswered.
+- Something has gone wrong with the transition between Part 1 and Part 2. There is no screen advising Deciders that in Part 1 the payoffs for bucket selection will be different. I have created a new file EnvironmentPageX that should have all the necessary info, but please check if it works as expected without bugs. Please make sure ALL players (deciders and selectors) see this page just before they begin Part 2. [Simon: Not sure why this happens. Every time I've run it this page isn't skipped]
+- If somebody doesn't answer one of the HEXACO questions, and tries to submit, ALL their answers get reset. [Simon: Unfortunately, I can't get this to work. This is becuase I use a custom component that isn't handled by oTree]
+- Same problem in Religion questionnaire. Leaving any question unanswered brings back all the questions unanswered. [Simon: See above]
 - Display participant ID on the final screen, similar to other recent experiments. [Simon: Added final paragraph to `payment_info\templates\payment_info\PaymentInfo.html`]
 
 ## Done

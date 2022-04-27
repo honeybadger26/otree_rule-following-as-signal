@@ -66,6 +66,16 @@ class RFTask(Page):
     def is_displayed(self):
         return self.player.role() == 'partner'
 
+    def vars_for_template(self):
+        vars = {}
+        if self.subsession.round_number <= C.PT1_NUM_ROUNDS:
+            vars['endowment_yellow'] = c(self.session.config['pt1_endowment_yellow'])
+            vars['endowment_blue'] = c(self.session.config['pt1_endowment_blue'])
+        elif self.subsession.round_number <= C.NUM_ROUNDS:
+            vars['endowment_yellow'] = c(self.session.config['pt2_endowment_yellow'])
+            vars['endowment_blue'] = c(self.session.config['pt2_endowment_blue'])
+        return vars
+
     def before_next_page(self):
         if self.player.yellow_choice:
             self.player.yellow_count += 1

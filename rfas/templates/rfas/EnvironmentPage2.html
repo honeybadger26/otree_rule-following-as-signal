@@ -7,12 +7,24 @@
 
 {% block content %}
     <p>
-      In this part, everything will stay the same as in part 1, except that the decider will receive
-      <strong>{{ subsession.session.config.pt2_endowment_blue }} points</strong> for putting each ball in the blue bucket and
-      <strong>{{ subsession.session.config.pt2_endowment_yellow }} points</strong> for putting each ball in the yellow bucket.
+      In this part, <strong>everything will stay the same as in part
+      1, except for stage 1</strong>. You will also stay in your role
+      (decider or selector) from part 1. Again, this part consists of
+      15 rounds.
     </p>
     <p>
-      The rule is to place the balls in the blue bucket.
+      The only difference is how much the deciders earn for
+      choosing each bucket in Stage 1. In this Part, deciders will earn
+      {{ session.config.pt2_endowment_blue }} points for each
+      ball placed in the blue bucket, and {{
+      session.config.pt2_endowment_yellow }} points for each
+      ball placed in the yellow bucket.
+    </p>
+    <p>
+      The rule is still to put the balls in the blue bucket.
+    </p>
+    <p>
+      Stage 2 and Stage 3 are exactly the same as before.
     </p>
     {{ next_button }}
 {% endblock %}
