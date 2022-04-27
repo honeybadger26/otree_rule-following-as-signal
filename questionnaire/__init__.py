@@ -14,7 +14,7 @@ NINE_POINT_CHOICES = [
 FIVE_POINT_CHOICES = [
     [1, 'Strongly disagree'],
     [2, 'Disagree'],
-    [3, 'Neutral (neight agree, nor disagree)'],
+    [3, 'Neutral (neither agree nor disagree)'],
     [4, 'Agree'],
     [5, 'Strongly agree'],
 ]
