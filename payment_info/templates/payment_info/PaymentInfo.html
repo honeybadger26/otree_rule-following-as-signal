@@ -8,9 +8,9 @@
 {% block content %}
     <div id='main-content'>
         <p>
-            You earned a <strong>total of {{ money_earned }} during this
+            You earned a <strong>total of {{ participant.payoff_plus_participation_fee }} during this
             experiment.</strong> Your earnings are based on two randomly
-            selected rounds, plus a participation fee of {{ participation_fee
+            selected rounds, plus a participation fee of {{ session.config.participation_fee
             }}.
         </p>
         <p>

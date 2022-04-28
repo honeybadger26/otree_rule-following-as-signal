@@ -35,19 +35,19 @@ or
 
 # Todo - Simon
 
-- Payment Info program
-	- I've reworded the first paragraph to indicate what I want it to report. It needs to tell people their earnings from the experiment PLUS the $10.00 participation fee.  [Toby: Simon, sorry, but maybe my instructions weren't clear. If somebody earns $7.50 in the experiment, plus $10.00 participation fee, then the first paragraph on the Payment info page should read: "You earned a total of $17.50 during this experiment. Your earnings are based on two randomly selected rounds, plus a participation fee of $10.00." At the moment, it reads "You earned a total of $7.50 during this experiment. Your earnings are based on two randomly selected rounds, plus a participation fee of $10.00."]
-- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format?
-- Payments page: reports a $500 participation fee!!
-- RFTaskStart.html advises how many points deciders will earn for each bucket. But it is currently showing correct amounts for Part 2 only. Need to change this so that it shows Part 1, Part 2 amounts, at correct times.
-- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing.
-- EnvironmentPage2 -- please substitute in a variable for the number of rounds. (Or is number of rounds hard coded? In which case, please revert to saying "15")
-- If somebody doesn't answer one of the HEXACO questions, and tries to submit, ALL their answers get reset. [Simon: Unfortunately, I can't get this to work. This is becuase I use a custom component that isn't handled by oTree] [Toby: As per discussion -- Simon to implement radio buttons]
-- Same problem in Religion questionnaire. Leaving any question unanswered brings back all the questions unanswered. [Simon: See above] [Toby: See above]
-- Display participant ID on the final screen, similar to other recent experiments. [Simon: Added final paragraph to `payment_info\templates\payment_info\PaymentInfo.html`]
+- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues]
+- Payments page: reports a $500 participation fee!! [Simon: Sorry, that's my bad. I thought oTree takes the participation fee as points ($10 = 500 points), but this isn't true. Fixed now]
+- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing. [Simon: Ah I think I understand now. So normally 'Strongly disagree'=1, but reverse scored 'Strongly disagree'=5 correct?]
 
 ## Done
 
+- Display participant ID on the final screen, similar to other recent experiments.
+- If somebody doesn't answer one of the HEXACO questions, and tries to submit, ALL their answers get reset. 
+- Same problem in Religion questionnaire. Leaving any question unanswered brings back all the questions unanswered.
+- EnvironmentPage2 -- please substitute in a variable for the number of rounds. (Or is number of rounds hard coded? In which case, please revert to saying "15")
+- Payment Info program
+	- I've reworded the first paragraph to indicate what I want it to report. It needs to tell people their earnings from the experiment PLUS the $10.00 participation fee.  [Toby: Simon, sorry, but maybe my instructions weren't clear. If somebody earns $7.50 in the experiment, plus $10.00 participation fee, then the first paragraph on the Payment info page should read: "You earned a total of $17.50 during this experiment. Your earnings are based on two randomly selected rounds, plus a participation fee of $10.00." At the moment, it reads "You earned a total of $7.50 during this experiment. Your earnings are based on two randomly selected rounds, plus a participation fee of $10.00."]
+- RFTaskStart.html advises how many points deciders will earn for each bucket. But it is currently showing correct amounts for Part 2 only. Need to change this so that it shows Part 1, Part 2 amounts, at correct times.
 - Religion Questionnaire -- 9 point sliders. Force responses -- at the moment, if you click next, it advances you to the next page, and records your responses as 5 for each item. (Check SVO program for how they force responses on slider items?)
 	- 9 point sliders. Is it possible to display the number that the participant is selecting as they move the slider? Or just to have some check marks above so they have some sense of where the possible options are?
 - HEXACO questionnaire -- same problem as religion questionnaire. Isn't really forcing a response.

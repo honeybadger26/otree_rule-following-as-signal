@@ -7,25 +7,11 @@
             {{ endfor }}
         </tr>
         <tr>
-            <td colspan="{{field.choices|length}}">
-            <input type="hidden" name="{{field.name}}" id="{{field.id}}" />
-            <input type="range" class="form-range" min="1" max="{{field.choices|length}}" step="1" value="-1"
-                onchange="update_value('{{field.id}}', this.value);">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="{{field.choices|length}}">
-            <span id="{{field.id}}_value"></span>
-            </td>
+            {{ for choice in field }}
+            <td>{{ choice }}</td>
+            {{ endfor }}
         </tr>
     </table>
     {{ formfield_errors field.name }}
     <br />
 {{ endfor }}
-
-<script>
-    function update_value(id, val) {
-        document.getElementById(id).value = val;
-        document.getElementById(id+'_value').innerHTML = val;
-    }
-</script>

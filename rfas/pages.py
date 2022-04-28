@@ -58,6 +58,16 @@ class RFTaskStart(Page):
     def is_displayed(self):
         return self.player.role() == 'selector'
 
+    def vars_for_template(self):
+        vars = {}
+        if self.subsession.round_number <= C.PT1_NUM_ROUNDS:
+            vars['endowment_yellow'] = c(self.session.config['pt1_endowment_yellow'])
+            vars['endowment_blue'] = c(self.session.config['pt1_endowment_blue'])
+        elif self.subsession.round_number <= C.NUM_ROUNDS:
+            vars['endowment_yellow'] = c(self.session.config['pt2_endowment_yellow'])
+            vars['endowment_blue'] = c(self.session.config['pt2_endowment_blue'])
+        return vars
+
 
 class RFTask(Page):
     form_model = 'player'
