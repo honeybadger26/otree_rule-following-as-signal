@@ -70,11 +70,11 @@ class Player(BasePlayer):
     prayhappy = createpointques(NINE_POINT_CHOICES,
         'The purpose of prayer is to secure a happy and peaceful life.')
     churchmake = createpointques(NINE_POINT_CHOICES,
-        'I go to Church because it helps me to make friends.')
+        'I go to my place of worship because it helps me to make friends.')
     churchtime = createpointques(NINE_POINT_CHOICES,
-        'I go to Church mostly to spend time with my friends.')
+        'I go to my place of worship mostly to spend time with my friends.')
     churchsee = createpointques(NINE_POINT_CHOICES,
-        'I go to church mainly because I enjoy seeing the people I know there.')
+        'I go to my place of worship mainly because I enjoy seeing the people I know there.')
     godrevealall = createpointques(NINE_POINT_CHOICES,
         'Everything we need to know about living a moral life God has revealed to us.')
     onlygodreveal = createpointques(NINE_POINT_CHOICES,

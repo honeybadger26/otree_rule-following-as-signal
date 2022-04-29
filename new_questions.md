@@ -26,9 +26,9 @@ Page header "Questionnaire part 2"
 - (prayrelief) The purpose of prayer is to gain relief and protection.
 - (comfort) What religion offers me most is comfort when sorrows and misfortune strike.
 - (prayhappy) The purpose of prayer is to secure a happy and peaceful life.
-- (churchmake) I go to Church because it helps me to make friends.
-- (churchtime) I go to Church mostly to spend time with my friends.
-- (churchsee) I go to church mainly because I enjoy seeing the people I know there.
+- (churchmake) I go to my place of worship because it helps me to make friends.
+- (churchtime) I go to my place of worship mostly to spend time with my friends.
+- (churchsee) I go to my place of worship mainly because I enjoy seeing the people I know there.
 - (godrevealall) Everything we need to know about living a moral life God has revealed to us.
 - (onlygodreveal) The truth about morality is revealed only by God.
 
