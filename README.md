@@ -35,9 +35,12 @@ or
 
 # Todo - Simon
 
-- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues]
+- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues] [Ah, I found the issue -- there are two ways of viewing the data, and I was using the wrong one.]
 - Payments page: reports a $500 participation fee!! [Simon: Sorry, that's my bad. I thought oTree takes the participation fee as points ($10 = 500 points), but this isn't true. Fixed now]
-- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing. [Simon: Ah I think I understand now. So normally 'Strongly disagree'=1, but reverse scored 'Strongly disagree'=5 correct?]
+- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing. [Simon: Ah I think I understand now. So normally 'Strongly disagree'=1, but reverse scored 'Strongly disagree'=5 correct?] [Yes, that's right. But the radio buttons are still in the wrong order. For some questions, teh leftmost is "Strongly agree" and for others it is "Strongly disagree". They should always  ]
+- Groups across parts. Do the *groups* remain the same across the two parts? I've only tested with 4 participants, so I can't be sure what will happen when we have 8 or more.
+- rfas_payed_round1 and rfas_payed_round2 should be stored in the data file so I can check consistency of payment calculations afterwards
+- Questionnaires. Please put the HEXACO questionnaire prior to the religion questionnaire.
 
 ## Done
 
@@ -128,11 +131,23 @@ or
 
 # Todo - Toby
 
+- Instructions - Shaun suggests a at start of Part 1 instructions, reinforce that participants role will be assigned after reading the instructions. @done
+
+- Double check in the data: is group membership constant across blocks?
+- "can then choose which deciderS" @done
+- delete redundant "earn" @done
+- Use strategy method for selector choice? (save for future)
+- Andrew would include a practice block? (for future)
+- "my place of worship" instead of "Church" @done
+- Reverse scored Hexaco questions are still appearing wrong. (answer order is reversed)
+- Shaun wants the HEXACO one first -- in case religous one triggers attitudes
+- Andrew query about explanatory statement -- double check
+
 - Consent page/Explanatory statement
 	- Consent page needs updated contact information @done
 	- Reference to Euros need to be replaced with dollars throughout @done
 	- Reference to earning credits needs to be removed. @done
-	- Clarify are participants paid for 1 round from EACH part, or 1 round from either part? @done [They are paid for one round from each part. With $0.02 per point, the maximum average earning from the experiment is around $31.70 per participant (including participation fee). Thi minimum average earning possible is around $16.]
+	- Clarify are participants paid for 1 round from EACH part, or 1 round from either part? @done [They are paid for one round from each part. With $0.02 per point, the maximum average earning from the experiment is around $31.70 per participant (including participation fee). The minimum average earning possible is around $16.]
 - Payment info page
 	- Update based on whether using PayID or other method @done
 	- Add breakdown of payment info to final screen. Explain which rounds were selected. @done
