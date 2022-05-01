@@ -35,7 +35,11 @@ or
 
 # Todo - Simon
 
-- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues] [Ah, I found the issue -- there are two ways of viewing the data, and I was using the wrong one.]
+- Please advise: how do we change the number of rounds? I found these lines in code.py -- is it just a matter of changing them?
+
+	    PT1_NUM_ROUNDS = 3
+	    PT2_NUM_ROUNDS = 3
+
 
 ## Done
 
@@ -125,7 +129,7 @@ or
 - Earnings are reported in Euros. [TH: This seems to be encoded in a variable that I don't know how to fix.] [Simon: I believe the variables is `REAL_WORLD_CURRENCY_CODE` in `settings.py`. Currently, I have it set to AUD]
 - What variable(s) determine the round(s) that are paid? I'd like to be able to explain on the payment info page which round was selected to be paid.
 	- These variables are now available using `session.vars.rfas_payed_round1` and `session.vars.rfas_payed_round2`. I've added a paragraph on the payment info page showing how to use them so edit this as you see fit. Adding this means that you now cannot run Payment Info by itself on the server page (since it now relies on the RFAS task being completed)
-
+- Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues] [Ah, I found the issue -- there are two ways of viewing the data, and I was using the wrong one.]
 
 ---
 
