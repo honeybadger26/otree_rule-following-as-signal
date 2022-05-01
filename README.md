@@ -36,14 +36,14 @@ or
 # Todo - Simon
 
 - Data: the data page looks different than usual (see the session I left running in the instance, ck7zd8fv). It does not offer a link to download page waiting times. It also only offers me the option to download all apps in CSV/Excel, rather than individual apps. I don't think it did this on other days when I have run a test. Can you revert to normal data format? [Simon: Unfortunately, I have no control over this. I assume this is a consequence of using the latest oTree version. Downgrading isn't recommended and will most likely cause issues] [Ah, I found the issue -- there are two ways of viewing the data, and I was using the wrong one.]
-- Payments page: reports a $500 participation fee!! [Simon: Sorry, that's my bad. I thought oTree takes the participation fee as points ($10 = 500 points), but this isn't true. Fixed now]
-- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing. [Simon: Ah I think I understand now. So normally 'Strongly disagree'=1, but reverse scored 'Strongly disagree'=5 correct?] [Yes, that's right. But the radio buttons are still in the wrong order. For some questions, teh leftmost is "Strongly agree" and for others it is "Strongly disagree". They should always  ]
-- Groups across parts. Do the *groups* remain the same across the two parts? I've only tested with 4 participants, so I can't be sure what will happen when we have 8 or more.
-- rfas_payed_round1 and rfas_payed_round2 should be stored in the data file so I can check consistency of payment calculations afterwards
-- Questionnaires. Please put the HEXACO questionnaire prior to the religion questionnaire.
 
 ## Done
 
+- Questionnaires. Please put the HEXACO questionnaire prior to the religion questionnaire.
+- rfas_payed_round1 and rfas_payed_round2 should be stored in the data file so I can check consistency of payment calculations afterwards
+- Groups across parts. Do the *groups* remain the same across the two parts? I've only tested with 4 participants, so I can't be sure what will happen when we have 8 or more. [Simon: Yes groups remain the same]
+- Payments page: reports a $500 participation fee!! [Simon: Sorry, that's my bad. I thought oTree takes the participation fee as points ($10 = 500 points), but this isn't true. Fixed now]
+- HEXACO - questionnaire. I see that for items that are to be reverse scored, you have changed teh order of Strongly Agree -- Strongly Disagree on the page. I'm afraid that's not what we need. For the participants, the possible answers should always be labeled the same, and presented the same. To keep things simple: don't you worry about the reverse scoring, I will do that in post-processing. [Simon: Ah I think I understand now. So normally 'Strongly disagree'=1, but reverse scored 'Strongly disagree'=5 correct?] [Yes, that's right. But the radio buttons are still in the wrong order. For some questions, teh leftmost is "Strongly agree" and for others it is "Strongly disagree". They should always  ]
 - Display participant ID on the final screen, similar to other recent experiments.
 - If somebody doesn't answer one of the HEXACO questions, and tries to submit, ALL their answers get reset. 
 - Same problem in Religion questionnaire. Leaving any question unanswered brings back all the questions unanswered.

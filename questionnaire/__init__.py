@@ -19,7 +19,7 @@ FIVE_POINT_CHOICES = [
     [5, 'Strongly agree'],
 ]
 FIVE_POINT_CHOICES_REVERSED = [
-    [i+1, FIVE_POINT_CHOICES[len(FIVE_POINT_CHOICES)-i-1][1]] for i in range(len(FIVE_POINT_CHOICES))
+    [len(FIVE_POINT_CHOICES)-i, FIVE_POINT_CHOICES[i][1]] for i in range(len(FIVE_POINT_CHOICES))
 ]
 
 class C(BaseConstants):
@@ -169,4 +169,4 @@ class Hexaco(Page):
         'e_sentimentality', 'h_modesty' ]
 
 
-page_sequence = [Questionnaire, Questionnaire2, Hexaco]
+page_sequence = [Hexaco, Questionnaire, Questionnaire2]

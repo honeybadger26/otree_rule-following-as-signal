@@ -17,8 +17,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    show_payoff = models.BooleanField()
-
+    pass
 
 # Pages #
 

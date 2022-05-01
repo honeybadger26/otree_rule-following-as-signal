@@ -44,11 +44,11 @@ class PlayerBot(Bot):
 
         if self.player.role() == 'partner':
             for _ in range(C.RFTASK_NUM_BALLS):
-                yellow_choce = random.choice([True, False])
-                blue_choce = not yellow_choce
+                yellow_choice = random.choice([True, False])
+                blue_choice = not yellow_choice
                 yield pages.RFTask, {
-                    'yellow_choice': yellow_choce,
-                    'blue_choice': blue_choce
+                    'yellow_choice': yellow_choice,
+                    'blue_choice': blue_choice
                 }
             yield pages.RFWaitForSelector
             yield pages.RFResults

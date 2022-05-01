@@ -87,11 +87,6 @@ class RFTask(Page):
         return vars
 
     def before_next_page(self):
-        if self.player.yellow_choice:
-            self.player.yellow_count += 1
-        elif self.player.blue_choice:
-            self.player.blue_count += 1
-
         self.player.set_rf_payoff()
 
 
@@ -216,9 +211,6 @@ class EnvironmentPage3(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == C.NUM_ROUNDS
-
-    def vars_for_template(self):
-        return { 'money_earned': self.participant.payoff.to_real_world_currency(self.session) }
 
 
 class PayoffsWaitPage(WaitPage):
