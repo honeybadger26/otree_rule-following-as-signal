@@ -15,8 +15,8 @@ repeat 20 times.
 class C(BaseConstants):
     NAME_IN_URL = 'rfas'
     PLAYERS_PER_GROUP = 4
-    PT1_NUM_ROUNDS = 3
-    PT2_NUM_ROUNDS = 3
+    PT1_NUM_ROUNDS = 15
+    PT2_NUM_ROUNDS = 15
     NUM_ROUNDS = PT1_NUM_ROUNDS + PT2_NUM_ROUNDS # TODO: Default is 30
     RFTASK_NUM_BALLS = 15
     PARTNER_SELECTOR = 4

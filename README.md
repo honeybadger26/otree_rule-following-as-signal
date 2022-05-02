@@ -35,7 +35,7 @@ or
 
 # Todo - Simon
 
-- Please advise: how do we change the number of rounds? I found these lines in code.py -- is it just a matter of changing them?
+- Please advise: how do we change the number of rounds? I found these lines in code.py -- is it just a matter of changing them? [Simon: Yes these are the correct variables (from `rfas/models.py`). I have changed them to 15 rounds each in this commit]
 
 	    PT1_NUM_ROUNDS = 3
 	    PT2_NUM_ROUNDS = 3
