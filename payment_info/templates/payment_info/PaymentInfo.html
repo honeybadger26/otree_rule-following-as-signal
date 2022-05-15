@@ -6,28 +6,27 @@
 {% endblock %}
 
 {% block content %}
-    <div id='main-content'>
+    <div id='main-content' style="display: none;">
 		<p> Here is a breakdown of your earnings for today's experiment.
 		</p>
 		<p>
 			One round was randomly chosen from each part for payment
 			<ul>
-				<li>Part 1: Round <strong>{{ session.vars.rfas_payed_round1 }}</strong>, ??
-				<li>Part 2: Round <strong>{{ session.vars.rfas_payed_round2 }}</strong>, ??
+				<li>Part 1: Round <strong>{{ session.vars.rfas_payed_round1 }}</strong>, Earnings: {{ payoff1 }}
+				<li>Part 2: Round <strong>{{ session.vars.rfas_payed_round2 }}</strong>, Earnings: {{ payoff2 }}
 			</ul>
 		</p>        
 		<p>
-			You also earned a participation fee of {{ session.config.participation_fee
-            }}.
+			You also earned a participation fee of {{ session.config.participation_fee }}.
 		</p>
 		<p>
-            Your <strong>total earnings</strong> are thus <strong> {{ participant.payoff_plus_participation_fee }} 
+            Your <strong>total earnings</strong> are thus <strong>{{ participant.payoff_plus_participation_fee }}</strong>
         </p>
         <p>
-            <strong>The experimenter will distribute a receipt for you to
+            The experimenter will distribute a receipt for you to
             sign. Please fill in (your <strong>total earnings</strong>) and <em>sign</em> your
             receipt. Then quietly pack up your things and leave, dropping
-            your receipt with the experimenter on the way out.</strong>
+            your receipt with the experimenter on the way out.
         </p>
 		<p>
 			If you wish to keep a copy of your receipt, please feel free to 
@@ -40,29 +39,18 @@
 
     <button
         type="button"
-        class="otree-btn-next btn btn-primary" id="show-btn" style="display: none;" onclick="show_content();">
-        Show/hide your payment information
-    </button>
-
-    <button type="button" class="otree-btn-next btn btn-primary" id="hide-btn" onclick="hide_content();">
-        Show/hide your payment information
-    </button>
+        class="otree-btn-next btn btn-primary"
+        onclick="toggle_content();"
+    >Show/hide your payment information</button>
 {% endblock %}
 
 {{ block scripts }}
     <script>
-        function hide_content() {
-            document.getElementById('main-content').style.display='none';
-            document.getElementById('hide-btn').style.display='none';
-
-            document.getElementById('show-btn').style.display='';
-        }
-
-        function show_content() {
-            document.getElementById('main-content').style.display='';
-            document.getElementById('hide-btn').style.display='';
-
-            document.getElementById('show-btn').style.display='none';
+        function toggle_content() {
+            document.getElementById('main-content').style.display =
+                document.getElementById('main-content').style.display === "" ?
+                "none" :
+                "";
         }
     </script>
 {{ endblock }}

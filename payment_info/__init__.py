@@ -5,12 +5,11 @@ from otree.api import Currency as c, currency_range
 
 class C(BaseConstants):
     NAME_IN_URL = 'payment_info'
-    PLAYERS_PER_GROUP = 1
+    PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
 
 class Subsession(BaseSubsession):
-    payed_round1 = models.IntegerField()
-    payed_round2 = models.IntegerField()
+    pass
 
 class Group(BaseGroup):
     pass
@@ -18,23 +17,24 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     pass
 
+
 # Pages #
 
-class CalculatePayoffs(WaitPage):
+class PaymentInfo(Page):
 
     @staticmethod
-    def after_all_players_arrive(group: Group):
-        subsession = group.subsession
-        session = group.session
+    def is_displayed(player: Player):
+        player.participant.payoff = player.participant.vars['rfas_total_payoff']
+        return True
 
-        subsession.payed_round1 = session.vars['rfas_payed_round1']
-        subsession.payed_round2 = session.vars['rfas_payed_round2']
+    @staticmethod
+    def vars_for_template(player: Player):
+        vars = player.participant.vars
+        session = player.session
 
-        for p in group.get_players():
-            p.participant.payoff =  p.participant.vars['rfas_payoff']
+        return {
+            'payoff1': vars['rfas_payoff1'].to_real_world_currency(session),
+            'payoff2': vars['rfas_payoff2'].to_real_world_currency(session)
+        }
 
-
-class PaymentInfo(Page):
-    pass
-
-page_sequence = [CalculatePayoffs, PaymentInfo]
+page_sequence = [PaymentInfo]

@@ -76,7 +76,9 @@ class Group(BaseGroup):
         payed_round2 = C.PT1_NUM_ROUNDS + self.session.vars['rfas_payed_round2']
 
         for p in self.get_players():
-            p.participant.vars['rfas_payoff'] = \
+            p.participant.vars['rfas_payoff1'] = p.in_round(payed_round1).payoff
+            p.participant.vars['rfas_payoff2'] = p.in_round(payed_round2).payoff
+            p.participant.vars['rfas_total_payoff'] = \
                 p.in_round(payed_round1).payoff + p.in_round(payed_round2).payoff
         
 
