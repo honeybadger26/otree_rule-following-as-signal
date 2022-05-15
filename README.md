@@ -35,13 +35,11 @@ or
 
 # Todo - Simon
 
+## Done
+
 - Payment information page
 	- I've changed how the info is presented, but need you to complete two lines with the dollar earnings from particular rounds. See "??" in the html. Can you please substitute necessary code?
 	- I've also changed the labels for the buttons to show/hide payment info. Can we have it so that the page defaults to the *hidden* state when they first arrive, so they first have to click the button to reveal anything?
-
-## Done
-
-
 - Please advise: how do we change the number of rounds? I found these lines in code.py -- is it just a matter of changing them? [Simon: Yes these are the correct variables (from `rfas/models.py`). I have changed them to 15 rounds each in this commit]
 
 	    PT1_NUM_ROUNDS = 3
