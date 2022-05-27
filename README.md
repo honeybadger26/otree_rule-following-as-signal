@@ -35,11 +35,7 @@ or
 
 # Todo - Simon
 
-- Develop a *strategy method* version of the app
-	- I.e. all deciders have to indicate how they *would* play in DG, before they know whether they have been chosen.
-	- Note: important to keep variable names the same, insofar as possible.
-	- Also need to keep both versions of the software alive for future development. Maybe use different branches in the repo? To discuss.
-	- Develop a full list of variable names for the new version, with notes for anyone trying to compare data on how they differ from other version.
+- Nothing to do in this branch. See Strategy Method branch.
 
 ## Done
 
