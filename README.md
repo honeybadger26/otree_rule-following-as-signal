@@ -43,10 +43,10 @@ or
 	- Also need to keep both versions of the software alive for future development. Maybe use different branches in the repo? To discuss.
 	- Develop a full list of variable names for the new version, with notes for anyone trying to compare data on how they differ from other version.
 
+## Done
+
 - For both branches:
 	- The $10 participation fee, on the informed consent page, and on the first page of instructions, is not coded using the variable. Update to use the config variable.
-
-## Done
 
 ---
 
