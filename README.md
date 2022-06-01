@@ -35,8 +35,6 @@ or
 
 # Todo - Simon
 
-- Nothing to do in this branch. See Strategy Method branch.
-
 - For both branches:
 	- The $10 participation fee, on the informed consent page, and on the first page of instructions, is not coded using the variable. Update to use the config variable.
 
