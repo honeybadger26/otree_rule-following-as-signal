@@ -89,9 +89,9 @@
             <strong>100 points = {{ dollar_conversion }} Dollars</strong>. Hence, your decisions have real consequences for
             your earnings and, potentially, the earnings of other participants. 
         
-            Any points you earn in the experiment will be added to your
-            $10 participation fee to determine your overall payment at the
-            end of the session.
+            Any points you earn in the experiment will be added to your 
+            {{ session.config.participation_fee }} participation fee to determine your overall
+            payment at the end of the session.
           </p>
           {% formfield player.understood13 %}
         </div>
