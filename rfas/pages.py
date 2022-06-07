@@ -128,6 +128,18 @@ class RFSelection(Page):
             values["select3"] is not True:
             return 'Select at least one partner.'
 
+class DictatorTaskStrategy(Page):
+    form_model = 'player'
+    form_fields = ['amount_keep', 'amount_give']
+
+    def is_displayed(self):
+        return self.player.role() == 'partner'
+
+    def error_message(self, values):
+        if values['amount_keep'] + values['amount_give'] != self.session.config['endowment_stage3']:
+            return 'The points have to add up to ' + str(self.session.config['endowment_stage3'])
+
+
 class RFDeciderPayoffWaitPage(WaitPage):
     
     def after_all_players_arrive(self):
@@ -234,11 +246,12 @@ page_sequence = [
     RFWaitForSelector,
     RFSelectorPayoffWaitPage,
     RFSelection,
+    DictatorTaskStrategy,
     RFDeciderPayoffWaitPage,
     RFResults,
-    StageThreeSelector,
-    DictatorTask,
-    DictatorPayoffsWaitPage,
+    # StageThreeSelector,
+    # DictatorTask,
+    DictatorPayoffsWaitPage, # Change this to get inputs from DictatorTask-strategy
     DictatorResults,
     DictatorResultsDecider,
     FeedbackDeciders,

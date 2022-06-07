@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Stage 3
+{% endblock %}
+
+{% block content %}
+    <div class="card bg-light instructions">
+        <div class="card-body">
+            <p>
+                The selector is deciding whom to choose as an interaction partner.
+            </p>
+			<p>
+                If you are selected as interaction partner you will receive
+                {{ session.config.endowment_stage3 }}. Please decide how many points you want to
+                keep and how many points you want to give to the selector, if you are chosen.
+            </p>
+        </div>
+    </div>
+    <br />
+
+    {{ formfield 'amount_keep' }}
+    {{ formfield 'amount_give' }}
+    
+    {{ next_button }}
+{% endblock %}

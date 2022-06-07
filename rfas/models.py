@@ -65,7 +65,7 @@ class Group(BaseGroup):
         amount_given = c(0)
 
         for p in self.get_players():
-            if p.field_maybe_none('amount_give') is not None:
+            if p.selected:
                 p.payoff -= p.amount_give
                 amount_given += p.amount_give
         

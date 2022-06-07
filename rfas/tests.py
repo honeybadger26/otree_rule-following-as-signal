@@ -39,7 +39,7 @@ class PlayerBot(Bot):
                 'select1': True,
                 'select3': True
             }
-            yield pages.StageThreeSelector
+            # yield pages.StageThreeSelector
             yield pages.DictatorResults
 
         if self.player.role() == 'partner':
@@ -51,14 +51,20 @@ class PlayerBot(Bot):
                     'blue_choice': blue_choice
                 }
             yield pages.RFWaitForSelector
+
+            keep_amount = random.choice(self.player.keep_give_amounts())
+            yield pages.DictatorTaskStrategy, {
+                'amount_keep': keep_amount,
+                'amount_give': self.session.config['endowment_stage3'] - keep_amount
+            }
+            # yield pages.DictatorTask, {
+            #     'amount_keep': keep_amount,
+            #     'amount_give': self.session.config['endowment_stage3'] - keep_amount
+            # }
+
             yield pages.RFResults
 
             if self.player.selected:
-                keep_amount = random.choice(self.player.keep_give_amounts())
-                yield pages.DictatorTask, {
-                    'amount_keep': keep_amount,
-                    'amount_give': self.session.config['endowment_stage3'] - keep_amount
-                }
                 yield pages.DictatorResultsDecider
 
             yield pages.FeedbackDeciders
